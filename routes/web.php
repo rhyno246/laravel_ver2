@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [
+        'as' => 'backend.dashboard',
+        'uses' => 'App\Http\Controllers\AdminDashBoardController@index'
+    ]);
 });
