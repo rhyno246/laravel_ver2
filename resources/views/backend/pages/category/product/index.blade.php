@@ -1,7 +1,7 @@
 @extends('backend.layout.admin');
 
 @section('title')
-    <title>Dashboard</title>
+    <title>Danh Sách Danh Mục</title>
 @endsection
 
 @section('css')
@@ -13,13 +13,14 @@
 
 @section('content')
     @include('backend.partials.headercontent', [ 
-        'name' => 'Product Category',
-        'button' => 'Add New'
+        'name' => 'Danh Sách Danh Mục',
+        'button' => 'Thêm Mới',
+        'link' => 'category.product.create'
     ])
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h4>List Category</h4>
+        <h4>Danh Sách Danh Mục</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -59,7 +60,12 @@
                 </td>
                 <td>2018-01-20</td>
                 <td><div class="badge badge-success">Completed</div></td>
-                <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-primary mr-2">Sửa</a>
+                        <a href="#" class="btn btn-danger">Xóa</a>
+                    </div>
+                </td>
               </tr>
             </tbody>
           </table>

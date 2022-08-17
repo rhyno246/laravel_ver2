@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="index.html">ADMIN</a>
+      <a href="{{ route('backend.dashboard') }}">ADMIN</a>
     </div>
     <ul class="sidebar-menu">
       <li>
@@ -11,7 +11,7 @@
       <li class="dropdown">
         <a class="nav-link has-dropdown" href="#"><i class="fas fa-columns"></i> <span>Danh Mục</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{{ route('backend.category.product') }}">Danh Mục Sản Phẩm</a></li>
+          <li><a class="nav-link" href="{{ route('category.product.index') }}">Danh Mục Sản Phẩm</a></li>
           <li class=active><a class="nav-link" href="index.html">Danh Mục Bài Viết</a></li>
         </ul>
       </li>

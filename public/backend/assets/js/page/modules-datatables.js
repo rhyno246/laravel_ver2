@@ -30,7 +30,10 @@ $("[data-checkboxes]").each(function() {
 
 $("#table-product").dataTable({
   "columnDefs": [
-    { "sortable": false, "targets": [2,3] }
+    { 
+      "sortable": false, 
+      "targets": [2,3]
+    }
   ]
 });
 

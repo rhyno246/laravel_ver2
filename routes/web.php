@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/admin',  'App\Http\Controllers\AdminLoginController@login');
 
 
 Route::prefix('admin')->group(function () {
@@ -28,8 +28,12 @@ Route::prefix('admin')->group(function () {
     
     Route::prefix('category')->group(function () {
         Route::get('/product', [
-            'as' => 'backend.category.product',
+            'as' => 'category.product.index',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@index'
+        ]);
+        Route::get('/product/create', [
+            'as' => 'category.product.create',
+            'uses' => 'App\Http\Controllers\AdminProductCategoryController@create'
         ]);
     });
 });
