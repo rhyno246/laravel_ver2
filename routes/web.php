@@ -25,4 +25,11 @@ Route::prefix('admin')->group(function () {
         'as' => 'backend.dashboard',
         'uses' => 'App\Http\Controllers\AdminDashBoardController@index'
     ]);
+    
+    Route::prefix('category')->group(function () {
+        Route::get('/product', [
+            'as' => 'backend.category.product',
+            'uses' => 'App\Http\Controllers\AdminProductCategoryController@index'
+        ]);
+    });
 });
