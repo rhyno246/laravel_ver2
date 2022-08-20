@@ -1,24 +1,24 @@
 @extends('backend.layout.admin');
 
 @section('title')
-    <title>Thêm Mới Danh Mục</title>
+    <title>Sửa Danh Mục</title>
 @endsection
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Thêm Mới Danh Mục',
+        'name' => 'Sửa Danh Mục' . ' ' . $category->name,
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Thêm Mới Danh Mục</h4>
+                <h4>Sửa Danh Mục</h4>
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('category.product.store') }}">
+                <form method="post" action="{{ route('category.product.update', ['id' => $category->id]) }}">
                     @csrf
                     <div class="form-group">
                         <label>Tên Danh Mục</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}">
+                            value="{{ $category->name }}">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -30,7 +30,7 @@
                             {!! $htmlOption !!}
                         </select>
                     </div>
-                    <button class="btn btn-primary">Tạo danh mục</button>
+                    <button class="btn btn-primary">Cập nhật danh mục</button>
                 </form>
             </div>
         </div>

@@ -11,19 +11,31 @@
       </div>
     </form>
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-        <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-        <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+      <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+          <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+          <div class="d-sm-none d-lg-inline-block">
+            @if (Session::get('name'))
+                {{ Session::get('name') }}
+            @endif
+          </div>
+        </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="features-profile.html" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
+            <i class="far fa-user"></i> Trang cá nhân
           </a>
-          <a href="features-settings.html" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Settings
+          <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
+            <i class="fas fa-cog"></i> Cài đặt
+          </a>
+          <a href="{{ route('permissions.create') }}" class="dropdown-item has-icon">
+            <i class="fas fa-key"></i> Cấp quyền
+          </a>
+          <a href="{{ route('role.index') }}" class="dropdown-item has-icon">
+            <i class="fas fa-lock"></i> Vai trò
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item has-icon text-danger">
-            <i class="fas fa-sign-out-alt"></i> Logout
+          <a href="{{ route('admin.logout') }}" class="dropdown-item has-icon text-danger">
+            <i class="fas fa-sign-out-alt"></i> Thoát
           </a>
         </div>
       </li>

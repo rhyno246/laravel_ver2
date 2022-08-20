@@ -30,37 +30,41 @@
             </div>
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Login</h4></div>
-
+              <div class="card-header"><h4>Admin</h4></div>
               <div class="card-body">
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                <form method="post" action="{{ route('admin.login') }}" class="needs-validation" novalidate="">
+                  @csrf
+
+                  @if (Session::get('message'))
+                    <div class="form-group">
+                      <div class="alert alert-danger">
+                        {{ Session::get('message') }}
+                      </div>
+                    </div>
+                  @endif
+
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                     <div class="invalid-feedback">
-                      Please fill in your email
+                      Chưa nhập Email
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
-                      <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div>
+                    	<label for="password" class="control-label">Mật Khẩu</label>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
-                      please fill in your password
+                      Chưa nhập Password
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
+                      <input type="checkbox" name="remember_me" class="custom-control-input" tabindex="3" id="remember-me">
+                      <label class="custom-control-label" for="remember-me">Nhớ mật khẩu</label>
                     </div>
                   </div>
 
@@ -70,29 +74,7 @@
                     </button>
                   </div>
                 </form>
-                <div class="text-center mt-4 mb-3">
-                  <div class="text-job text-muted">Login With Social</div>
-                </div>
-                <div class="row sm-gutters">
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-facebook">
-                      <span class="fab fa-facebook"></span> Facebook
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-twitter">
-                      <span class="fab fa-twitter"></span> Twitter
-                    </a>                                
-                  </div>
-                </div>
-
               </div>
-            </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="auth-register.html">Create One</a>
-            </div>
-            <div class="simple-footer">
-              Copyright &copy; Stisla 2018
             </div>
           </div>
         </div>
@@ -101,15 +83,15 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="backend/assets/modules/jquery.min.js"></script>
-  <script src="backend/assets/modules/popper.js"></script>
-  <script src="backend/assets/modules/tooltip.js"></script>
-  <script src="backend/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-  <script src="backend/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-  <script src="backend/assets/modules/moment.min.js"></script>
-  <script src="backend/assets/js/stisla.js"></script>
+  <script src="{{ asset('backend/assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/tooltip.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/js/stisla.js') }}"></script>
 
-  <script src="backend/assets/js/scripts.js"></script>
-  <script src="backend/assets/js/custom.js"></script>
+  <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
 </body>
 </html>
