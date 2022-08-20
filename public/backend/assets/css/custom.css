@@ -16,3 +16,7 @@ body{
 table {
     text-align: center;
 }
+.search-element{
+    color: #fff;
+    font-size: 18px;
+}

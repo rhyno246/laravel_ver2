@@ -14,44 +14,43 @@
 
 
 @section('content')
-    @include('backend.partials.headercontent', [ 
-        'name' => 'Tạo Quyền Truy Cập'
+    @include('backend.partials.headercontent', [
+        'name' => 'Tạo Quyền Truy Cập',
     ])
-<div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4>Tạo Quyền Truy Cập</h4>
-      </div>
-      <div class="card-body">
-        <form action="" method="POST">
-            <div class="form-group">
-                <label>Chọn tên Module</label>
-                <select class="form-control">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
-                </select>
-              </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="col-auto d-flex align-items-center">
-                            <label class="colorinput">
-                              <input name="color" type="checkbox" value="primary" class="colorinput-input">
-                              <span class="colorinput-color bg-primary"></span>
-                            </label>
-                            <span class="ml-2">Thêm</span>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Tạo Quyền Truy Cập</h4>
+            </div>
+            <div class="card-body">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>Chọn tên Module</label>
+                        <select class="form-control">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="col-auto d-flex align-items-center">
+                                    <label class="colorinput">
+                                        <input name="color" type="checkbox" value="primary" class="colorinput-input">
+                                        <span class="colorinput-color bg-primary"></span>
+                                    </label>
+                                    <span class="ml-2">Thêm</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <button class="btn btn-primary">Tạo Quyền Truy Cập</button>
+                </form>
             </div>
-
-
-            <button class="btn btn-primary">Tạo Quyền Truy Cập</button>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 @endsection
 
 @section('js')

@@ -53,7 +53,18 @@ Route::prefix('admin')->group(function () {
             'as' => 'category.product.detele',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@delete'
         ]);
+
+        Route::post('/seleted-category', [
+            'as' => 'category.product.seletedeleted',
+            'uses' => 'App\Http\Controllers\AdminProductCategoryController@deleteSelected'
+        ]);
     });
+
+
+
+
+
+
 
 
     //permissions

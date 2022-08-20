@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Components\CategoryRecusive;
 use App\Http\Requests\RequestProductCategory;
 use App\Models\Category;
-use Illuminate\Support\Facades\Session;
+use App\Traits\DeleteModelTrait;
+use App\Traits\DeleteSelectedTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class AdminProductCategoryController extends Controller
 {
+    use DeleteModelTrait, DeleteSelectedTrait;
     private $category;
     public function __construct(Category $category)
     {
@@ -51,10 +54,16 @@ class AdminProductCategoryController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('category.product.index')->with('message' , 'Bạn đã cập nhật thành công');
+        return redirect()->route('category.product.index')->with('message-edit' , 'Bạn đã cập nhật danh mục thành công');
     }
 
     public function delete ($id){
-        
+      return $this->deleteModelTrait($id, $this->category);
+    }
+
+    public function deleteSelected ( Request $request ) {
+        if($request->ajax()){
+            return $this->deleteSelectedTrait($request->ids , $this->category);
+        }
     }
 }

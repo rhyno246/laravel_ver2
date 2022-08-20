@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 class AdminLoginController extends Controller
 {
     public function login () {
+        // dd(bcrypt('minhman'));
         if(auth()->check()){
             return redirect()->route('backend.dashboard');
         }

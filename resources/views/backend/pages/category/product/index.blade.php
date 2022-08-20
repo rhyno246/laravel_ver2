@@ -21,20 +21,23 @@
     ])
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h4>Danh Sách Danh Mục</h4>
+                <div class="text-right">
+                    @csrf
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('category.product.seletedeleted') }}"
+                        style="color: #fff"></a>
+                </div>
             </div>
-
-
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="table-product">
+                    <table class="table table-striped table-page">
                         <thead>
                             <tr>
                                 <th class="text-center">
                                     <div class="custom-checkbox custom-control">
                                         <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad"
-                                            class="custom-control-input" id="checkbox-all">
+                                            class="custom-control-input" id="checkbox-all" name="main-checkbox">
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
@@ -47,12 +50,14 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                                <tr>
+                                <tr id="sid{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
                                             <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                id="checkbox-1">
-                                            <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
+                                                id="checkbox-{{ $item->id }}" name="ids"
+                                                value="{{ $item->id }}">
+                                            <label for="checkbox-{{ $item->id }}"
+                                                class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </td>
                                     <td class="align-middle">
@@ -72,7 +77,8 @@
                                             <a href="{{ route('category.product.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
                                             <a href="{{ route('category.product.detele', ['id' => $item->id]) }}"
-                                                class="btn btn-danger">Xóa</a>
+                                                class="btn btn-danger delete-category"
+                                                data-url="{{ route('category.product.detele', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -92,13 +98,16 @@
     </script>
     <script src="{{ asset('backend/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/page/modules-datatables.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
     <script>
-        @if (Session::has('message'))
+        @if (Session::has('message-edit'))
             iziToast.success({
                 title: 'OK rồi !',
-                message: '{{ Session::get('message') }}',
+                message: '{{ Session::get('message-edit') }}',
                 position: 'bottomCenter'
             });
         @endif
