@@ -1,4 +1,4 @@
-@extends('backend.layout.admin');
+@extends('backend.layout.admin')
 
 @section('title')
     <title>Danh Sách Danh Mục</title>
@@ -103,13 +103,23 @@
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
     <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
-    <script>
-        @if (Session::has('message-edit'))
+    @if (Session::has('message-edit'))
+        <script>
             iziToast.success({
                 title: 'OK rồi !',
                 message: '{{ Session::get('message-edit') }}',
                 position: 'bottomCenter'
             });
-        @endif
-    </script>
+        </script>
+    @endif
+
+    @if (Session::has('message'))
+        <script>
+            iziToast.success({
+                title: 'OK rồi !',
+                message: '{{ Session::get('message') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
 @endsection

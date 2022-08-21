@@ -29,7 +29,7 @@
                     <i class="far fa-user"></i> Trang cá nhân
                 </a>
                 <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Cài đặt
+                    <i class="fas fa-cog"></i> Danh sách tài khoản
                 </a>
                 <a href="{{ route('permissions.create') }}" class="dropdown-item has-icon">
                     <i class="fas fa-key"></i> Cấp quyền

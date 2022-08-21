@@ -73,6 +73,10 @@ Route::prefix('admin')->group(function () {
             'as' => 'permissions.create',
             'uses' => 'App\Http\Controllers\AdminPermissionController@create'
         ]);
+        Route::post('/store', [
+            'as' => 'permissions.store',
+            'uses' => 'App\Http\Controllers\AdminPermissionController@store'
+        ]);
     });
 
 
@@ -86,6 +90,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [
             'as' => 'role.create',
             'uses' => 'App\Http\Controllers\AdminRoleController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'role.store',
+            'uses' => 'App\Http\Controllers\AdminRoleController@store'
         ]);
     });
 

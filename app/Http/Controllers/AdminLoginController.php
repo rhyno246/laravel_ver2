@@ -27,8 +27,7 @@ class AdminLoginController extends Controller
             Session::put('id' , $result->id);
             return redirect()->route('backend.dashboard');
         }else{
-            Session::put('message' , 'Nhập sai mật khẩu hoặc tài khoản');
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login')->with('message' , 'Nhập sai mật khẩu hoặc tài khoản');
         }
     }
     public function logout () {

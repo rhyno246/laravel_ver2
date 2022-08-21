@@ -1,4 +1,4 @@
-@extends('backend.layout.admin');
+@extends('backend.layout.admin')
 
 @section('title')
     <title>Sửa Danh Mục</title>

@@ -33,7 +33,7 @@ class AdminProductCategoryController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()-> route('category.product.index');
+        return redirect()-> route('category.product.index')->with('message' , 'Bạn đã tạo danh mục thành công');
     }
 
     public function getCategory ($parentId) {
