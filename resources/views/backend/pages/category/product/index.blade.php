@@ -50,7 +50,7 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                                <tr id="sid{{ $item->id }}">
+                                <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
                                             <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"

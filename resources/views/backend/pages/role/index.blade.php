@@ -9,6 +9,7 @@
     <link rel="stylesheet"
         href="{{ asset('backend/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/izitoast/css/iziToast.min.css') }}">
 @endsection
 
 
@@ -20,58 +21,62 @@
     ])
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h4>Danh Sách Vai Trò</h4>
+                <div class="text-right">
+                    @csrf
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('role.deleteselect') }}"
+                        style="color: #fff"></a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="table-product">
+                    <table class="table table-striped table-page">
                         <thead>
                             <tr>
                                 <th class="text-center">
                                     <div class="custom-checkbox custom-control">
                                         <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad"
-                                            class="custom-control-input" id="checkbox-all">
+                                            class="custom-control-input" id="checkbox-all" name="main-checkbox">
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Task Name</th>
-                                <th>Progress</th>
-                                <th>Members</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Tên định danh</th>
+                                <th>Tên hiển thị</th>
+                                <th>Ngày tạo</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-1">
-                                        <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                                    </div>
-                                </td>
-                                <td>Create a mobile app</td>
-                                <td class="align-middle">
-                                    <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                        <div class="progress-bar bg-success" data-width="100%"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    img
-                                </td>
-                                <td>2018-01-20</td>
-                                <td>
-                                    <div class="badge badge-success">Completed</div>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="#" class="btn btn-primary mr-2">Sửa</a>
-                                        <a href="#" class="btn btn-danger">Xóa</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($data as $item)
+                                <tr id="ids{{ $item->id }}">
+                                    <td class="align-middle">
+                                        <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
+                                                id="checkbox-{{ $item->id }}" name="ids"
+                                                value="{{ $item->id }}">
+                                            <label for="checkbox-{{ $item->id }}"
+                                                class="custom-control-label">&nbsp;</label>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">{{ $item->name }}</td>
+                                    <td class="align-middle">
+                                        {{ $item->display_name }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ date('d-m-Y', strtotime($item->created_at)) }}
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('role.edit', ['id' => $item->id]) }}"
+                                                class="btn btn-primary mr-2">Sửa</a>
+                                            <a href="{{ route('role.delete', ['id' => $item->id]) }}"
+                                                class="btn btn-danger delete-role"
+                                                data-url="{{ route('role.delete', ['id' => $item->id]) }}">Xóa</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -89,5 +94,20 @@
     <script src="{{ asset('backend/assets/modules/jquery-ui/jquery-ui.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('backend/assets/js/page/modules-datatables.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
+
+    @if (Session::has('message'))
+        <script>
+            iziToast.success({
+                title: 'OK rồi !',
+                message: '{{ Session::get('message') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
 @endsection

@@ -1,7 +1,7 @@
 @extends('backend.layout.admin')
 
 @section('title')
-    <title>Tạo vai trò</title>
+    <title>Sửa vai trò</title>
 @endsection
 
 
@@ -15,20 +15,20 @@
 
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Tạo vai trò',
+        'name' => 'Sửa vai trò' . ' ' . $data->display_name,
     ])
     <div class="col-12">
         <div class="card card-parent">
             <div class="card-header">
-                <h4>Tạo vai trò</h4>
+                <h4>Sửa vai trò</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('role.store') }}" method="POST">
+                <form action="{{ route('role.update', ['id' => $data->id]) }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label>Tên vai trò</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}">
+                            value="{{ $data->name }}">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label>Vai trò hiển thị</label>
                         <input type="text" class="form-control @error('display_name') is-invalid @enderror"
-                            name="display_name" value="{{ old('display_name') }}">
+                            name="display_name" value="{{ $data->display_name }}">
                         @error('display_name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -48,7 +48,7 @@
                                 <div class="d-flex align-items-center">
                                     <label class="colorinput">
                                         <input id="{{ $item->name }}" type="checkbox"
-                                            class="colorinput-input checkbox_wrapper" checked>
+                                            class="colorinput-input checkbox_wrapper">
                                         <span class="colorinput-color bg-primary"></span>
                                     </label>
                                     <h4 class="ml-2">Module - {{ $item->display_name }}</h4>
@@ -60,9 +60,11 @@
                                         <div class="col-md-3">
                                             <div class="d-flex align-items-center">
                                                 <label class="colorinput">
-                                                    <input id="{{ $childItem->id }}" name="permission_id[]"
+                                                    <input
+                                                        {{ $permissionChecked->contains('id', $childItem->id) ? 'checked' : '' }}
+                                                        id="{{ $childItem->id }}" name="permission_id[]"
                                                         value="{{ $childItem->id }}" type="checkbox"
-                                                        class="colorinput-input checkbox_child" checked>
+                                                        class="colorinput-input checkbox_child">
                                                     <span class="colorinput-color bg-primary"></span>
                                                 </label>
                                                 <span class="ml-2">{{ $childItem->display_name }}</span>
@@ -73,7 +75,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <button class="btn btn-primary">Tạo vai trò</button>
+                    <button class="btn btn-primary">Cập nhật vai trò</button>
                 </form>
             </div>
         </div>

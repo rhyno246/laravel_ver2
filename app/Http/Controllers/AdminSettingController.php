@@ -12,4 +12,8 @@ class AdminSettingController extends Controller
     public function create () {
         return view('backend.pages.settings.create');
     }
+
+    public function store () {
+        
+    }
 }

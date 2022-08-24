@@ -14,47 +14,48 @@
 
 
 @section('content')
-    @include('backend.partials.headercontent', [ 
-        'name' => 'Tạo tài khoản'
+    @include('backend.partials.headercontent', [
+        'name' => 'Tạo tài khoản',
     ])
-<div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4>Tạo tài khoản</h4>
-      </div>
-      <div class="card-body">
-        <form action="" method="POST">
-            <div class="form-group">
-                <label>Tên tài khoản</label>
-                <input type="text" class="form-control" name="name">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Tạo tài khoản</h4>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" name="email">
-            </div>
+            <div class="card-body">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>Tên tài khoản</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
 
-            <div class="form-group">
-                <label>Mật khẩu</label>
-                <input type="password" class="form-control" name="password">
-            </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
 
-            <div class="form-group">
-                <label> Chọn vai trò</label>
-                <select class="form-control select2" multiple="" name="role_id[]">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
-                  <option>Option 4</option>
-                  <option>Option 5</option>
-                  <option>Option 6</option>
-                </select>
-            </div>
+                    <div class="form-group">
+                        <label> Chọn vai trò</label>
+                        <select class="form-control select2" multiple="" name="role_id[]">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                            <option>Option 6</option>
+                        </select>
+                    </div>
 
-            <button class="btn btn-primary">Tạo tài khoản</button>
-        </form>
-      </div>
+                    <button class="btn btn-primary">Tạo tài khoản</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 @endsection
 
 @section('js')

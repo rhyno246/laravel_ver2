@@ -6,11 +6,8 @@
         ],
         'table_module' => [
             'Danh mục sản phẩm',
-            'Menu',
-            'Cài đặt',
-            'Sản phẩm',
-            'Slider',
-            'Tài khoản',
+            'Danh sách tài khoản',
+            'Cấp quyền',
             'Vai trò',
         ],
         'module_child' => [

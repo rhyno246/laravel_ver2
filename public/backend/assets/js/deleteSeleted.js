@@ -24,7 +24,7 @@ function postDeleteSelected(e) {
                     success: function(response) {
                         if(response.message === 'success'){
                             $.each(allIds, function(key, val) {
-                                $('#sid' + val).remove();
+                                $('#ids' + val).remove();
                             })
                             swal('Ok rồi ! Bạn đã xóa thành công ', {
                                 icon: 'success',

@@ -24,7 +24,7 @@ class CreateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|unique:roles|required',
+            'name' => 'bail|required',
             'display_name' => 'required'
         ];
     }
@@ -32,7 +32,6 @@ class CreateRoleRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên vai trò không được phép để trống',
-            'name.unique' => 'Tên vai trò không được phép trùng',
             'display_name.required' => 'Vai trò hiển thị không được phép để trống',
         ];
     }
