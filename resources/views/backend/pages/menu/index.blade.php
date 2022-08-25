@@ -1,7 +1,7 @@
-@extends('backend.layout.admin');
+@extends('backend.layout.admin')
 
 @section('title')
-    <title>Danh Sách Tài Khoản</title>
+    <title>Danh Sách Menu</title>
 @endsection
 
 @section('css')
@@ -13,21 +13,19 @@
 @endsection
 
 
-
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Danh Sách Tài Khoản',
+        'name' => 'Danh Sách Menu',
         'button' => 'Thêm Mới',
-        'link' => 'settings.create',
+        'link' => 'menu.create',
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h4>Danh Sách Tài Khoản</h4>
+                <h4>Danh Sách Menu</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('settings.deleteselect') }}"
-                        style="color: #fff"></a>
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="" style="color: #fff"></a>
                 </div>
             </div>
             <div class="card-body">
@@ -42,15 +40,15 @@
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Tên tài khoản</th>
-                                <th>Email</th>
-                                <th>Mật khẩu</th>
-                                <th>Tạo Ngày</th>
-                                <th>Hành Động</th>
+                                <th>Tên menu</th>
+                                <th>Đường dẫn</th>
+                                <th>Danh mục cha</th>
+                                <th>Tạo ngày</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $item)
+                            {{-- @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -61,21 +59,29 @@
                                                 class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </td>
-                                    <td class="align-middle">{{ $item->name }}</td>
-                                    <td class="align-middle">{{ $item->email }}</td>
-                                    <td class="align-middle">{{ $item->password }}</td>
-                                    <td class="align-middle">{{ $item->created_at }}</td>
+                                    <td class="align-middle">
+                                        {{ $item->name }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ $item->slug }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ optional($item->getParent)->name }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ date('d-m-Y', strtotime($item->created_at)) }}
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('settings.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('category.product.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('settings.delete', ['id' => $item->id]) }}"
-                                                data-url="{{ route('settings.delete', ['id' => $item->id]) }}"
-                                                class="btn btn-danger delete-model">Xóa</a>
+                                            <a href="{{ route('category.product.detele', ['id' => $item->id]) }}"
+                                                class="btn btn-danger delete-category"
+                                                data-url="{{ route('category.product.detele', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -91,14 +97,20 @@
     </script>
     <script src="{{ asset('backend/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-ui/jquery-ui.min.js') }}"></script>
-
-    <!-- Page Specific JS File -->
-
     <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
+    @if (Session::has('message-edit'))
+        <script>
+            iziToast.success({
+                title: 'OK rồi !',
+                message: '{{ Session::get('message-edit') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
 
     @if (Session::has('message'))
         <script>

@@ -6,6 +6,8 @@ use App\Http\Requests\RequestCreateUsers;
 use App\Http\Requests\RequestEditUser;
 use App\Models\Role;
 use App\Models\User;
+use App\Traits\DeleteModelTrait;
+use App\Traits\DeleteSelectedTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class AdminSettingController extends Controller
 {
+    use DeleteModelTrait , DeleteSelectedTrait;
     private $role;
     private $user;
     public function __construct(Role $role , User $user)
@@ -69,4 +72,15 @@ class AdminSettingController extends Controller
         }
     
     }
+
+    public function delete ($id){
+        return $this->deleteModelTrait($id, $this->user);
+    } 
+
+    public function deleteSelected(Request $request){
+        if($request->ajax()){
+            return $this->deleteSelectedTrait($request->ids , $this->user);
+        }
+    }
+    
 }

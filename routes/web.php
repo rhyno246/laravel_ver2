@@ -80,6 +80,19 @@ Route::prefix('admin')->group(function () {
     });
 
 
+    //menu
+    Route::prefix('menu')->group(function () {
+        Route::get('/', [
+            'as' => 'menu.index',
+            'uses' => 'App\Http\Controllers\AdminMenuController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'menu.create',
+            'uses' => 'App\Http\Controllers\AdminMenuController@create'
+        ]);
+    });
+
+
 
     //roles
     Route::prefix('roles')->group(function () {
@@ -138,6 +151,14 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [
             'as' => 'settings.update',
             'uses' => 'App\Http\Controllers\AdminSettingController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'settings.delete',
+            'uses' => 'App\Http\Controllers\AdminSettingController@delete'
+        ]);
+        Route::post('/seleted-settings', [
+            'as' => 'settings.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminSettingController@deleteSelected'
         ]);
     });
 

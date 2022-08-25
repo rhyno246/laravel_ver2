@@ -36,5 +36,5 @@ function actionDelete(e) {
 $(function () {
     $(document).on("click", ".delete-category", actionDelete);
     $(document).on("click", ".delete-role", actionDelete);
-    
+    $(document).on("click", ".delete-model", actionDelete);
 });
