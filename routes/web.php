@@ -127,9 +127,17 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminSettingController@create'
         ]);
 
-        Route::get('/store', [
+        Route::post('/store', [
             'as' => 'settings.store',
             'uses' => 'App\Http\Controllers\AdminSettingController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'settings.edit',
+            'uses' => 'App\Http\Controllers\AdminSettingController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'settings.update',
+            'uses' => 'App\Http\Controllers\AdminSettingController@update'
         ]);
     });
 

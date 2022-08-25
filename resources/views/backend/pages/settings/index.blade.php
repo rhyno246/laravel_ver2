@@ -49,25 +49,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-1" name="ids" value="1">
-                                        <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                                    </div>
-                                </td>
-                                <td class="align-middle">dsadsasadsd</td>
-                                <td class="align-middle">dsadsasadsd</td>
-                                <td class="align-middle">dsadsasadsd</td>
-                                <td class="align-middle">dsadsasadsd</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="#" class="btn btn-primary mr-2">Sửa</a>
-                                        <a href="#" class="btn btn-danger">Xóa</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($user as $item)
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
+                                                id="checkbox-{{ $item->id }}" name="ids"
+                                                value="{{ $item->id }}">
+                                            <label for="checkbox-{{ $item->id }}"
+                                                class="custom-control-label">&nbsp;</label>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">{{ $item->name }}</td>
+                                    <td class="align-middle">{{ $item->email }}</td>
+                                    <td class="align-middle">{{ $item->password }}</td>
+                                    <td class="align-middle">{{ $item->created_at }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('settings.edit', ['id' => $item->id]) }}"
+                                                class="btn btn-primary mr-2">Sửa</a>
+                                            <a href="#" class="btn btn-danger">Xóa</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
