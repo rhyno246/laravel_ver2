@@ -24,11 +24,9 @@
             <div class="card-header d-flex justify-content-between">
                 <h4>Danh Sách Danh Mục</h4>
                 <div class="text-right">
-                    {{-- @csrf
-                    @can('gate-category-delete')
-                        <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('category.product.seletedeleted') }}"
-                            style="color: #fff"></a>
-                    @endcan --}}
+                    @csrf
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('category.post.seletedeleted') }}"
+                        style="color: #fff"></a>
                 </div>
             </div>
             <div class="card-body">
@@ -76,15 +74,13 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('category.product.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('category.post.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
 
 
-                                            @can('gate-category-delete')
-                                                <a href="{{ route('category.product.detele', ['id' => $item->id]) }}"
-                                                    class="btn btn-danger delete-category"
-                                                    data-url="{{ route('category.product.detele', ['id' => $item->id]) }}">Xóa</a>
-                                            @endcan
+                                            <a href="{{ route('category.post.detele', ['id' => $item->id]) }}"
+                                                class="btn btn-danger delete-model"
+                                                data-url="{{ route('category.post.detele', ['id' => $item->id]) }}">Xóa</a>
 
                                         </div>
                                     </td>

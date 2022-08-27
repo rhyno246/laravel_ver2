@@ -21,6 +21,11 @@
                     <li><a class="nav-link" href="{{ route('category.post.index') }}">Danh Mục Bài Viết</a></li>
                 </ul>
             </li>
+
+            <li>
+                <a href="{{ route('post.index') }}" class="nav-link"><i class="fas fa-sticky-note"></i><span>Danh Sách
+                        Bài viết</span></a>
+            </li>
         </ul>
     </aside>
 </div>

@@ -92,6 +92,30 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostCategory@store',
             'middleware' => (['CheckIsUser'])
         ]);
+        Route::get('/edit/{id}', [
+            'as' => 'category.post.edit',
+            'uses' => 'App\Http\Controllers\AdminPostCategory@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'category.post.update',
+            'uses' => 'App\Http\Controllers\AdminPostCategory@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'category.post.detele',
+            'uses' => 'App\Http\Controllers\AdminPostCategory@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-category', [
+            'as' => 'category.post.seletedeleted',
+            'uses' => 'App\Http\Controllers\AdminPostCategory@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        
     });
 
 
@@ -237,6 +261,21 @@ Route::prefix('admin')->group(function () {
             'as' => 'settings.deleteselect',
             'uses' => 'App\Http\Controllers\AdminSettingController@deleteSelected',
             'middleware' => (['CheckIsUser', 'can:gate-settings-delete'])
+        ]);
+    });
+
+
+    //post
+    Route::prefix('post')->group(function () {
+        Route::get('/', [
+            'as' => 'post.index',
+            'uses' => 'App\Http\Controllers\AdminPostController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'post.create',
+            'uses' => 'App\Http\Controllers\AdminPostController@create',
+            'middleware' => (['CheckIsUser'])
         ]);
     });
 
