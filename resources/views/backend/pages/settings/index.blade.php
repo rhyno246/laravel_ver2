@@ -64,7 +64,7 @@
                                     <td class="align-middle">{{ $item->name }}</td>
                                     <td class="align-middle">{{ $item->email }}</td>
                                     <td class="align-middle">{{ $item->password }}</td>
-                                    <td class="align-middle">{{ $item->created_at }}</td>
+                                    <td class="align-middle">{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ route('settings.edit', ['id' => $item->id]) }}"

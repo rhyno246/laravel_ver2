@@ -17,18 +17,18 @@
     @include('backend.partials.headercontent', [
         'name' => 'Danh Sách Danh Mục',
         'button' => 'Thêm Mới',
-        'link' => 'category.product.create',
+        'link' => 'category.post.create',
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h4>Danh Sách Danh Mục</h4>
                 <div class="text-right">
-                    @csrf
+                    {{-- @csrf
                     @can('gate-category-delete')
                         <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('category.product.seletedeleted') }}"
                             style="color: #fff"></a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
             <div class="card-body">

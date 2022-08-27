@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label>Mật khẩu</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            value="{{ $userDetail->password }}">
+                            value="{{ $userDetail->password_dehash }}">
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -7,10 +7,7 @@
                         class="fas fa-search"></i></a></li>
         </ul>
         <div class="search-element">
-            @if (Session::get('name'))
-                <span>Welcome to </span>{{ Session::get('name') }}
-            @endif
-
+            <span>Welcome to </span>{{ Auth::user()->name }}
         </div>
     </form>
     <ul class="navbar-nav navbar-right">
@@ -19,24 +16,33 @@
                 <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
                     class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">
-                    @if (Session::get('name'))
-                        {{ Session::get('name') }}
-                    @endif
+                    {{ Auth::user()->name }}
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="features-profile.html" class="dropdown-item has-icon">
+                <a href="#" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Trang cá nhân
                 </a>
-                <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Danh sách tài khoản
-                </a>
-                <a href="{{ route('permissions.create') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-key"></i> Cấp quyền
-                </a>
-                <a href="{{ route('role.index') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-lock"></i> Vai trò
-                </a>
+                @can('gate-settings-view')
+                    <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-cog"></i> Danh sách tài khoản
+                    </a>
+                @endcan
+
+
+                @can('gate-permissions-view')
+                    <a href="{{ route('permissions.create') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-key"></i> Cấp quyền
+                    </a>
+                @endcan
+
+
+                @can('gate-role-view')
+                    <a href="{{ route('role.index') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-lock"></i> Vai trò
+                    </a>
+                @endcan
+
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.logout') }}" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Thoát

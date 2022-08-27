@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'password_dehash'
     ];
 
     /**
@@ -44,5 +45,18 @@ class User extends Authenticatable
 
     public function rolesInstance () {
         return $this->belongsToMany(Role::class , 'users_role', 'user_id', 'role_id');
+    }
+
+
+
+    public function checkPermissionAccess ( $permission ) {
+        $role = auth()->user()->rolesInstance;
+        foreach ($role as $item) {
+           $permissions = $item->permissions;
+           if($permissions->contains('key_code', $permission)){
+                return true;
+           }
+        }
+        return false;
     }
 }

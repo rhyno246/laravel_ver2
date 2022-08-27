@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdminRoleController extends Controller
 {
@@ -29,12 +31,19 @@ class AdminRoleController extends Controller
     }
 
     public function store( CreateRoleRequest $request ) {
-        $roles = $this->role->create([
-            'name' => $request->name,
-            'display_name' => $request->display_name
-        ]);
-        $roles->permissions()->attach($request->permission_id);
-        return redirect()->route('role.index')->with('message' , 'Tạo vai trò thành công');
+        try {
+            DB::beginTransaction();
+            $roles = $this->role->create([
+                'name' => $request->name,
+                'display_name' => $request->display_name
+            ]);
+            $roles->permissions()->attach($request->permission_id);
+            DB::commit();
+            return redirect()->route('role.index')->with('message' , 'Tạo vai trò thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
     }
 
     public function edit($id){
@@ -45,14 +54,20 @@ class AdminRoleController extends Controller
     }
 
     public function update(CreateRoleRequest $request , $id){
-        $role = $this->role->find($id);
-        $role->update([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-        ]);
-
-        $role->permissions()->sync($request->permission_id);
-        return redirect()->route('role.index')->with('message' , 'Chỉnh sửa vai trò thành công');
+        try {
+            DB::beginTransaction();
+            $role = $this->role->find($id);
+            $role->update([
+                'name' => $request->name,
+                'display_name' => $request->display_name,
+            ]);
+            $role->permissions()->sync($request->permission_id);
+            DB::commit();
+            return redirect()->route('role.index')->with('message' , 'Chỉnh sửa vai trò thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
     }
 
     public function delete ( Request $request ,$id){

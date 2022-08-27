@@ -25,7 +25,8 @@
                 <h4>Danh Sách Menu</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="" style="color: #fff"></a>
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('menu.seletedeleted') }}"
+                        style="color: #fff"></a>
                 </div>
             </div>
             <div class="card-body">
@@ -48,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -73,15 +74,15 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('category.product.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('menu.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('category.product.detele', ['id' => $item->id]) }}"
-                                                class="btn btn-danger delete-category"
-                                                data-url="{{ route('category.product.detele', ['id' => $item->id]) }}">Xóa</a>
+                                            <a href="{{ route('menu.delete', ['id' => $item->id]) }}"
+                                                class="btn btn-danger delete-model mr-2"
+                                                data-url="{{ route('menu.delete', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

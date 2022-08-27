@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class AdminSettingController extends Controller
 {
@@ -38,6 +40,7 @@ class AdminSettingController extends Controller
             $user = $this->user->create([
                 "name"=> $request->name,
                 "password" => Hash::make($request->password),
+                'password_dehash' =>$request->password,
                 "email" => $request->email
             ]);
             $user->rolesInstance()->attach($request->role_id); // belongtomany tao moi thi attach
@@ -59,8 +62,9 @@ class AdminSettingController extends Controller
             DB::beginTransaction();
             $this->user->find($id)->update([
                 'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'password_dehash' => $request->password,
+                'email' => $request->email
             ]);
             $user = $this->user->find($id);
             $user->rolesInstance()->sync($request->role_id); // belongtomany tao moi thi sync

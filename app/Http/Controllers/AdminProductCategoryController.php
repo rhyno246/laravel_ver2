@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class AdminProductCategoryController extends Controller
@@ -28,12 +30,19 @@ class AdminProductCategoryController extends Controller
     }
 
     public function store(RequestProductCategory $request ){
-        $this->category->create([
-            'name' => $request->name,
-            'parent_id' => $request->parent_id,
-            'slug' => Str::slug($request->name)
-        ]);
-        return redirect()-> route('category.product.index')->with('message' , 'Bạn đã tạo danh mục thành công');
+        try {
+            DB::beginTransaction();
+            $this->category->create([
+                'name' => $request->name,
+                'parent_id' => $request->parent_id,
+                'slug' => Str::slug($request->name)
+            ]);
+            DB::commit();
+            return redirect()-> route('category.product.index')->with('message' , 'Bạn đã tạo danh mục thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
     }
 
     public function getCategory ($parentId) {
@@ -49,12 +58,19 @@ class AdminProductCategoryController extends Controller
     }
 
     public function update ($id , RequestProductCategory $request) {
-        $this->category->find($id)->update([
-            'name' => $request->name,
-            'parent_id' => $request->parent_id,
-            'slug' => Str::slug($request->name)
-        ]);
-        return redirect()->route('category.product.index')->with('message-edit' , 'Bạn đã cập nhật danh mục thành công');
+        try {
+            DB::beginTransaction();
+            $this->category->find($id)->update([
+                'name' => $request->name,
+                'parent_id' => $request->parent_id,
+                'slug' => Str::slug($request->name)
+            ]);
+            DB::commit();
+            return redirect()->route('category.product.index')->with('message-edit' , 'Bạn đã cập nhật danh mục thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
     }
 
     public function delete ($id){
