@@ -283,9 +283,93 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostController@store',
             'middleware' => (['CheckIsUser'])
         ]);
+        Route::get('/edit/{id}', [
+            'as' => 'post.edit',
+            'uses' => 'App\Http\Controllers\AdminPostController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'post.update',
+            'uses' => 'App\Http\Controllers\AdminPostController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'post.delete',
+            'uses' => 'App\Http\Controllers\AdminPostController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-post', [
+            'as' => 'post.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminPostController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+
+        Route::get('/status-home/{id}', [
+            'as' => 'post.statushome',
+            'uses' => 'App\Http\Controllers\AdminPostController@changeStatusHome',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/status-product/{id}', [
+            'as' => 'post.statusproduct',
+            'uses' => 'App\Http\Controllers\AdminPostController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
+
+    Route::prefix('post-tags')->group(function () {
+        Route::get('/', [
+            'as' => 'tags.post.index',
+            'uses' => 'App\Http\Controllers\AdminPostTags@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        // Route::get('/create', [
+        //     'as' => 'category.post.create',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@create',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+        // Route::post('/store', [
+        //     'as' => 'category.post.store',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@store',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+        // Route::get('/edit/{id}', [
+        //     'as' => 'category.post.edit',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@edit',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+        // Route::post('/update/{id}', [
+        //     'as' => 'category.post.update',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@update',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+
+        // Route::get('/delete/{id}', [
+        //     'as' => 'category.post.detele',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@delete',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+
+        // Route::post('/seleted-category', [
+        //     'as' => 'category.post.seletedeleted',
+        //     'uses' => 'App\Http\Controllers\AdminPostCategory@deleteSelected',
+        //     'middleware' => (['CheckIsUser'])
+        // ]);
+
+        
     });
 
 });
+
+
+
+
+
+
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'web'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

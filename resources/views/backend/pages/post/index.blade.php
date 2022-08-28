@@ -25,7 +25,8 @@
                 <h4>Danh Sách Bài Viết</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="" style="color: #fff"></a>
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('post.deleteselect') }}"
+                        style="color: #fff"></a>
                 </div>
             </div>
             <div class="card-body">
@@ -65,7 +66,8 @@
                                         {{ $item->name }}
                                     </td>
                                     <td class="align-middle">
-                                        <img src="{{ $item->feature_image_path }}" alt="{{ $item->feature_image_name }}"
+                                        <img src="{{ $item->feature_image_path ? $item->feature_image_path : 'https://dummyimage.com/60/873d87/fff.png' }}"
+                                            alt="{{ $item->feature_image_name }}"
                                             style="width: 60px; height: 40px; object-fit: cover">
                                     </td>
                                     <td class="align-middle">
@@ -73,13 +75,19 @@
                                     </td>
                                     <td class="align-middle">
                                         <label class="custom-switch">
-                                            <input type="checkbox" name="is-show-home" class="custom-switch-input">
+                                            <input type="checkbox"
+                                                data-url="{{ route('post.statushome', ['id' => $item->id]) }}"
+                                                name="is-show-home" class="custom-switch-input"
+                                                {{ $item->is_show_home == 1 ? 'checked' : '' }}>
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </td>
                                     <td class="align-middle">
                                         <label class="custom-switch">
-                                            <input type="checkbox" name="status" class="custom-switch-input">
+                                            <input type="checkbox"
+                                                data-url="{{ route('post.statusproduct', ['id' => $item->id]) }}"
+                                                name="status" class="custom-switch-input"
+                                                {{ $item->status == 1 ? 'checked' : '' }}>
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </td>
@@ -88,11 +96,11 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('menu.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('post.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('menu.delete', ['id' => $item->id]) }}"
+                                            <a href="{{ route('post.delete', ['id' => $item->id]) }}"
                                                 class="btn btn-danger delete-model mr-2"
-                                                data-url="{{ route('menu.delete', ['id' => $item->id]) }}">Xóa</a>
+                                                data-url="{{ route('post.delete', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -117,6 +125,7 @@
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
     <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/changeStatusHome.js') }}"></script>
     @if (Session::has('message-edit'))
         <script>
             iziToast.success({

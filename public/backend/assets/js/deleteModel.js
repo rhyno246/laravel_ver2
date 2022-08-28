@@ -22,9 +22,7 @@ function actionDelete(e) {
                         });
                     }
                 },
-                error: function (error) {
-                    console.log(error);
-                },
+                
             });
         }else{
             swal('OK ! Vẫn giữ bản ghi hiện tại');

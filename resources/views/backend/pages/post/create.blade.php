@@ -25,7 +25,11 @@
                     @csrf
                     <div class="form-group">
                         <label>Tiêu đề bài viết</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            value="{{ old('name') }}">
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Chọn danh mục</label>
