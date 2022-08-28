@@ -40,15 +40,17 @@
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Tên menu</th>
-                                <th>Đường dẫn</th>
-                                <th>Danh mục cha</th>
+                                <th>Tên bài viết</th>
+                                <th>Hình ảnh</th>
+                                <th>Thuộc danh mục</th>
+                                <th>Hiện ở trang chủ</th>
+                                <th>Trạng thái</th>
                                 <th>Tạo ngày</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -63,10 +65,23 @@
                                         {{ $item->name }}
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->slug }}
+                                        <img src="{{ $item->feature_image_path }}" alt="{{ $item->feature_image_name }}"
+                                            style="width: 60px; height: 40px; object-fit: cover">
                                     </td>
                                     <td class="align-middle">
-                                        {{ optional($item->getParent)->name }}
+                                        {{ optional($item->categoriesInstance)->name }}
+                                    </td>
+                                    <td class="align-middle">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="is-show-home" class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td class="align-middle">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="status" class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
@@ -81,7 +96,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -23,6 +23,7 @@ Route::get('/logout', [
 ]);
 
 
+
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [
         'as' => 'backend.dashboard',
@@ -277,6 +278,15 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostController@create',
             'middleware' => (['CheckIsUser'])
         ]);
+        Route::post('/store', [
+            'as' => 'post.store',
+            'uses' => 'App\Http\Controllers\AdminPostController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
     });
 
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'web'], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
