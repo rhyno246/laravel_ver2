@@ -327,38 +327,38 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostTags@index',
             'middleware' => (['CheckIsUser'])
         ]);
-        // Route::get('/create', [
-        //     'as' => 'category.post.create',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@create',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
-        // Route::post('/store', [
-        //     'as' => 'category.post.store',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@store',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
-        // Route::get('/edit/{id}', [
-        //     'as' => 'category.post.edit',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@edit',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
-        // Route::post('/update/{id}', [
-        //     'as' => 'category.post.update',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@update',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
+        Route::get('/create', [
+            'as' => 'tags.post.create',
+            'uses' => 'App\Http\Controllers\AdminPostTags@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'tags.post.store',
+            'uses' => 'App\Http\Controllers\AdminPostTags@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'tags.post.edit',
+            'uses' => 'App\Http\Controllers\AdminPostTags@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'tags.post.update',
+            'uses' => 'App\Http\Controllers\AdminPostTags@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
 
-        // Route::get('/delete/{id}', [
-        //     'as' => 'category.post.detele',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@delete',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
+        Route::get('/delete/{id}', [
+            'as' => 'tags.post.detele',
+            'uses' => 'App\Http\Controllers\AdminPostTags@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
 
-        // Route::post('/seleted-category', [
-        //     'as' => 'category.post.seletedeleted',
-        //     'uses' => 'App\Http\Controllers\AdminPostCategory@deleteSelected',
-        //     'middleware' => (['CheckIsUser'])
-        // ]);
+        Route::post('/seleted-tags', [
+            'as' => 'tags.post.seletedeleted',
+            'uses' => 'App\Http\Controllers\AdminPostTags@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
 
         
     });

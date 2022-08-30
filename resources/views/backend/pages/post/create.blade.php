@@ -44,12 +44,9 @@
                     <div class="form-group">
                         <label>Chọn tags cho bài viết</label>
                         <select class="form-control select2" name="tags[]" multiple="multiple">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                            <option>Option 4</option>
-                            <option>Option 5</option>
-                            <option>Option 6</option>
+                            @foreach ($post_tag as $item)
+                                <option value="{{ $item }}">{{ $item->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

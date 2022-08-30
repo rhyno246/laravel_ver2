@@ -17,4 +17,7 @@ class Post extends Model
     public function categoriesInstance () {
         return $this->belongsTo(PostCategory::class, 'categories_id');
     }
+    public function tags () {
+        return $this->belongsToMany(PostTags::class , 'post_tag', 'post_id' , 'tag_id')->withTimestamps();
+    }
 }

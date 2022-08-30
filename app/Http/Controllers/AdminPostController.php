@@ -6,6 +6,7 @@ use App\Components\CategoryRecusive;
 use App\Http\Requests\RequestPost;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\PostTags;
 use App\Traits\ChangeStatusTrait;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
@@ -20,10 +21,12 @@ class AdminPostController extends Controller
     use StorageImageTrait , ChangeStatusTrait , DeleteModelTrait , DeleteSelectedTrait;
     private $category;
     private $post;
-    public function __construct(PostCategory $category , Post $post)
+    private $post_tag;
+    public function __construct(PostCategory $category , Post $post , PostTags $post_tag)
     {
         $this->category = $category;
         $this->post = $post;
+        $this->post_tag = $post_tag;
     }
     public function getCategory ($parentId) {
         $data = $this->category->all();
@@ -38,7 +41,8 @@ class AdminPostController extends Controller
     }
     public function create () {
         $htmlOption = $this->getCategory($parentId = '');
-        return view('backend.pages.post.create', compact('htmlOption'));
+        $post_tag = $this->post_tag->latest()->get();
+        return view('backend.pages.post.create', compact('htmlOption' , 'post_tag'));
     }
 
     public function store (RequestPost $request) {
@@ -62,6 +66,14 @@ class AdminPostController extends Controller
             if(!empty($request->categories_id)){
                 $data['categories_id'] = $request->categories_id;
             }
+
+            $tagsIds = [];
+            if(!empty($request->tags)){
+                foreach($request->tags as $tagItem){
+                    dd($tagItem);
+                }
+            }
+            $this->post->tags()->attach($tagsIds);
             $this->post->create($data);
             DB::commit();
             return redirect()->route('post.index')->with('message' , 'Tạo bài viết thành công');

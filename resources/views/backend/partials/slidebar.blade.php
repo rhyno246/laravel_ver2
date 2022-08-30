@@ -25,8 +25,8 @@
             <li class="dropdown">
                 <a class="nav-link has-dropdown" href="#"><i class="fa-solid fa-tags"></i> <span>Tags</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('category.product.index') }}">Tags Sản Phẩm</a></li>
-                    <li><a class="nav-link" href="{{ route('category.post.index') }}">Tags Bài Viết</a></li>
+                    <li><a class="nav-link" href="{{ route('tags.post.index') }}">Tags Bài Viết</a></li>
+                    <li><a class="nav-link" href="{{ route('tags.post.index') }}">Tags Sản Phẩm</a></li>
                 </ul>
             </li>
             <li>
