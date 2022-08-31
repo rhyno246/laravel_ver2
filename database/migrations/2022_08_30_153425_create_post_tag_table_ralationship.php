@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTabllePostTagRalationship extends Migration
+class CreatePostTagTableRalationship extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateTabllePostTagRalationship extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('post_tag');
-            $table->integer('tag_id');
+            $table->string('post_id');
+            $table->string('tag_id');
             $table->timestamps();
         });
     }

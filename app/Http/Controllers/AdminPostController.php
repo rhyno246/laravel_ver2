@@ -70,11 +70,11 @@ class AdminPostController extends Controller
             $tagsIds = [];
             if(!empty($request->tags)){
                 foreach($request->tags as $tagItem){
-                    dd($tagItem);
+                    $tagsIds[] = $tagItem;
                 }
             }
-            $this->post->tags()->attach($tagsIds);
-            $this->post->create($data);
+            $post = $this->post->create($data);
+            $post->tags()->attach($tagsIds);
             DB::commit();
             return redirect()->route('post.index')->with('message' , 'Tạo bài viết thành công');
         } catch (\Exception $exception) {
@@ -85,15 +85,26 @@ class AdminPostController extends Controller
 
     public function edit ($id){
         $data = $this->post->find($id);
+        
         return view('backend.pages.post.edit', compact('data'));
     }
 
     public function delete ($id){
+        $data = $this->post->find($id);
+        $tagsIds = $data->tags;
+        $data->tags()->detach($tagsIds);
         return $this->deleteModelTrait($id, $this->post);
     }
 
     public function deleteSelected ( Request $request ) {
         if($request->ajax()){
+            $data = $this->post->find($request->ids);
+
+            foreach ( $data as $item){
+                $tagsIds = $item->tags;
+                $item->tags()->detach($tagsIds);
+            }
+
             return $this->deleteSelectedTrait($request->ids , $this->post);
         }
     }

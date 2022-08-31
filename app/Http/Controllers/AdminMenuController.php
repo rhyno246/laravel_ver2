@@ -40,7 +40,7 @@ class AdminMenuController extends Controller
     public function store (RequestCreateMenu $request){
         try {
             DB::beginTransaction();
-            $this->menu->create([
+            $this->menu->firstOrCreate([
                 "name" => $request->name,
                 "parent_id" => $request->parent_id,
                 "slug" => Str::slug($request->name)

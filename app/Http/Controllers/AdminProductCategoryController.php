@@ -32,7 +32,7 @@ class AdminProductCategoryController extends Controller
     public function store(RequestProductCategory $request ){
         try {
             DB::beginTransaction();
-            $this->category->create([
+            $this->category->firstOrCreate([
                 'name' => $request->name,
                 'parent_id' => $request->parent_id,
                 'slug' => Str::slug($request->name)

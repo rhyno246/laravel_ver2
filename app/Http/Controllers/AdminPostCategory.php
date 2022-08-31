@@ -32,7 +32,7 @@ class AdminPostCategory extends Controller
     public function store(RequestPostCategory $request){
         try {
             DB::beginTransaction();
-            $this->post_cate->create([
+            $this->post_cate->firstOrCreate([
                 'name' => $request->name,
                 'parent_id' => $request->parent_id,
                 'slug' => Str::slug($request->name)

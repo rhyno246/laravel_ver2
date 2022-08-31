@@ -29,7 +29,7 @@ class AdminPostTags extends Controller
     public function store (RequestPostTags $request) {
         try {
             DB::beginTransaction();
-            $this->post_tag->create([
+            $this->post_tag->firstOrCreate([
                 "name" => $request->name,
                 'slug' => Str::slug($request->name)
             ]);

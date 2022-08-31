@@ -29,6 +29,7 @@ function postDeleteSelected(e) {
                             swal('Ok rồi ! Bạn đã xóa thành công ', {
                                 icon: 'success',
                             });
+                            $('.deleteSeleted').addClass('d-none');
                         }
                     },
                     error: function (error) {
