@@ -13,7 +13,7 @@
                 <h4>Chỉnh Sửa Tags</h4>
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('tags.post.update', ['id' => $data->id]) }}">
+                <form method="post" action="{{ route('tags.product.update', ['id' => $data->id]) }}">
                     @csrf
                     <div class="form-group">
                         <label>Tên tags</label>

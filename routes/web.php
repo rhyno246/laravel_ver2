@@ -363,6 +363,99 @@ Route::prefix('admin')->group(function () {
         
     });
 
+
+
+
+
+
+    //product tags
+    Route::prefix('product-tags')->group(function () {
+        Route::get('/', [
+            'as' => 'tags.product.index',
+            'uses' => 'App\Http\Controllers\AdminProductTags@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'tags.product.create',
+            'uses' => 'App\Http\Controllers\AdminProductTags@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'tags.product.store',
+            'uses' => 'App\Http\Controllers\AdminProductTags@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'tags.product.edit',
+            'uses' => 'App\Http\Controllers\AdminProductTags@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'tags.product.update',
+            'uses' => 'App\Http\Controllers\AdminProductTags@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'tags.product.detele',
+            'uses' => 'App\Http\Controllers\AdminProductTags@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-tags', [
+            'as' => 'tags.product.seletedeleted',
+            'uses' => 'App\Http\Controllers\AdminProductTags@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        
+    });
+
+
+
+    //slider
+    Route::prefix('slider')->group(function () {
+        Route::get('/', [
+            'as' => 'slider.index',
+            'uses' => 'App\Http\Controllers\AdminSliderController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'slider.create',
+            'uses' => 'App\Http\Controllers\AdminSliderController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'slider.store',
+            'uses' => 'App\Http\Controllers\AdminSliderController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'slider.edit',
+            'uses' => 'App\Http\Controllers\AdminSliderController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'slider.update',
+            'uses' => 'App\Http\Controllers\AdminSliderController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'slider.detele',
+            'uses' => 'App\Http\Controllers\AdminSliderController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-slider', [
+            'as' => 'slider.seletedeleted',
+            'uses' => 'App\Http\Controllers\AdminSliderController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+    
+
 });
 
 

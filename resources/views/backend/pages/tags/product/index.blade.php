@@ -1,7 +1,7 @@
 @extends('backend.layout.admin')
 
 @section('title')
-    <title>Danh Sách Bài Viết</title>
+    <title>Danh Sách Tags</title>
 @endsection
 
 @section('css')
@@ -15,17 +15,17 @@
 
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Danh Sách Bài Viết',
+        'name' => 'Danh Sách Tags',
         'button' => 'Thêm Mới',
-        'link' => 'post.create',
+        'link' => 'tags.product.create',
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h4>Danh Sách Bài Viết</h4>
+                <h4>Danh Sách Tags</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('post.deleteselect') }}"
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('tags.product.seletedeleted') }}"
                         style="color: #fff"></a>
                 </div>
             </div>
@@ -41,13 +41,9 @@
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Tên bài viết</th>
-                                <th>Hình ảnh</th>
-                                <th>Thuộc danh mục</th>
-                                <th>Hiện ở trang chủ</th>
-                                <th>Ẩn / Hiện</th>
+                                <th>Tên tags</th>
+                                <th>Đường dẫn</th>
                                 <th>Tạo ngày</th>
-                                <th>Người tạo</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -67,44 +63,21 @@
                                         {{ $item->name }}
                                     </td>
                                     <td class="align-middle">
-                                        <img src="{{ $item->feature_image_path ? $item->feature_image_path : 'https://dummyimage.com/60/873d87/fff.png' }}"
-                                            alt="{{ $item->feature_image_name }}"
-                                            style="width: 60px; height: 40px; object-fit: cover">
-                                    </td>
-                                    <td class="align-middle">
-                                        {{ optional($item->categoriesInstance)->name }}
-                                    </td>
-                                    <td class="align-middle">
-                                        <label class="custom-switch">
-                                            <input type="checkbox"
-                                                data-url="{{ route('post.statushome', ['id' => $item->id]) }}"
-                                                name="is-show-home" class="custom-switch-input"
-                                                {{ $item->is_show_home == 1 ? 'checked' : '' }}>
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="align-middle">
-                                        <label class="custom-switch">
-                                            <input type="checkbox"
-                                                data-url="{{ route('post.statusproduct', ['id' => $item->id]) }}"
-                                                name="status" class="custom-switch-input"
-                                                {{ $item->status == 1 ? 'checked' : '' }}>
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
+                                        {{ $item->slug }}
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
-                                    <td class="align-middle">
-                                        {{ $item->user_name }}
-                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('post.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('tags.product.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('post.delete', ['id' => $item->id]) }}"
-                                                class="btn btn-danger delete-model mr-2"
-                                                data-url="{{ route('post.delete', ['id' => $item->id]) }}">Xóa</a>
+
+
+                                            <a href="{{ route('tags.product.detele', ['id' => $item->id]) }}"
+                                                class="btn btn-danger delete-model"
+                                                data-url="{{ route('tags.product.detele', ['id' => $item->id]) }}">Xóa</a>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -129,7 +102,6 @@
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
     <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/changeStatusHome.js') }}"></script>
     @if (Session::has('message-edit'))
         <script>
             iziToast.success({

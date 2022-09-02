@@ -30,8 +30,8 @@ class RequestPostTags extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Tên tags không được phép để trống",
-            'name.max' => "Tên tags không được phép quá 255 ký tự"
+            'name.required' => "Tên không được phép để trống",
+            'name.max' => "Tên không được phép quá 255 ký tự"
         ];
     }
 }

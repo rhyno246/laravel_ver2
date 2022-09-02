@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label>Ảnh đại diện bài viết</label>
                         <div id="image-preview" class="image-preview">
-                            <label for="image-upload" id="image-label">Choose File</label>
+                            <label for="image-upload" id="image-label">Chọn file ảnh</label>
                             <input type="file" name="feature_image_path" id="image-upload" />
                         </div>
                     </div>
@@ -71,4 +71,5 @@
     <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/page/features-post-create.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
 @endsection

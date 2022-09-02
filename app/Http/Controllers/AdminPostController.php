@@ -54,6 +54,7 @@ class AdminPostController extends Controller
                 'categories_id' => '',
                 'content' => '',
                 'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
             ];
             $dataUploadFeatureImage = $this->storageTraitUpload($request ,'feature_image_path' , 'post');
             if(!empty($dataUploadFeatureImage)){
@@ -85,9 +86,53 @@ class AdminPostController extends Controller
 
     public function edit ($id){
         $data = $this->post->find($id);
-        
-        return view('backend.pages.post.edit', compact('data'));
+        $htmlOption = $this->getCategory($data->categories_id);
+        $post_tag = $this->post_tag->latest()->get();
+        return view('backend.pages.post.edit', compact('data', 'htmlOption','post_tag'));
     }
+
+
+    public function update (RequestPost $request , $id) {
+        try {
+            DB::beginTransaction();
+            $dataUpdated = [
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'categories_id' => '',
+                'content' => '',
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request ,'feature_image_path' , 'post');
+            if(!empty($dataUploadFeatureImage)){
+                $dataUpdated['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataUpdated['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            }
+            if(!empty($request->content)){
+                $dataUpdated['content'] = $request->content;
+            }
+            if(!empty($request->categories_id)){
+                $dataUpdated['categories_id'] = $request->categories_id;
+            }
+            $this->post->find($id)->update($dataUpdated);
+            $post = $this->post->find($id);
+
+            $tagsIds = [];
+            if(!empty($request->tags)){
+                foreach($request->tags as $tagItem){
+                    $tagsIds[] = $tagItem;
+                }
+            }
+            $post->tags()->sync($tagsIds);
+            DB::commit();
+            return redirect()->route('post.index')->with('message' ,'Cập nhật bài viết thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
+    }
+
+
 
     public function delete ($id){
         $data = $this->post->find($id);

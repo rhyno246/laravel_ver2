@@ -21,7 +21,7 @@
                 <h4>Chỉnh Sửa Bài Viết</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('post.update', ['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Tiêu đề bài viết</label>
@@ -31,7 +31,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <label>Chọn danh mục</label>
                         <select class="form-control select2" name="categories_id">
                             <option selected="selected"></option>
@@ -39,24 +39,33 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="ckeditor" name="content" rows="30"></textarea>
+                        <textarea class="form-control" id="ckeditor" name="content" rows="30">{{ $data->content }}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Chọn tags cho bài viết</label>
                         <select class="form-control select2" name="tags[]" multiple="multiple">
                             @foreach ($post_tag as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->id }}"
+                                    @foreach ($data->tags as $tag)
+                                        @if ($tag->id == $item->id)
+                                            selected 
+                                        @endif @endforeach>
+                                    {{ $item->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Ảnh đại diện bài viết</label>
-                        <div id="image-preview" class="image-preview">
+                        <div id="image-preview" class="image-preview"
+                            style="background: url('{{ $data->feature_image_path }}');background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center;">
                             <label for="image-upload" id="image-label">Choose File</label>
                             <input type="file" name="feature_image_path" id="image-upload" />
                         </div>
-                    </div> --}}
-                    <button class="btn btn-primary">Tạo bài viết</button>
+                    </div>
+                    <button class="btn btn-primary">Cập nhật bài viết</button>
 
                 </form>
 
@@ -71,4 +80,5 @@
     <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/page/features-post-create.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
 @endsection
