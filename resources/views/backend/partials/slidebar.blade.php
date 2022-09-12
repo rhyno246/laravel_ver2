@@ -35,14 +35,18 @@
                             href="{{ route('tags.product.index') }}">Tags Sản Phẩm</a></li>
                 </ul>
             </li>
-            <li class="dropdown {{ Request::is('admin/post*') ? 'active' : '' }}">
+            <li class="dropdown {{ Request::is('admin/slider*') ? 'active' : '' }}">
+                <a href="{{ route('slider.index') }}" class="nav-link"><i
+                        class="fas fa-image"></i><span>Slider</span></a>
+            </li>
+            <li class="dropdown {{ Request::is('admin/posts*') ? 'active' : '' }}">
                 <a href="{{ route('post.index') }}" class="nav-link"><i class="fas fa-sticky-note"></i><span>Danh Sách
                         Bài viết</span></a>
             </li>
 
-            <li class="dropdown {{ Request::is('admin/slider*') ? 'active' : '' }}">
-                <a href="{{ route('slider.index') }}" class="nav-link"><i
-                        class="fas fa-image"></i><span>Slider</span></a>
+            <li class="dropdown {{ Request::is('admin/products*') ? 'active' : '' }}">
+                <a href="{{ route('products.index') }}" class="nav-link"><i class="far fa-square"></i><span>Danh
+                        sách sản phẩm</span></a>
             </li>
         </ul>
     </aside>

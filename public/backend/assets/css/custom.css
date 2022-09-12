@@ -23,3 +23,15 @@ table {
 .select2-container{
     width: 100% !important;
 }
+.filepond--root .filepond--credits{
+    display: none !important;
+}
+.filepond--drop-label.filepond--drop-label label{
+    display: none !important;
+}
+.filepond--drop-label::after {
+    content: "Chọn một hoặc nhiều ảnh cho sản phẩm";
+}
+.filepond--drop-label{
+    cursor: pointer;
+}

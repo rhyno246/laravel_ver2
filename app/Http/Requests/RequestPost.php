@@ -30,8 +30,8 @@ class RequestPost extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Tiêu đề vài viết không được phép để trống",
-            'name.max' => "Tiêu đề vài viết không được phép quá 255 ký tự",
+            'name.required' => "Tên không được phép để trống",
+            'name.max' => "Tên không được phép quá 255 ký tự",
         ];
     }
 }

@@ -267,7 +267,7 @@ Route::prefix('admin')->group(function () {
 
 
     //post
-    Route::prefix('post')->group(function () {
+    Route::prefix('posts')->group(function () {
         Route::get('/', [
             'as' => 'post.index',
             'uses' => 'App\Http\Controllers\AdminPostController@index',
@@ -455,6 +455,62 @@ Route::prefix('admin')->group(function () {
     });
 
     
+
+    
+    //product 
+    Route::prefix('products')->group(function () {
+        Route::get('/', [
+            'as' => 'products.index',
+            'uses' => 'App\Http\Controllers\AdminProductController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'products.create',
+            'uses' => 'App\Http\Controllers\AdminProductController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'products.store',
+            'uses' => 'App\Http\Controllers\AdminProductController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'products.edit',
+            'uses' => 'App\Http\Controllers\AdminProductController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'products.update',
+            'uses' => 'App\Http\Controllers\AdminProductController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'products.delete',
+            'uses' => 'App\Http\Controllers\AdminProductController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-post', [
+            'as' => 'products.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminProductController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+
+        Route::get('/status-home/{id}', [
+            'as' => 'products.statushome',
+            'uses' => 'App\Http\Controllers\AdminProductController@changeStatusHome',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/status-product/{id}', [
+            'as' => 'products.statusproduct',
+            'uses' => 'App\Http\Controllers\AdminProductController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 
 });
 
