@@ -72,9 +72,6 @@ class AdminProductController extends Controller
                     ]);
                 }
             }
-            
-
-
             DB::commit();
             return redirect()->route('products.index')->with('message' , 'Tạo sản phẩm thành công');
         } catch (\Exception $exception) {

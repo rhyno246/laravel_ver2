@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/jquery-selectric/selectric.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/image-uploader.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 @endsection
 
 @section('content')
@@ -67,7 +67,7 @@
 
                     <div class="form-group">
                         <label>Thumnail sản phẩm</label>
-                        <input type="file" multiple name="image_path[]" data-allow-reorder="true" class="filepond" />
+                        <div class="input-images"></div>
                     </div>
 
                     <button class="btn btn-primary">Tạo sản phẩm</button>
@@ -86,26 +86,11 @@
     <script src="{{ asset('backend/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/page/features-post-create.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js">
-    </script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
     <script>
-        const inputElement = document.querySelector('.filepond');
-        FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginImageExifOrientation,
-        );
-        FilePond.create(
-            inputElement
-        );
-        FilePond.setOptions({
-            server: {
-                url: '/products.store',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            }
-        })
+        $('.input-images').imageUploader({
+            imagesInputName: "image_path[]",
+            label: "Chọn ảnh thumnail"
+        });
     </script>
 @endsection

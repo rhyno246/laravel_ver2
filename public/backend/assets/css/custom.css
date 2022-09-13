@@ -96,3 +96,9 @@ table {
     color: red;
     display:inline-block;
   }
+  .input-images{
+    cursor: pointer;
+  }
+  .image-uploader .uploaded .uploaded-image .delete-image:focus{
+    outline: none;
+  }
