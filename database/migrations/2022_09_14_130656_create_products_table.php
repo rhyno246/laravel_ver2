@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table -> uuid('id')->unique();
             $table -> string('name');
+            $table -> string('user_name');
             $table ->string('categories_id')->nullable();
             $table -> text('content')->nullable();
             $table->integer('user_id');
@@ -23,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('feature_image_name')->nullable();
             $table->integer('is_show_home')->default(0);
             $table->integer('status')->default(1);
-            $table->integer('stock')->default(1);
+            $table->integer('stock')->default(1)->nullable();
             $table->string('slug');
             $table->timestamps();
         });

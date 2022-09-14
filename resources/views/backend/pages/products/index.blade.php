@@ -25,7 +25,7 @@
                 <h4>Danh Sách Sản Phẩm</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('post.deleteselect') }}"
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('products.deleteselect') }}"
                         style="color: #fff"></a>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -78,7 +78,7 @@
                                     <td class="align-middle">
                                         <label class="custom-switch">
                                             <input type="checkbox"
-                                                data-url="{{ route('post.statushome', ['id' => $item->id]) }}"
+                                                data-url="{{ route('products.statushome', ['id' => $item->id]) }}"
                                                 name="is-show-home" class="custom-switch-input"
                                                 {{ $item->is_show_home == 1 ? 'checked' : '' }}>
                                             <span class="custom-switch-indicator"></span>
@@ -87,11 +87,14 @@
                                     <td class="align-middle">
                                         <label class="custom-switch">
                                             <input type="checkbox"
-                                                data-url="{{ route('post.statusproduct', ['id' => $item->id]) }}"
+                                                data-url="{{ route('products.statusproduct', ['id' => $item->id]) }}"
                                                 name="status" class="custom-switch-input"
                                                 {{ $item->status == 1 ? 'checked' : '' }}>
                                             <span class="custom-switch-indicator"></span>
                                         </label>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ $item->stock == null && $item->stock == 0 ? 'Hết hàng' : $item->stock }}
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
@@ -101,15 +104,15 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('post.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('products.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('post.delete', ['id' => $item->id]) }}"
+                                            <a href="{{ route('products.delete', ['id' => $item->id]) }}"
                                                 class="btn btn-danger delete-model mr-2"
-                                                data-url="{{ route('post.delete', ['id' => $item->id]) }}">Xóa</a>
+                                                data-url="{{ route('products.delete', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

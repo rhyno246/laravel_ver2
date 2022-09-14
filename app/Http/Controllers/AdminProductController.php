@@ -7,6 +7,9 @@ use App\Http\Requests\RequestPost;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\ProductTags;
+use App\Traits\ChangeStatusTrait;
+use App\Traits\DeleteModelTrait;
+use App\Traits\DeleteSelectedTrait;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +18,7 @@ use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
 {
-    use StorageImageTrait;
+    use StorageImageTrait , ChangeStatusTrait , DeleteModelTrait , DeleteSelectedTrait;
     private $products;
     private $category;
     private $product_tag;
@@ -36,7 +39,8 @@ class AdminProductController extends Controller
 
 
     public function index () {
-        return view('backend.pages.products.index');
+        $data = $this->products->latest()->get();
+        return view('backend.pages.products.index' , compact('data'));
     }
     public function create () {
         $htmlOption = $this->getCategory($parentId = '');
@@ -44,7 +48,7 @@ class AdminProductController extends Controller
         return view('backend.pages.products.create', compact('htmlOption' , 'product_tag'));
     }
 
-    public function store (Request $request) {
+    public function store (RequestPost $request) {
         try {
             DB::beginTransaction();
             $data = [
@@ -66,12 +70,21 @@ class AdminProductController extends Controller
             if($request-> hasFile('image_path')){
                 foreach($request->image_path as $fileItem){
                     $img = $this->storageTraitUploadMutiple($fileItem , 'products');
-                    $product->image()->create([
+                    $product->images()->create([
                         'image_path'=>$img['file_path'],
                         'image_name'=>$img['file_name']
                     ]);
                 }
             }
+
+            $tagsIds = [];
+            if(!empty($request->tags)){
+                foreach($request->tags as $tagItem){
+                    $tagsIds[] = $tagItem;
+                }
+            }
+            $product->tags()->attach($tagsIds);
+
             DB::commit();
             return redirect()->route('products.index')->with('message' , 'Tạo sản phẩm thành công');
         } catch (\Exception $exception) {
@@ -87,7 +100,10 @@ class AdminProductController extends Controller
 
 
     public function edit ($id){
-
+        $data = $this->products->find($id);
+        $htmlOption = $this->getCategory($data->categories_id);
+        $product_tag = $this->product_tag->latest()->get();
+        return view('backend.pages.products.edit', compact('data', 'htmlOption','product_tag'));
     }
 
 
@@ -98,19 +114,35 @@ class AdminProductController extends Controller
 
 
     public function delete ($id){
- 
+        $data = $this->products->find($id);
+        dd($data->images);
+        // $tagsIds = $data->tags;
+        // $data->tags()->detach($tagsIds);
+        // return $this->deleteModelTrait($id, $this->products);
     }
 
     public function deleteSelected ( Request $request ) {
-   
+        if($request->ajax()){
+            $data = $this->products->find($request->ids);
+
+            foreach ( $data as $item){
+                $tagsIds = $item->tags;
+                $item->tags()->detach($tagsIds);
+            }
+
+            return $this->deleteSelectedTrait($request->ids , $this->products);
+        }
     }
 
 
     public function changeStatusShow (Request $request ,$id){
-
-
+        if($request->ajax()){
+            return $this->changeStatusTrait($this->products , $id , 'status' , $request->status );
+        }
     }
     public function changeStatusHome (Request $request ,  $id) {
-
+        if($request->ajax()){
+            return $this->changeStatusTrait($this->products , $id , 'is_show_home' , $request->status );
+        }
     }
 }

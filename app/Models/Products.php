@@ -17,6 +17,12 @@ class Products extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
     public function images () {
-        return $this->hasMany(ProductImage::class,'product_id'); // laravel eloquent-relationships
+        return $this->hasMany(ProductsImage::class,'product_id'); // laravel eloquent-relationships
     }
+    public function tags () {
+        return $this->belongsToMany(ProductTags::class, 'product_tag' , 'product_id', 'tag_id')->withTimestamps();
+    }
+    public function categoriesInstance (){
+        return $this->belongsTo(Category::class, 'categories_id'); 
+    } 
 }
