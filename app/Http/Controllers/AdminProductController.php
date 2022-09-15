@@ -6,6 +6,7 @@ use App\Components\CategoryRecusive;
 use App\Http\Requests\RequestPost;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\ProductsImage;
 use App\Models\ProductTags;
 use App\Traits\ChangeStatusTrait;
 use App\Traits\DeleteModelTrait;
@@ -22,11 +23,13 @@ class AdminProductController extends Controller
     private $products;
     private $category;
     private $product_tag;
-    public function __construct(Products $products , Category $category , ProductTags $product_tag)
+    private $productImage;
+    public function __construct(Products $products , Category $category , ProductTags $product_tag , ProductsImage $productImage)
     {
         $this->products = $products;
         $this->category = $category;
         $this->product_tag = $product_tag;
+        $this->productImage = $productImage;
     }
 
 
@@ -108,17 +111,25 @@ class AdminProductController extends Controller
 
 
     public function update (RequestPost $request , $id) {
-        
+        try {
+            DB::beginTransaction();
+            dd($request->image_path);
+            DB::commit();
+            return redirect()->route('products.index')->with('message' ,'Cập nhật bài viết thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
     }
 
 
 
     public function delete ($id){
         $data = $this->products->find($id);
-        dd($data->images);
-        // $tagsIds = $data->tags;
-        // $data->tags()->detach($tagsIds);
-        // return $this->deleteModelTrait($id, $this->products);
+        $tagsIds = $data->tags;
+        $data->images()->delete();
+        $data->tags()->detach($tagsIds);
+        return $this->deleteModelTrait($id, $this->products);
     }
 
     public function deleteSelected ( Request $request ) {
@@ -127,6 +138,7 @@ class AdminProductController extends Controller
 
             foreach ( $data as $item){
                 $tagsIds = $item->tags;
+                $item->images()->delete();
                 $item->tags()->detach($tagsIds);
             }
 

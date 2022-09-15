@@ -89,7 +89,7 @@
     <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
     <script>
         $('.input-images').imageUploader({
-            imagesInputName: "image_path[]",
+            imagesInputName: "image_path",
             label: "Chọn ảnh thumnail"
         });
     </script>

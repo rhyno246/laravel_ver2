@@ -23,7 +23,8 @@
                 <h4>Chỉnh Sửa Sản Phẩm</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('products.update', ['id' => $data->id]) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Tên sản phẩm</label>
@@ -81,6 +82,11 @@
                         <div class="input-images"></div>
                     </div>
 
+                    {{-- @foreach ($data->images as $item)
+                        <img src={{ $item->image_path }} alt="">
+                    @endforeach --}}
+
+
                     <button class="btn btn-primary">Cập nhật sản phẩm</button>
 
                 </form>
@@ -99,8 +105,34 @@
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
     <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
     <script>
+        let preloaded = [{
+                id: 1,
+                src: 'https://picsum.photos/500/500?random=1'
+            },
+            {
+                id: 2,
+                src: 'https://picsum.photos/500/500?random=2'
+            },
+            {
+                id: 3,
+                src: 'https://picsum.photos/500/500?random=3'
+            },
+            {
+                id: 4,
+                src: 'https://picsum.photos/500/500?random=4'
+            },
+            {
+                id: 5,
+                src: 'https://picsum.photos/500/500?random=5'
+            },
+            {
+                id: 6,
+                src: 'https://picsum.photos/500/500?random=6'
+            },
+        ];
         $('.input-images').imageUploader({
-            imagesInputName: "image_path[]",
+            preloaded: preloaded,
+            imagesInputName: "image_path",
             label: "Chọn ảnh thumnail"
         });
     </script>
