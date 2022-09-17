@@ -74,7 +74,7 @@ class AdminProductController extends Controller
                 foreach($request->image_path as $fileItem){
                     $img = $this->storageTraitUploadMutiple($fileItem , 'products');
                     $product->images()->create([
-                        'image_path'=>$img['file_path'],
+                        'src'=>$img['file_path'],
                         'image_name'=>$img['file_name']
                     ]);
                 }
@@ -97,11 +97,6 @@ class AdminProductController extends Controller
     }
 
 
-
-
-
-
-
     public function edit ($id){
         $data = $this->products->find($id);
         $htmlOption = $this->getCategory($data->categories_id);
@@ -113,7 +108,39 @@ class AdminProductController extends Controller
     public function update (RequestPost $request , $id) {
         try {
             DB::beginTransaction();
-            dd($request->image_path);
+            $data = [
+                'name' => $request->name,
+                'categories_id' => $request->categories_id,
+                'stock' => $request->stock,
+                'content' => $request->content,
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+                'slug' => Str::slug($request->name),
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request ,'feature_image_path' , 'products');
+            if(!empty($dataUploadFeatureImage)){
+                $data['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $data['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            }
+            $this->products->find($id)->update($data);
+            $product = $this->products->find($id);
+
+            if($request-> hasFile('image_path')){
+                foreach($request->image_path as $fileItem) {
+                    $imageDetail = $this->storageTraitUploadMutiple($fileItem, 'products');
+                    $product->images()->firstOrCreate([
+                        'src'=>$imageDetail['file_path'],
+                        'image_name'=>$imageDetail['file_name']
+                    ]);
+                }
+            }
+            $tagsIds = [];
+            if(!empty($request->tags)){
+                foreach($request->tags as $tagItem){
+                    $tagsIds[] = $tagItem;
+                }
+            }
+            $product->tags()->sync($tagsIds);
             DB::commit();
             return redirect()->route('products.index')->with('message' ,'Cập nhật bài viết thành công');
         } catch (\Exception $exception) {
@@ -121,6 +148,13 @@ class AdminProductController extends Controller
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
         }
     }
+
+
+    public function deleteThumbnail ( Request $request , $id){
+        if($request->ajax()){
+            return $this->deleteModelTrait($id, $this->productImage);
+        } 
+    } 
 
 
 
@@ -141,7 +175,6 @@ class AdminProductController extends Controller
                 $item->images()->delete();
                 $item->tags()->detach($tagsIds);
             }
-
             return $this->deleteSelectedTrait($request->ids , $this->products);
         }
     }

@@ -508,9 +508,33 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminProductController@changeStatusShow',
             'middleware' => (['CheckIsUser'])
         ]);
+
+        Route::get('/delete-thumbnail/{id}', [
+            'as' => 'products.deletethumbnail',
+            'uses' => 'App\Http\Controllers\AdminProductController@deleteThumbnail',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
     });
 
-
+    //gallery 
+    Route::prefix('gallery')->group(function () {
+        Route::get('/', [
+            'as' => 'gallery.index',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'gallery.create',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'gallery.store',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
 
 });
 

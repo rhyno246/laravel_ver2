@@ -48,6 +48,11 @@
                 <a href="{{ route('products.index') }}" class="nav-link"><i class="far fa-square"></i><span>Danh
                         sách sản phẩm</span></a>
             </li>
+
+            <li class="dropdown {{ Request::is('admin/gallery*') ? 'active' : '' }}">
+                <a href="{{ route('gallery.index') }}" class="nav-link"><i class="fas fa-image"></i><span>Danh sách
+                        hình ảnh</span></a>
+            </li>
         </ul>
     </aside>
 </div>

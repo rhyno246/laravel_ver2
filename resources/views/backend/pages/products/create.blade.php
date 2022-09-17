@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/jquery-selectric/selectric.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/image-uploader.min.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 @endsection
 
 @section('content')
@@ -67,9 +65,10 @@
 
                     <div class="form-group">
                         <label>Thumnail sản phẩm</label>
-                        <div class="input-images"></div>
+                        <div class="thumbnail-wrapper">
+                            <input type="file" id="files" name="image_path[]" multiple />
+                        </div>
                     </div>
-
                     <button class="btn btn-primary">Tạo sản phẩm</button>
 
                 </form>
@@ -85,12 +84,7 @@
     <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/page/features-post-create.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
-    <script>
-        $('.input-images').imageUploader({
-            imagesInputName: "image_path",
-            label: "Chọn ảnh thumnail"
-        });
-    </script>
+    <script src="{{ asset('backend/assets/js/uploadMutipleImage.js') }}"></script>
 @endsection

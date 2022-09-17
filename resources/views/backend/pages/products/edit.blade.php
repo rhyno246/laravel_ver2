@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/jquery-selectric/selectric.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/image-uploader.min.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 @endsection
 
 @section('content')
@@ -24,7 +22,7 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('products.update', ['id' => $data->id]) }}" method="POST"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" class="form">
                     @csrf
                     <div class="form-group">
                         <label>Tên sản phẩm</label>
@@ -79,13 +77,21 @@
 
                     <div class="form-group">
                         <label>Thumnail sản phẩm</label>
-                        <div class="input-images"></div>
+                        <div class="thumbnail-wrapper">
+                            <input type="file" id="files" name="image_path[]" multiple />
+
+                            @foreach ($data->images as $item)
+                                <div class="thumbnail">
+                                    <img class="imageThumb" src="{{ $item->src }}" alt="{{ $item->image_name }}">
+                                    <a class="remove deletethumb btn btn-icon btn-danger"
+                                        href="{{ route('products.deletethumbnail', ['id' => $item->id]) }}"
+                                        data-url="{{ route('products.deletethumbnail', ['id' => $item->id]) }}">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-
-                    {{-- @foreach ($data->images as $item)
-                        <img src={{ $item->image_path }} alt="">
-                    @endforeach --}}
-
 
                     <button class="btn btn-primary">Cập nhật sản phẩm</button>
 
@@ -102,38 +108,8 @@
     <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/page/features-post-create.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
-    <script>
-        let preloaded = [{
-                id: 1,
-                src: 'https://picsum.photos/500/500?random=1'
-            },
-            {
-                id: 2,
-                src: 'https://picsum.photos/500/500?random=2'
-            },
-            {
-                id: 3,
-                src: 'https://picsum.photos/500/500?random=3'
-            },
-            {
-                id: 4,
-                src: 'https://picsum.photos/500/500?random=4'
-            },
-            {
-                id: 5,
-                src: 'https://picsum.photos/500/500?random=5'
-            },
-            {
-                id: 6,
-                src: 'https://picsum.photos/500/500?random=6'
-            },
-        ];
-        $('.input-images').imageUploader({
-            preloaded: preloaded,
-            imagesInputName: "image_path",
-            label: "Chọn ảnh thumnail"
-        });
-    </script>
+    <script src="{{ asset('backend/assets/js/uploadMutipleImage.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteThumbnailUpload.js') }}"></script>
 @endsection
