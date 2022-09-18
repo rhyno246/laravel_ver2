@@ -30,38 +30,38 @@ Route::prefix('admin')->group(function () {
         'uses' => 'App\Http\Controllers\AdminDashBoardController@index',
         'middleware' => ('CheckIsUser')
     ]);
-    
+
     //product category
     Route::prefix('product-category')->group(function () {
         Route::get('/', [
             'as' => 'category.product.index',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@index',
-            'middleware' => (['CheckIsUser','can:gate-category-view'])
+            'middleware' => (['CheckIsUser', 'can:gate-category-view'])
         ]);
         Route::get('/create', [
             'as' => 'category.product.create',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@create',
-            'middleware' => (['CheckIsUser' , 'can:gate-category-view'])
+            'middleware' => (['CheckIsUser', 'can:gate-category-view'])
         ]);
         Route::post('/store', [
             'as' => 'category.product.store',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@store',
-            'middleware' => (['CheckIsUser','can:gate-category-create'])
+            'middleware' => (['CheckIsUser', 'can:gate-category-create'])
         ]);
         Route::get('/edit/{id}', [
             'as' => 'category.product.edit',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@edit',
-            'middleware' => (['CheckIsUser','can:gate-category-update'])
+            'middleware' => (['CheckIsUser', 'can:gate-category-update'])
         ]);
         Route::post('/update/{id}', [
             'as' => 'category.product.update',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@update',
-            'middleware' => (['CheckIsUser','can:gate-category-update'])
+            'middleware' => (['CheckIsUser', 'can:gate-category-update'])
         ]);
         Route::get('/delete/{id}', [
             'as' => 'category.product.detele',
             'uses' => 'App\Http\Controllers\AdminProductCategoryController@delete',
-            'middleware' => (['CheckIsUser','can:gate-category-delete' ])
+            'middleware' => (['CheckIsUser', 'can:gate-category-delete'])
         ]);
 
         Route::post('/seleted-category', [
@@ -115,8 +115,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostCategory@deleteSelected',
             'middleware' => (['CheckIsUser'])
         ]);
-
-        
     });
 
 
@@ -129,12 +127,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [
             'as' => 'permissions.create',
             'uses' => 'App\Http\Controllers\AdminPermissionController@create',
-            'middleware' => (['CheckIsUser','can:gate-permissions-view'])
+            'middleware' => (['CheckIsUser', 'can:gate-permissions-view'])
         ]);
         Route::post('/store', [
             'as' => 'permissions.store',
             'uses' => 'App\Http\Controllers\AdminPermissionController@store',
-            'middleware' => (['CheckIsUser','can:gate-permissions-create'])
+            'middleware' => (['CheckIsUser', 'can:gate-permissions-create'])
         ]);
     });
 
@@ -178,7 +176,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminMenuController@deleteSelected',
             'middleware' => (['CheckIsUser'])
         ]);
-
     });
 
 
@@ -188,17 +185,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [
             'as' => 'role.index',
             'uses' => 'App\Http\Controllers\AdminRoleController@index',
-            'middleware' => (['CheckIsUser','can:gate-role-view'])
+            'middleware' => (['CheckIsUser', 'can:gate-role-view'])
         ]);
         Route::get('/create', [
             'as' => 'role.create',
             'uses' => 'App\Http\Controllers\AdminRoleController@create',
-            'middleware' => (['CheckIsUser','can:gate-role-view'])
+            'middleware' => (['CheckIsUser', 'can:gate-role-view'])
         ]);
         Route::post('/store', [
             'as' => 'role.store',
             'uses' => 'App\Http\Controllers\AdminRoleController@store',
-            'middleware' => (['CheckIsUser','can:gate-role-create'])
+            'middleware' => (['CheckIsUser', 'can:gate-role-create'])
         ]);
 
         Route::get('/edit/{id}', [
@@ -215,7 +212,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'role.delete',
             'uses' => 'App\Http\Controllers\AdminRoleController@delete',
-            'middleware' => (['CheckIsUser','can:gate-role-delete'])
+            'middleware' => (['CheckIsUser', 'can:gate-role-delete'])
         ]);
         Route::post('/seleted-roles', [
             'as' => 'role.deleteselect',
@@ -224,7 +221,7 @@ Route::prefix('admin')->group(function () {
         ]);
     });
 
-    
+
     //settings
     Route::prefix('settings')->group(function () {
         Route::get('/', [
@@ -241,7 +238,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/store', [
             'as' => 'settings.store',
             'uses' => 'App\Http\Controllers\AdminSettingController@store',
-            'middleware' => (['CheckIsUser' , 'can:gate-settings-create'])
+            'middleware' => (['CheckIsUser', 'can:gate-settings-create'])
         ]);
         Route::get('/edit/{id}', [
             'as' => 'settings.edit',
@@ -256,7 +253,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'settings.delete',
             'uses' => 'App\Http\Controllers\AdminSettingController@delete',
-            'middleware' => (['CheckIsUser','can:gate-settings-delete'])
+            'middleware' => (['CheckIsUser', 'can:gate-settings-delete'])
         ]);
         Route::post('/seleted-settings', [
             'as' => 'settings.deleteselect',
@@ -359,8 +356,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminPostTags@deleteSelected',
             'middleware' => (['CheckIsUser'])
         ]);
-
-        
     });
 
 
@@ -407,8 +402,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminProductTags@deleteSelected',
             'middleware' => (['CheckIsUser'])
         ]);
-
-        
     });
 
 
@@ -454,9 +447,9 @@ Route::prefix('admin')->group(function () {
         ]);
     });
 
-    
 
-    
+
+
     //product 
     Route::prefix('products')->group(function () {
         Route::get('/', [
@@ -514,7 +507,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminProductController@deleteThumbnail',
             'middleware' => (['CheckIsUser'])
         ]);
-
     });
 
     //gallery 
@@ -534,8 +526,23 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminGalleryController@store',
             'middleware' => (['CheckIsUser'])
         ]);
-    });
 
+        Route::get('/edit/{id}', [
+            'as' => 'gallerys.edit',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'gallerys.update',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'gallerys.delete',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
 });
 
 

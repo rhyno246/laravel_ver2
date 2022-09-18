@@ -27,14 +27,12 @@
                             <div class="card card-danger">
                                 <div class="card-header">
                                     <h4>{{ $item->name ? $item->name : 'Không tên' }}</h4>
-                                    <div class="card-header-action">
-                                        <div class="custom-checkbox custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                id="checkbox-{{ $item->id }}" name="ids"
-                                                value="{{ $item->id }}">
-                                            <label for="checkbox-{{ $item->id }}"
-                                                class="custom-control-label">&nbsp;</label>
-                                        </div>
+                                    <div class="card-header-action d-flex">
+                                        <label class="custom-switch mr-2">
+                                            <input type="checkbox" {{-- data-url="{{ route('products.statushome', ['id' => $item->id]) }}" --}} name="is-show-home"
+                                                class="custom-switch-input" {{ $item->status == 1 ? 'checked' : '' }}>
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
                                         <div class="dropdown">
                                             <a href="#" data-toggle="dropdown"
                                                 class="btn btn-warning dropdown-toggle">Options</a>
@@ -43,8 +41,11 @@
                                                     View</a>
                                                 <a href="#" class="dropdown-item has-icon"><i class="far fa-edit"></i>
                                                     Edit</a>
-                                                <a href="#" class="dropdown-item has-icon"><i
-                                                        class="far fa-trash-alt"></i> Delete</a>
+                                                <a href="{{ route('gallerys.delete', ['id' => $item->id]) }}"
+                                                    data-url="{{ route('gallerys.delete', ['id' => $item->id]) }}"
+                                                    class="dropdown-item has-icon delete-model"><i
+                                                        class="far fa-trash-alt"></i>
+                                                    Delete</a>
                                             </div>
                                         </div>
                                     </div>
@@ -65,6 +66,8 @@
 @section('js')
     <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/deleteGallery.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/changeStatusHome.js') }}"></script> --}}
     @if (Session::has('message-edit'))
         <script>
             iziToast.success({
