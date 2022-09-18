@@ -11,42 +11,41 @@
 
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Thêm mới hình ảnh',
+        'name' => 'Thêm mới albums',
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Thêm mới hình ảnh</h4>
+                <h4>Thêm mới albums</h4>
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
+                <form action="{{ route('gallerys.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label>Tên hình ảnh</label>
+                        <label>Tên albums</label>
                         <input type="text" class="form-control" name="name">
                     </div>
 
                     <div class="form-group">
-                        <label>Mô tả hình ảnh</label>
+                        <label>Mô tả</label>
                         <input type="text" class="form-control" name="description">
                     </div>
 
                     <div class="form-group">
-                        <label>Hình ảnh</label>
+                        <label>Chọn đại diện cho albums</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Chọn file ảnh</label>
 
-                            <input type="file" name="feature_image_path"
-                                class="@error('feature_image_path') is-invalid @enderror" id="image-upload"
-                                value="{{ old('feature_image_path') }}" />
+                            <input type="file" class="form-control @error('feature_image_path') is-invalid @enderror"
+                                name="feature_image_path" id="image-upload">
+                            @error('feature_image_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('feature_image_path')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
                     </div>
 
 
-                    <button class="btn btn-primary">Tạo hình ảnh </button>
+                    <button class="btn btn-primary">Tạo Albums </button>
                 </form>
             </div>
         </div>

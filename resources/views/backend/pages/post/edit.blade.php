@@ -62,7 +62,11 @@
                             background-size: cover;
                             background-position: center;">
                             <label for="image-upload" id="image-label">Choose File</label>
-                            <input type="file" name="feature_image_path" id="image-upload" />
+                            <input type="file" class="form-control @error('feature_image_path') is-invalid @enderror"
+                                name="feature_image_path" id="image-upload" />
+                            @error('feature_image_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <button class="btn btn-primary">Cập nhật bài viết</button>

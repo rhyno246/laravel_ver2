@@ -518,19 +518,19 @@ Route::prefix('admin')->group(function () {
     });
 
     //gallery 
-    Route::prefix('gallery')->group(function () {
+    Route::prefix('gallerys')->group(function () {
         Route::get('/', [
-            'as' => 'gallery.index',
+            'as' => 'gallerys.index',
             'uses' => 'App\Http\Controllers\AdminGalleryController@index',
             'middleware' => (['CheckIsUser'])
         ]);
         Route::get('/create', [
-            'as' => 'gallery.create',
+            'as' => 'gallerys.create',
             'uses' => 'App\Http\Controllers\AdminGalleryController@create',
             'middleware' => (['CheckIsUser'])
         ]);
         Route::post('/store', [
-            'as' => 'gallery.store',
+            'as' => 'gallerys.store',
             'uses' => 'App\Http\Controllers\AdminGalleryController@store',
             'middleware' => (['CheckIsUser'])
         ]);

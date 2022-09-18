@@ -32,10 +32,21 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
+                    <div class="form-group">
+                        <label>Nhập giá tiền</label>
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                            value="{{ $data->price }}">
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label>Nhập số lượng</label>
-                        <input type="number" class="form-control" name="stock" value="{{ $data->stock }}">
+                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock"
+                            value="{{ $data->stock }}">
+                        @error('stock')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">

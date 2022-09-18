@@ -24,15 +24,15 @@ class RequestGallery extends FormRequest
     public function rules()
     {
         return [
-            'feature_image_path' => 'required',
-            'name' => 'required'
+            'feature_image_path' => 'required|image|mimes:jpeg,png|mimetypes:image/jpeg,image/png'
         ];
     }
     public function messages()
     {
         return [
             'feature_image_path.required' => "Bạn chưa chọn hình",
-            'name.required' => "Tên không được phép để trống",
+            'feature_image_path.mimes' => "Bạn phải chọn định dạng hình ảnh là jpeg,png",
+            'feature_image_path.image' => "Bạn phải chọn định dạng hình ảnh là jpeg,png"
         ];
     }
 }

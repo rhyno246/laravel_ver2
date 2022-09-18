@@ -53,7 +53,11 @@
                         <label>Ảnh đại diện bài viết</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                            <input type="file" name="feature_image_path" id="image-upload" />
+                            <input type="file" class="form-control @error('feature_image_path') is-invalid @enderror"
+                                name="feature_image_path" id="image-upload" />
+                            @error('feature_image_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <button class="btn btn-primary">Tạo bài viết</button>

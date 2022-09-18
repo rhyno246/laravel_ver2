@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\CategoryRecusive;
-use App\Http\Requests\RequestPost;
+use App\Http\Requests\RequestProducts;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\ProductsImage;
@@ -51,11 +51,12 @@ class AdminProductController extends Controller
         return view('backend.pages.products.create', compact('htmlOption' , 'product_tag'));
     }
 
-    public function store (RequestPost $request) {
+    public function store (RequestProducts $request) {
         try {
             DB::beginTransaction();
             $data = [
                 'name' => $request->name,
+                'price' => $request->price,
                 'categories_id' => $request->categories_id,
                 'stock' => $request->stock,
                 'content' => $request->content,
@@ -105,11 +106,12 @@ class AdminProductController extends Controller
     }
 
 
-    public function update (RequestPost $request , $id) {
+    public function update (RequestProducts $request , $id) {
         try {
             DB::beginTransaction();
             $data = [
                 'name' => $request->name,
+                'price' => $request->price,
                 'categories_id' => $request->categories_id,
                 'stock' => $request->stock,
                 'content' => $request->content,

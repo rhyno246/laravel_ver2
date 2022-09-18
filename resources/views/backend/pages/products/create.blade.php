@@ -33,8 +33,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Nhập giá tiền</label>
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                            value="{{ old('price') }}">
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group">
                         <label>Nhập số lượng</label>
-                        <input type="number" class="form-control" name="stock">
+                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock"
+                            value="{{ old('stock') }}">
+                        @error('stock')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -59,14 +73,24 @@
                         <label>Ảnh đại diện sản phẩm</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                            <input type="file" name="feature_image_path" id="image-upload" />
+                            <input type="file" class="form-control @error('feature_image_path') is-invalid @enderror"
+                                name="feature_image_path" id="image-upload" />
+                            @error('feature_image_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Thumnail sản phẩm</label>
                         <div class="thumbnail-wrapper">
-                            <input type="file" id="files" name="image_path[]" multiple />
+                            <input type="file" id="files"
+                                class="form-control @error('image_path') is-invalid @enderror" name="image_path[]"
+                                multiple />
+                            @error('image_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <button class="btn btn-primary">Tạo sản phẩm</button>

@@ -49,9 +49,9 @@
                         sách sản phẩm</span></a>
             </li>
 
-            <li class="dropdown {{ Request::is('admin/gallery*') ? 'active' : '' }}">
-                <a href="{{ route('gallery.index') }}" class="nav-link"><i class="fas fa-image"></i><span>Danh sách
-                        hình ảnh</span></a>
+            <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
+                <a href="{{ route('gallerys.index') }}" class="nav-link"><i
+                        class="fas fa-image"></i><span>Albums</span></a>
             </li>
         </ul>
     </aside>

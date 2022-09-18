@@ -46,6 +46,7 @@
                                 <th>Thuộc danh mục</th>
                                 <th>Hiện ở trang chủ</th>
                                 <th>Ẩn / Hiện</th>
+                                <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Tạo ngày</th>
                                 <th>Người tạo</th>
@@ -93,6 +94,10 @@
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </td>
+                                    <td class="align-middle">
+                                        {{ $item->price == null && $item->stock == 0 ? 'Liên hệ' : number_format((float) $item->price, 0) }}
+                                    </td>
+
                                     <td class="align-middle">
                                         {{ $item->stock == null && $item->stock == 0 ? 'Hết hàng' : $item->stock }}
                                     </td>
