@@ -542,6 +542,11 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminGalleryController@delete',
             'middleware' => (['CheckIsUser'])
         ]);
+        Route::get('/status-gallery/{id}', [
+            'as' => 'gallerys.statusgallery',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
     });
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestGallery;
 use App\Models\Gallery;
+use App\Traits\ChangeStatusTrait;
 use App\Traits\DeleteModelTrait;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class AdminGalleryController extends Controller
 {
-    use StorageImageTrait, DeleteModelTrait;
+    use StorageImageTrait, DeleteModelTrait, ChangeStatusTrait;
     private $gallery;
     public function __construct(Gallery $gallery)
     {
@@ -72,6 +73,12 @@ class AdminGalleryController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
+    }
+
+    public function changeStatusShow (Request $request ,$id){
+        if($request->ajax()){
+            return $this->changeStatusTrait($this->gallery , $id , 'status' , $request->status );
         }
     }
 }

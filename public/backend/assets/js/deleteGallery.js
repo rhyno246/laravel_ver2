@@ -16,7 +16,7 @@ function actionDelete(e) {
                 success: function (data) {
 
                     if (data.message === "success") {
-                        btn.parent().parent().parent().parent().parent().remove();
+                        btn.parent().parent().parent().parent().parent().parent().remove();
                         swal('Ok rồi ! Bạn đã xóa thành công ', {
                             icon: 'success',
                         });

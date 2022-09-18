@@ -147,3 +147,6 @@ img.w-100.d-block.img-albums {
   height: 13vw;
   object-fit: cover;
 }
+.tab-gallery {
+  margin-bottom: 15px;
+}
