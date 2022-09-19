@@ -25,8 +25,6 @@ class RequestProducts extends FormRequest
     {
         return [
             'name' => 'bail|required|max:255',
-            'feature_image_path' => 'image|mimes:jpeg,png|mimetypes:image/jpeg,image/png',
-            'image_path' => 'image|mimes:jpeg,png|mimetypes:image/jpeg,image/png',
             'price' => 'numeric|min:0',
             'stock' => 'numeric|min:0',
         ];
@@ -36,9 +34,6 @@ class RequestProducts extends FormRequest
         return [
             'name.required' => "Tên không được phép để trống",
             'name.max' => "Tên không được phép quá 255 ký tự",
-            'feature_image_path.image' => "Bạn phải chọn định dạng hình ảnh là jpeg,png",
-            'feature_image_path.mimes' => "Bạn phải chọn định dạng hình ảnh là jpeg,png",
-            'image_path.image' => "Bạn phải chọn định dạng hình ảnh là jpeg,png",
             'price.min' => "Giá không được nhỏ hơn 0",
             'stock.min' => "Số lượng không được nhỏ hơn 0"
         ];

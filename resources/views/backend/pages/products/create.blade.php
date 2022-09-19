@@ -73,24 +73,14 @@
                         <label>Ảnh đại diện sản phẩm</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                            <input type="file" class="form-control @error('feature_image_path') is-invalid @enderror"
-                                name="feature_image_path" id="image-upload" />
-                            @error('feature_image_path')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-
+                            <input type="file" class="form-control" name="feature_image_path" id="image-upload" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Thumnail sản phẩm</label>
                         <div class="thumbnail-wrapper">
-                            <input type="file" id="files"
-                                class="form-control @error('image_path') is-invalid @enderror" name="image_path[]"
-                                multiple />
-                            @error('image_path')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="file" id="files" class="form-control" name="image_path[]" multiple />
                         </div>
                     </div>
                     <button class="btn btn-primary">Tạo sản phẩm</button>

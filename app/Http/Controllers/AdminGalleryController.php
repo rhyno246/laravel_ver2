@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestGallery;
 use App\Models\Gallery;
+use App\Models\GalleryImages;
 use App\Traits\ChangeStatusTrait;
 use App\Traits\DeleteModelTrait;
 use App\Traits\StorageImageTrait;
@@ -15,9 +16,11 @@ class AdminGalleryController extends Controller
 {
     use StorageImageTrait, DeleteModelTrait, ChangeStatusTrait;
     private $gallery;
-    public function __construct(Gallery $gallery)
+    private $gallery_image;
+    public function __construct(Gallery $gallery , GalleryImages $gallery_image)
     {
         $this->gallery = $gallery;
+        $this->gallery_image = $gallery_image;
     }
 
     public function index()
@@ -45,7 +48,18 @@ class AdminGalleryController extends Controller
                 $data['feature_image_name'] = $dataUploadFeatureImage['file_name'];
                 $data['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
-            $this->gallery->firstOrCreate($data);
+            $galleries = $this->gallery->firstOrCreate($data);
+
+            if($request-> hasFile('image_path')){
+                foreach($request->image_path as $fileItem){
+                    $img = $this->storageTraitUploadMutiple($fileItem , 'gallerys');
+                    $galleries->images()->create([
+                        'src'=>$img['file_path'],
+                        'image_name'=>$img['file_name']
+                    ]);
+                }
+            }
+
             DB::commit();
             return redirect()->route('gallerys.index')->with('message', 'Tạo hình ảnh thành công');
         } catch (\Exception $exception) {
@@ -58,6 +72,12 @@ class AdminGalleryController extends Controller
     {
         return view('backend.pages.gallery.edit');
     }
+
+    public function view ($id){
+        $view = $this->gallery->find($id);
+        return view('backend.pages.gallery.view', compact('view'));
+    }
+
     public function delete($id)
     {
         return $this->deleteModelTrait($id, $this->gallery);

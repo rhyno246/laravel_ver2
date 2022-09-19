@@ -53,6 +53,18 @@
                 <a href="{{ route('gallerys.index') }}" class="nav-link"><i
                         class="fas fa-image"></i><span>Albums</span></a>
             </li>
+
+
+            <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
+                <a href="{{ route('gallerys.index') }}" class="nav-link"><i class="far fa-user"></i><span>Danh sách
+                        khách hàng</span></a>
+            </li>
+
+            <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
+                <a href="{{ route('gallerys.index') }}" class="nav-link"><i
+                        class="fas fa-cart-arrow-down"></i><span>Danh sách
+                        Đơn hàng</span></a>
+            </li>
         </ul>
     </aside>
 </div>

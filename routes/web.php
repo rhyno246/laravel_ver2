@@ -516,6 +516,13 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminGalleryController@index',
             'middleware' => (['CheckIsUser'])
         ]);
+
+        Route::get('/view/{id}', [
+            'as' => 'gallerys.view',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@view',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
         Route::get('/create', [
             'as' => 'gallerys.create',
             'uses' => 'App\Http\Controllers\AdminGalleryController@create',
@@ -545,6 +552,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/status-gallery/{id}', [
             'as' => 'gallerys.statusgallery',
             'uses' => 'App\Http\Controllers\AdminGalleryController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
+
+    Route::prefix('customer')->group(function () {
+        Route::get('/', [
+            'as' => 'customer.index',
+            'uses' => 'App\Http\Controllers\AdminProductController@index',
             'middleware' => (['CheckIsUser'])
         ]);
     });
