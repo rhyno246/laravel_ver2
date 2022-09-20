@@ -166,5 +166,7 @@ img.w-100.d-block.img-albums {
 .navbar,.main-sidebar{
   z-index: 8;
 }
-
+.navbar .nav-link.nav-link-user img{
+  height: 30px;
+}
 

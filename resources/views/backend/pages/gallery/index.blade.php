@@ -40,26 +40,27 @@
                                             </label>
                                             <div class="dropdown">
                                                 <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
+                                                    class="btn btn-warning dropdown-toggle">Tùy chọn</a>
                                                 <div class="dropdown-menu">
                                                     <a href="{{ route('gallerys.view', ['id' => $item->id]) }}"
                                                         class="dropdown-item has-icon"><i class="fas fa-eye"></i>
-                                                        View</a>
-                                                    <a href="#" class="dropdown-item has-icon"><i
-                                                            class="far fa-edit"></i>
-                                                        Edit</a>
+                                                        Xem</a>
+                                                    <a href="{{ route('gallerys.edit', ['id' => $item->id]) }}"
+                                                        class="dropdown-item has-icon"><i class="far fa-edit"></i>
+                                                        Sửa</a>
                                                     <a href="{{ route('gallerys.delete', ['id' => $item->id]) }}"
                                                         data-url="{{ route('gallerys.delete', ['id' => $item->id]) }}"
                                                         class="dropdown-item has-icon delete-model"><i
                                                             class="far fa-trash-alt"></i>
-                                                        Delete</a>
+                                                        Xóa</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <a href="#" class="d-block"><img src="{{ $item->feature_image_path }}"
-                                                alt="{{ $item->feature_image_name }}" class="w-100 d-block img-albums"></a>
+                                        <a href="{{ route('gallerys.view', ['id' => $item->id]) }}" class="d-block"><img
+                                                src="{{ $item->feature_image_path }}" alt="{{ $item->feature_image_name }}"
+                                                class="w-100 d-block img-albums"></a>
                                     </div>
                                 </div>
                             </div>

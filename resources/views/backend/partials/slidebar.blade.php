@@ -13,6 +13,25 @@
                 <a href="{{ route('menu.index') }}" class="nav-link"><i class="fas fa-th-large"></i><span>Danh Sách
                         Menu</span></a>
             </li>
+            <li class="dropdown {{ Request::is('admin/posts*') ? 'active' : '' }}">
+                <a href="{{ route('post.index') }}" class="nav-link"><i class="fas fa-sticky-note"></i><span>Danh Sách
+                        Bài viết</span></a>
+            </li>
+
+            <li class="dropdown {{ Request::is('admin/products*') ? 'active' : '' }}">
+                <a href="{{ route('products.index') }}" class="nav-link"><i class="far fa-square"></i><span>Danh
+                        sách sản phẩm</span></a>
+            </li>
+
+            <li class="dropdown">
+                <a href="" class="nav-link"><i class="far fa-user"></i><span>Danh sách
+                        khách hàng</span></a>
+            </li>
+
+            <li class="dropdown">
+                <a href="" class="nav-link"><i class="fas fa-cart-arrow-down"></i><span>Danh sách
+                        Đơn hàng</span></a>
+            </li>
 
             <li
                 class="dropdown {{ Request::is('admin/product-category*') || Request::is('admin/post-category*') ? 'active' : '' }}">
@@ -39,31 +58,9 @@
                 <a href="{{ route('slider.index') }}" class="nav-link"><i
                         class="fas fa-image"></i><span>Slider</span></a>
             </li>
-            <li class="dropdown {{ Request::is('admin/posts*') ? 'active' : '' }}">
-                <a href="{{ route('post.index') }}" class="nav-link"><i class="fas fa-sticky-note"></i><span>Danh Sách
-                        Bài viết</span></a>
-            </li>
-
-            <li class="dropdown {{ Request::is('admin/products*') ? 'active' : '' }}">
-                <a href="{{ route('products.index') }}" class="nav-link"><i class="far fa-square"></i><span>Danh
-                        sách sản phẩm</span></a>
-            </li>
-
             <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
                 <a href="{{ route('gallerys.index') }}" class="nav-link"><i
                         class="fas fa-image"></i><span>Albums</span></a>
-            </li>
-
-
-            <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
-                <a href="{{ route('gallerys.index') }}" class="nav-link"><i class="far fa-user"></i><span>Danh sách
-                        khách hàng</span></a>
-            </li>
-
-            <li class="dropdown {{ Request::is('admin/gallerys*') ? 'active' : '' }}">
-                <a href="{{ route('gallerys.index') }}" class="nav-link"><i
-                        class="fas fa-cart-arrow-down"></i><span>Danh sách
-                        Đơn hàng</span></a>
             </li>
         </ul>
     </aside>

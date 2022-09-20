@@ -25,14 +25,12 @@ class RequestGallery extends FormRequest
     {
         return [
             'feature_image_path' => 'required',
-            'image_path' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'feature_image_path.required' => "Bạn chưa chọn hình",
-            'image_path.required' => 'Bạn chưa chọn hình',
         ];
     }
 }

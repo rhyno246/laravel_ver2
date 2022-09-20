@@ -67,12 +67,8 @@
                                         aria-labelledby="profile-tab4">
                                         <div class="form-group">
                                             <div class="thumbnail-wrapper">
-                                                <input type="file" id="files"
-                                                    class="form-control @error('image_path') is-invalid @enderror"
+                                                <input type="file" id="files" class="form-control"
                                                     name="image_path[]" multiple />
-                                                @error('image_path')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>

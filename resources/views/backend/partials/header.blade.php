@@ -13,21 +13,32 @@
     <ul class="navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
+                <img alt="image"
+                    src="{{ session()->get('avartar') ? session()->get('avartar')->src : asset('backend/assets/img/avatar/avatar-1.png') }}"
                     class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">
                     {{ Auth::user()->name }}
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Trang cá nhân
+                <a href="{{ route('profile.index') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user-alt"></i> Trang cá nhân
                 </a>
+
+
+
                 @can('gate-settings-view')
                     <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
-                        <i class="fas fa-cog"></i> Danh sách tài khoản
+                        <i class="fas fa-users"></i> Danh sách tài khoản
                     </a>
                 @endcan
+
+
+                <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Cài đặt
+                </a>
+
+
 
 
                 @can('gate-permissions-view')

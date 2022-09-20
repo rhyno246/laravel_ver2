@@ -70,7 +70,8 @@ class AdminGalleryController extends Controller
 
     public function edit($id)
     {
-        return view('backend.pages.gallery.edit');
+        $data = $this->gallery->find($id);
+        return view('backend.pages.gallery.edit' , compact('data'));
     }
 
     public function view ($id){
@@ -82,12 +83,42 @@ class AdminGalleryController extends Controller
     {
         return $this->deleteModelTrait($id, $this->gallery);
     }
+    
+    public function deleteThumbnail ( Request $request , $id){
+        if($request->ajax()){
+            return $this->deleteModelTrait($id, $this->gallery_image);
+        } 
+    } 
 
-    public function update(RequestGallery $request)
+
+
+    public function update(Request $request , $id)
     {
         try {
             DB::beginTransaction();
+            $data = [
+                'name' => $request->name,
+                'description' => $request->description,
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'gallerys');
+            if (!empty($dataUploadFeatureImage)) {
+                $data['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $data['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            }
+            $this->gallery->find($id)->update($data);
+            $galleries = $this->gallery->find($id);
 
+            if($request-> hasFile('image_path')){
+                foreach($request->image_path as $fileItem) {
+                    $imageDetail = $this->storageTraitUploadMutiple($fileItem, 'gallerys');
+                    $galleries->images()->firstOrCreate([
+                        'src'=>$imageDetail['file_path'],
+                        'image_name'=>$imageDetail['file_name']
+                    ]);
+                }
+            }
             DB::commit();
             return redirect()->route('gallerys.index')->with('message', 'Tạo hình ảnh thành công');
         } catch (\Exception $exception) {

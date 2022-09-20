@@ -47,6 +47,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class , 'users_role', 'user_id', 'role_id');
     }
 
+    public function avartar () {
+        return $this->belongsTo(UserAvatar::class ,'user_id');
+    }
 
 
     public function checkPermissionAccess ( $permission ) {

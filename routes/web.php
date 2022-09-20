@@ -554,6 +554,13 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminGalleryController@changeStatusShow',
             'middleware' => (['CheckIsUser'])
         ]);
+
+        Route::get('/delete-thumbnail/{id}', [
+            'as' => 'gallerys.deletethumbnail',
+            'uses' => 'App\Http\Controllers\AdminGalleryController@deleteThumbnail',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
     });
 
 
@@ -565,6 +572,22 @@ Route::prefix('admin')->group(function () {
             'middleware' => (['CheckIsUser'])
         ]);
     });
+
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [
+            'as' => 'profile.index',
+            'uses' => 'App\Http\Controllers\ProfileController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'profile.update',
+            'uses' => 'App\Http\Controllers\ProfileController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 });
 
 
