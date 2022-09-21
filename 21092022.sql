@@ -100,8 +100,36 @@ CREATE TABLE `galleries` (
 
 LOCK TABLES `galleries` WRITE;
 /*!40000 ALTER TABLE `galleries` DISABLE KEYS */;
-INSERT INTO `galleries` VALUES ('2dd9e02b-a198-4dec-a245-7272c5c45f99',5,'admin',1,NULL,NULL,'/storage/gallerys/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg','2022-09-18 00:01:11','2022-09-18 00:01:11'),('2f5738c6-1276-426f-bfd1-aaf9c7ea2164',5,'admin',1,'dsdsdas','dsadsaads','/storage/gallerys/5/7f2126490d695eeb0f45d825b055aadc.jpg','content_popup2 - Copy.jpg','2022-09-18 00:00:52','2022-09-18 00:00:52');
+INSERT INTO `galleries` VALUES ('2a2ff917-3174-4693-a57a-5357d18ee301',5,'admin',1,NULL,NULL,'/storage/gallerys/5/396d16c4947a0f32e4f4fbdab0741093.png','content_popup3 - Copy.png','2022-09-20 06:59:54','2022-09-20 06:59:54'),('6f46495f-9a34-46be-8b35-c280bef1dc3d',5,'admin',1,'test','test','/storage/gallerys/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','2022-09-19 08:07:35','2022-09-19 08:59:36'),('84986e73-56c8-446e-b3f5-0edd082ff240',5,'admin',1,'updated','updated','/storage/gallerys/5/fc5d240ab05d09b974527265e0eb3ed5.png','bg_sp.png','2022-09-19 08:24:05','2022-09-20 07:18:22'),('c147dd24-1149-406a-9b89-0c03b8d0379f',5,'admin',0,'updated best',NULL,'/storage/gallerys/5/d1adf6dbdb03db1627b404cf59426007.jpg','bai_viet_1.jpg','2022-09-20 07:04:43','2022-09-21 05:59:52');
 /*!40000 ALTER TABLE `galleries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gallery_images`
+--
+
+DROP TABLE IF EXISTS `gallery_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gallery_images` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `src` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gellery_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  UNIQUE KEY `gallery_images_id_unique` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gallery_images`
+--
+
+LOCK TABLES `gallery_images` WRITE;
+/*!40000 ALTER TABLE `gallery_images` DISABLE KEYS */;
+INSERT INTO `gallery_images` VALUES ('1b25e464-c2f7-49bd-a84c-63a324e8187a','/storage/gallerys/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35'),('262cd14a-3e3f-4929-9fd7-8bf884c4f9c5','/storage/gallerys/5/396d16c4947a0f32e4f4fbdab0741093.png','content_popup3 - Copy.png','84986e73-56c8-446e-b3f5-0edd082ff240','2022-09-20 07:18:22','2022-09-20 07:18:22'),('82db4a82-f3d6-4ba7-a146-f63a90cf0a5a','/storage/gallerys/5/481827cbfe3b2e4edb1756049341fd72.png','content_popup4.png','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35'),('8c1f29c5-c89b-456a-af36-a10c00be209c','/storage/gallerys/5/7f2126490d695eeb0f45d825b055aadc.jpg','content_popup2 - Copy.jpg','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35'),('9a22803e-eb51-47ff-a26e-c62f2328b3a6','/storage/gallerys/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg','84986e73-56c8-446e-b3f5-0edd082ff240','2022-09-19 08:24:05','2022-09-19 08:24:05'),('a4d51878-66b1-4a31-8b39-d1a7da4cfc3c','/storage/gallerys/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','2a2ff917-3174-4693-a57a-5357d18ee301','2022-09-20 06:59:54','2022-09-20 06:59:54'),('a91c81b0-b048-4f8c-9ad7-2e3774d256ea','/storage/gallerys/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35'),('ad678cc5-853d-4073-96bb-7bcb15a3599a','/storage/gallerys/5/8df7b73a7820f4aef47864f2a6c5fccf.jpg','12.jpg','c147dd24-1149-406a-9b89-0c03b8d0379f','2022-09-20 07:18:49','2022-09-20 07:18:49'),('edf61e23-66ce-4030-ada2-ad1d44c7f6f5','/storage/gallerys/5/da01349b67d60c9a6ac014b4cc969b59.png','content_popup3.png','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35'),('f2fd4de2-6857-4a16-8664-e5a23e504fe3','/storage/gallerys/5/396d16c4947a0f32e4f4fbdab0741093.png','content_popup3 - Copy.png','6f46495f-9a34-46be-8b35-c280bef1dc3d','2022-09-19 08:07:35','2022-09-19 08:07:35');
+/*!40000 ALTER TABLE `gallery_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -144,7 +172,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +181,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_19_140135_create_categories_table',1),(6,'2022_08_21_064052_create_permissions_table',2),(7,'2022_08_21_134858_create_table_user_role',3),(8,'2022_08_21_135231_create_roles_table',4),(9,'2022_08_21_140009_create_table_permission_role',5),(10,'2022_08_22_142940_create_table_permissions_role',6),(11,'2022_08_22_143029_create_table_users_role',6),(12,'2022_08_26_145237_create_column_password_dehash_table_user',7),(13,'2022_08_27_040416_create_menus_table',8),(14,'2022_08_27_082803_create_post_models_table',9),(15,'2022_08_27_090943_create_post_categories_table',10),(16,'2022_08_28_064245_create_posts_table',11),(17,'2022_08_28_072632_create_posts_table',12),(18,'2022_08_28_081928_create_column_slug_post_table',13),(19,'2022_08_28_120917_create_column_status_table_post',14),(20,'2022_08_29_133310_create_tags_table',15),(21,'2022_08_29_134106_create_post_tags_table',16),(22,'2022_08_29_134255_create_table_post_tag_relationship',16),(23,'2022_08_30_125425_create_post_tags_table',17),(24,'2022_08_30_125605_create_tablle_post_tag_ralationship',17),(25,'2022_08_30_153425_create_post_tag_table_ralationship',18),(26,'2022_09_02_121459_create_product_tags_table',19),(27,'2022_09_02_121607_create_table_product_tag_ralationship',19),(28,'2022_09_02_123829_create_table_product_tag_ralationship',20),(29,'2022_09_02_123919_create_table_product_tag_ralationship',21),(30,'2022_09_02_133812_create_sliders_table',22),(31,'2022_09_02_144514_create_sliders_table',23),(32,'2022_09_02_145824_create_column_users_name_posts_model',24),(33,'2022_09_02_145929_create_column_users_name_slider_model',24),(34,'2022_09_07_133213_create_products_table',25),(35,'2022_09_07_144816_create_products_images_table',26),(36,'2022_09_07_145609_create_colum_products_slug',27),(37,'2022_09_12_122446_create_products_table',28),(38,'2022_09_12_124153_create_column_user_name_for_products_table',29),(39,'2022_09_14_123843_create_column_image_name_table_products_image',30),(40,'2022_09_14_130656_create_products_table',31),(41,'2022_09_16_123630_create_products_images_table',32),(42,'2022_09_17_161337_create_galleries_table',33),(43,'2022_09_18_062121_create_column_price_table_products',34);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_19_140135_create_categories_table',1),(6,'2022_08_21_064052_create_permissions_table',2),(7,'2022_08_21_134858_create_table_user_role',3),(8,'2022_08_21_135231_create_roles_table',4),(9,'2022_08_21_140009_create_table_permission_role',5),(10,'2022_08_22_142940_create_table_permissions_role',6),(11,'2022_08_22_143029_create_table_users_role',6),(12,'2022_08_26_145237_create_column_password_dehash_table_user',7),(13,'2022_08_27_040416_create_menus_table',8),(14,'2022_08_27_082803_create_post_models_table',9),(15,'2022_08_27_090943_create_post_categories_table',10),(16,'2022_08_28_064245_create_posts_table',11),(17,'2022_08_28_072632_create_posts_table',12),(18,'2022_08_28_081928_create_column_slug_post_table',13),(19,'2022_08_28_120917_create_column_status_table_post',14),(20,'2022_08_29_133310_create_tags_table',15),(21,'2022_08_29_134106_create_post_tags_table',16),(22,'2022_08_29_134255_create_table_post_tag_relationship',16),(23,'2022_08_30_125425_create_post_tags_table',17),(24,'2022_08_30_125605_create_tablle_post_tag_ralationship',17),(25,'2022_08_30_153425_create_post_tag_table_ralationship',18),(26,'2022_09_02_121459_create_product_tags_table',19),(27,'2022_09_02_121607_create_table_product_tag_ralationship',19),(28,'2022_09_02_123829_create_table_product_tag_ralationship',20),(29,'2022_09_02_123919_create_table_product_tag_ralationship',21),(30,'2022_09_02_133812_create_sliders_table',22),(31,'2022_09_02_144514_create_sliders_table',23),(32,'2022_09_02_145824_create_column_users_name_posts_model',24),(33,'2022_09_02_145929_create_column_users_name_slider_model',24),(34,'2022_09_07_133213_create_products_table',25),(35,'2022_09_07_144816_create_products_images_table',26),(36,'2022_09_07_145609_create_colum_products_slug',27),(37,'2022_09_12_122446_create_products_table',28),(38,'2022_09_12_124153_create_column_user_name_for_products_table',29),(39,'2022_09_14_123843_create_column_image_name_table_products_image',30),(40,'2022_09_14_130656_create_products_table',31),(41,'2022_09_16_123630_create_products_images_table',32),(42,'2022_09_17_161337_create_galleries_table',33),(43,'2022_09_18_062121_create_column_price_table_products',34),(44,'2022_09_19_121654_create_gallery_images_table',35),(45,'2022_09_20_143845_create_user_avatars_table',36),(46,'2022_09_21_130641_create_settings_pages_table',37),(47,'2022_09_21_143809_create_column_type_table_setting_page',38);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +410,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES ('1f1a7475-5c74-4bd5-9095-7e3a3b2bf5a2','dasdsadsa','117bd649-80c0-4b43-8330-4d6b1219b254','<p>dsadsa</p>',5,'/storage/post/5/b8cbcf8c07cd420ea6a1dc8fab2aa955.jpg','blog-three.jpg','2022-09-02 08:04:58','2022-09-07 05:10:06','dasdsadsa',0,1,'admin'),('85c13885-0ab2-478c-b111-106fe8c99bcd','dsadasasd','','',5,'/storage/post/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','2022-09-17 22:14:13','2022-09-17 22:18:11','dsadasasd',0,1,'admin');
+INSERT INTO `posts` VALUES ('1f1a7475-5c74-4bd5-9095-7e3a3b2bf5a2','dasdsadsa','117bd649-80c0-4b43-8330-4d6b1219b254','<p>dsadsa</p>',5,'/storage/post/5/b8cbcf8c07cd420ea6a1dc8fab2aa955.jpg','blog-three.jpg','2022-09-02 08:04:58','2022-09-07 05:10:06','dasdsadsa',0,1,'admin'),('2fe89d1b-cb72-46ec-907b-7c247de24af8','dsa','','',5,NULL,NULL,'2022-09-19 08:06:46','2022-09-19 08:06:46','dsa',0,1,'admin'),('85c13885-0ab2-478c-b111-106fe8c99bcd','dsadasasd','','',5,'/storage/post/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','2022-09-17 22:14:13','2022-09-17 22:18:11','dsadasasd',0,1,'admin'),('a4236c95-2f68-43d2-9163-06756195a8fa','dsasdsad','','',5,'/storage/post/5/092c0e76256220fafa0f68682a9fda54.jpg','bg_section_form.jpg','2022-09-19 05:56:27','2022-09-19 05:56:27','dsasdsad',0,1,'admin');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,7 +500,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('42f87cf0-db2c-4f52-9cbc-87a7d485fb89','sđsấ','admin',NULL,NULL,5,'/storage/products/5/092c0e76256220fafa0f68682a9fda54.jpg','bg_section_form.jpg',1,1,NULL,'sdsa','2022-09-17 07:33:06','2022-09-17 08:39:34',0),('6da8c059-687f-4980-a994-cb8b0377e808','dsadasasd','admin',NULL,NULL,5,NULL,NULL,0,1,10,'dsadasasd','2022-09-17 23:49:00','2022-09-17 23:50:57',20000);
+INSERT INTO `products` VALUES ('42f87cf0-db2c-4f52-9cbc-87a7d485fb89','sđsấ','admin',NULL,NULL,5,'/storage/products/5/092c0e76256220fafa0f68682a9fda54.jpg','bg_section_form.jpg',1,1,NULL,'sdsa','2022-09-17 07:33:06','2022-09-17 08:39:34',0),('6da8c059-687f-4980-a994-cb8b0377e808','dsadasasd','admin',NULL,NULL,5,NULL,NULL,0,1,10,'dsadasasd','2022-09-17 23:49:00','2022-09-17 23:50:57',20000),('edf5ffbf-28b3-4241-8141-00cb2afe5e12','áddsaads','admin',NULL,NULL,5,'/storage/products/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg',0,1,1,'addsaads','2022-09-19 08:06:58','2022-09-19 08:07:15',1);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,7 +528,7 @@ CREATE TABLE `products_images` (
 
 LOCK TABLES `products_images` WRITE;
 /*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
-INSERT INTO `products_images` VALUES ('424bbc7e-14d1-49f9-aa05-dc7e6283df92','/storage/products/5/fc5d240ab05d09b974527265e0eb3ed5.png','bg_sp.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('455731ce-44d3-4fd8-9e86-3e2b27dabb91','/storage/products/5/10d27cc483101dc41545efc1680016b2.png','dk_mb.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('c14e6cc9-efd8-4400-a3a0-96f8f2264493','/storage/products/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 08:26:06','2022-09-17 08:26:06');
+INSERT INTO `products_images` VALUES ('424bbc7e-14d1-49f9-aa05-dc7e6283df92','/storage/products/5/fc5d240ab05d09b974527265e0eb3ed5.png','bg_sp.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('455731ce-44d3-4fd8-9e86-3e2b27dabb91','/storage/products/5/10d27cc483101dc41545efc1680016b2.png','dk_mb.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('c14e6cc9-efd8-4400-a3a0-96f8f2264493','/storage/products/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 08:26:06','2022-09-17 08:26:06'),('c9cc9214-37c5-41a2-b428-d52ff4deec8d','/storage/products/5/396d16c4947a0f32e4f4fbdab0741093.png','content_popup3 - Copy.png','edf5ffbf-28b3-4241-8141-00cb2afe5e12','2022-09-19 08:07:15','2022-09-19 08:07:15'),('cf6d236f-ef05-4737-a0f7-d8d2161a105d','/storage/products/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg','edf5ffbf-28b3-4241-8141-00cb2afe5e12','2022-09-20 07:09:51','2022-09-20 07:09:51');
 /*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,6 +557,36 @@ LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` VALUES (1,'admin','Admin','2022-08-22 07:34:47','2022-08-22 07:34:47'),(6,'content','Content','2022-08-25 05:38:43','2022-08-25 05:38:43'),(7,'guest','Guest','2022-08-26 07:15:35','2022-08-26 07:15:35');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `settings_pages`
+--
+
+DROP TABLE IF EXISTS `settings_pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `settings_pages` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `config_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `config_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  UNIQUE KEY `settings_pages_id_unique` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `settings_pages`
+--
+
+LOCK TABLES `settings_pages` WRITE;
+/*!40000 ALTER TABLE `settings_pages` DISABLE KEYS */;
+INSERT INTO `settings_pages` VALUES ('5fbdafcf-d55b-48a5-8338-e1d2be791c23','youtube_config','https://www.youtube.com/',5,'admin','2022-09-21 08:28:18','2022-09-21 08:49:14','Text'),('e1f582ce-c1b6-41b2-85c0-d1c606e15643','logo_config','/storage/setings_page/5/f8ff3453a1c645d4391a947b6b237a0d.jpg',5,'admin','2022-09-21 08:41:58','2022-09-21 08:48:27','Image'),('f8afae7e-4f0b-4f5d-9067-426ccaac2547','facebook_config','https://www.facebook.com/',5,'admin','2022-09-21 07:43:57','2022-09-21 07:43:57','Text');
+/*!40000 ALTER TABLE `settings_pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -563,6 +621,34 @@ INSERT INTO `sliders` VALUES ('0f21b4c9-0e05-43b2-a3c0-d980a281f668','dasasd','d
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_avatars`
+--
+
+DROP TABLE IF EXISTS `user_avatars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_avatars` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `src` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_avatars`
+--
+
+LOCK TABLES `user_avatars` WRITE;
+/*!40000 ALTER TABLE `user_avatars` DISABLE KEYS */;
+INSERT INTO `user_avatars` VALUES (10,'/storage/avartars/7/799bad5a3b514f096e69bbc4a7896cd9.jpg','3.jpg','7','2022-09-20 08:29:51','2022-09-20 08:29:51'),(11,'/storage/avartars/4/8df7b73a7820f4aef47864f2a6c5fccf.jpg','12.jpg','4','2022-09-20 08:33:10','2022-09-20 08:33:10'),(20,'/storage/avartars/8/ab4568a0a8d7987984be59cee93423f9.jpg','1450856212ca phe rang xay.jpg','8','2022-09-20 10:36:01','2022-09-20 10:36:01'),(21,'/storage/avartars/5/b06873260a7ff1a6c3e4fdf639f1e4ae.jpg','tokuda.jpg','5','2022-09-20 10:37:04','2022-09-20 10:37:04');
+/*!40000 ALTER TABLE `user_avatars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -581,7 +667,7 @@ CREATE TABLE `users` (
   `password_dehash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -590,7 +676,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (4,'guest','guest@gmail.com',NULL,'$2y$10$oCz45dUfnZisuAMb25nB2OysOOoWWiist.woRWJeI49H0kulafURC',NULL,'2022-08-26 08:27:11','2022-08-26 20:19:06','minhman'),(5,'admin','admin@gmail.com',NULL,'$2y$10$9arA7/53VBT7VEyICjFlU.WuEDlokmC1cG0XzMhSF5JHgCB/HWzMK','hnhL8pb6EaOp1sKrbGbmSgXnTmmumnlAGhmId8RNRTy6U9JMvkIl2dWNKnx3','2022-08-26 20:17:50','2022-08-27 01:15:58','minhman'),(6,'test 1','test@gmail.com',NULL,'$2y$10$IuLZZSvtN4pCqiUdJwUiUuDb5HnpCYIT/BECV2dEFMozO9Qpk6oZe',NULL,'2022-08-26 23:51:40','2022-08-27 00:36:45','1234');
+INSERT INTO `users` VALUES (4,'guest','guest@gmail.com',NULL,'$2y$10$W3niPQYbAASfsB6qgt./6.3tWmoGXN34Vs7w8cn/HbPuA5UuyTikq',NULL,'2022-08-26 08:27:11','2022-09-20 08:33:10','minhman'),(5,'admin','admin@gmail.com',NULL,'$2y$10$pWN7a03JOCkzzlPK19xkdOun1t7ugdE47.cjE82jcK3inTdbSfM8u','RlxLgSRgg8Yvt5CdfkRLR6kHByXr4R6esgB8ZZGHvfXNGvT1LdWayrWxtKM6','2022-08-26 20:17:50','2022-09-20 10:37:04','minhman'),(7,'test','man@gmail.com',NULL,'$2y$10$5hFGXJDKe4aLo836cmOwYOEOuWimbOLC/dARerUC0Vu3A6Ov.IFxa',NULL,'2022-09-20 07:42:12','2022-09-20 08:35:21','minhman'),(8,'test 1','test@gmail.com',NULL,'$2y$10$Bw4hvyY5o3ydVYhO7XUnQu8G8tXS9SmV.BwAMf8qy1S7hmoBpCZT2',NULL,'2022-09-20 08:38:31','2022-09-20 10:36:01','minhman');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -608,7 +694,7 @@ CREATE TABLE `users_role` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -617,7 +703,7 @@ CREATE TABLE `users_role` (
 
 LOCK TABLES `users_role` WRITE;
 /*!40000 ALTER TABLE `users_role` DISABLE KEYS */;
-INSERT INTO `users_role` VALUES (2,3,6,NULL,NULL),(5,6,6,NULL,NULL),(6,7,6,NULL,NULL),(7,1,1,NULL,NULL),(9,8,1,NULL,NULL),(11,2,7,NULL,NULL),(12,3,1,NULL,NULL),(14,5,1,NULL,NULL),(16,4,7,NULL,NULL),(17,6,6,NULL,NULL);
+INSERT INTO `users_role` VALUES (2,3,6,NULL,NULL),(5,6,6,NULL,NULL),(6,7,6,NULL,NULL),(7,1,1,NULL,NULL),(9,8,1,NULL,NULL),(11,2,7,NULL,NULL),(12,3,1,NULL,NULL),(14,5,1,NULL,NULL),(16,4,7,NULL,NULL),(17,6,6,NULL,NULL),(18,7,7,NULL,NULL),(19,8,7,NULL,NULL);
 /*!40000 ALTER TABLE `users_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -630,4 +716,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-18 15:50:19
+-- Dump completed on 2022-09-21 22:51:15
