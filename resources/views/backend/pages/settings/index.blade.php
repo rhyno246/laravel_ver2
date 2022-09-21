@@ -65,7 +65,7 @@
                                     <td class="align-middle">{{ $item->email }}</td>
                                     <td class="align-middle">{{ $item->password }}</td>
                                     <td class="align-middle">{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                    <td>
+                                    <td class="align-middle">
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ route('settings.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>

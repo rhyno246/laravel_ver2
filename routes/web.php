@@ -588,6 +588,48 @@ Route::prefix('admin')->group(function () {
     });
 
 
+
+    Route::prefix('settings-pages')->group(function () {
+        Route::get('/', [
+            'as' => 'settings-pages.index',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'settings-pages.create',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'settings-pages.store' . '?type=' .  request()->type,
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+
+        Route::get('/edit/{id}', [
+            'as' => 'settings-pages.edit',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'settings-pages.update',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'settings-pages.delete',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/seleted-settings', [
+            'as' => 'settings-pages.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminSettingPageController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 });
 
 

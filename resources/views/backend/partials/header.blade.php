@@ -34,7 +34,7 @@
                 @endcan
 
 
-                <a href="{{ route('settings.index') }}" class="dropdown-item has-icon">
+                <a href="{{ route('settings-pages.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Cài đặt
                 </a>
 

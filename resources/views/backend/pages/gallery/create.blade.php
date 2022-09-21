@@ -4,10 +4,6 @@
     <title>Thêm mới hình ảnh</title>
 @endsection
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
-@endsection
 
 @section('content')
     @include('backend.partials.headercontent', [
