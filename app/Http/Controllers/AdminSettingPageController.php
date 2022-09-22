@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestSettingsPage;
 use App\Models\SettingsPage;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
@@ -25,7 +26,7 @@ class AdminSettingPageController extends Controller
     public function create() {
         return view('backend.pages.settings-page.create');
     }
-    public function store (Request $request){
+    public function store (RequestSettingsPage $request){
         try {
             DB::beginTransaction();
             if($request-> hasFile('config_value')){
@@ -64,7 +65,7 @@ class AdminSettingPageController extends Controller
         $data = $this->setting_page->find($id);
         return view('backend.pages.settings-page.edit', compact('data'));
     }
-    public function update(Request $request ,$id){
+    public function update(RequestSettingsPage $request ,$id){
         try {
             DB::beginTransaction();
             if($request-> hasFile('config_value')){

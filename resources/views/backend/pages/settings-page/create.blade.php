@@ -18,13 +18,21 @@
                     @csrf
                     <div class="form-group">
                         <label>Config_key</label>
-                        <input type="text" class="form-control" name="config_key">
+                        <input type="text" class="form-control  @error('config_key') is-invalid @enderror"
+                            name="config_key">
+                        @error('config_key')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     @if (request()->type === 'Text')
                         <div class="form-group">
                             <label>Config_value</label>
-                            <input type="text" class="form-control" name="config_value">
+                            <input type="text" class="form-control @error('config_value') is-invalid @enderror"
+                                name="config_value">
+                            @error('config_value')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <input type="text" hidden name="type" value="{{ request()->type }}">
                     @endif
@@ -32,7 +40,10 @@
                     @if (request()->type === 'Textarea')
                         <div class="form-group">
                             <label>Config_value</label>
-                            <textarea name="config_value" class="form-control"rows="10"></textarea>
+                            <textarea name="config_value" class="form-control @error('config_value') is-invalid @enderror" rows="10"></textarea>
+                            @error('config_value')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <input type="text" hidden name="type" value="{{ request()->type }}">
                     @endif
@@ -41,7 +52,11 @@
                         <div class="form-group">
                             <div id="image-preview" class="image-preview">
                                 <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                                <input type="file" class="form-control" name="config_value" id="image-upload">
+                                <input type="file" class="form-control @error('config_value') is-invalid @enderror"
+                                    name="config_value" id="image-upload">
+                                @error('config_value')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <input type="text" hidden name="type" value="{{ request()->type }}">

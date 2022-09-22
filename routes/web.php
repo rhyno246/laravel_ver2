@@ -630,6 +630,46 @@ Route::prefix('admin')->group(function () {
     });
 
 
+
+    //customer
+    Route::prefix('customer')->group(function () {
+        Route::get('/', [
+            'as' => 'customer.index',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'customer.store',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'customer.edit',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'customer.update',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'customer.delete',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/seleted-settings', [
+            'as' => 'customer.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/status-show/{id}', [
+            'as' => 'customer.statushome',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 });
 
 

@@ -24,7 +24,7 @@
             </li>
 
             <li class="dropdown">
-                <a href="" class="nav-link"><i class="far fa-user"></i><span>Danh sách
+                <a href="{{ route('customer.index') }}" class="nav-link"><i class="far fa-user"></i><span>Danh sách
                         khách hàng</span></a>
             </li>
 
