@@ -670,6 +670,122 @@ Route::prefix('admin')->group(function () {
     });
 
 
+    Route::prefix('customer')->group(function () {
+        Route::get('/', [
+            'as' => 'customer.index',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'customer.store',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'customer.edit',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'customer.update',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'customer.delete',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/seleted-settings', [
+            'as' => 'customer.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/status-show/{id}', [
+            'as' => 'customer.statushome',
+            'uses' => 'App\Http\Controllers\AdminCustommerController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
+    
+    //custommer role
+    Route::prefix('customer-role')->group(function () {
+        Route::get('/', [
+            'as' => 'customer-role.index',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/create', [
+            'as' => 'customer-role.create',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/store', [
+            'as' => 'customer-role.store',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'customer-role.edit',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'customer-role.update',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'customer-role.delete',
+            'uses' => 'App\Http\Controllers\AdminCustomerRoleController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
+    //custommer coupons
+    Route::prefix('coupons')->group(function () {
+        Route::get('/', [
+            'as' => 'coupons.index',
+            'uses' => 'App\Http\Controllers\CouponsController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/create', [
+            'as' => 'coupons.create',
+            'uses' => 'App\Http\Controllers\CouponsController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/store', [
+            'as' => 'coupons.store',
+            'uses' => 'App\Http\Controllers\CouponsController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'coupons.edit',
+            'uses' => 'App\Http\Controllers\CouponsController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'coupons.update',
+            'uses' => 'App\Http\Controllers\CouponsController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'coupons.delete',
+            'uses' => 'App\Http\Controllers\CouponsController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/seleted-settings', [
+            'as' => 'coupons.deleteselect',
+            'uses' => 'App\Http\Controllers\CouponsController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 });
 
 

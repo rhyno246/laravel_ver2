@@ -11,7 +11,7 @@
         'name' => 'Trang cá nhân',
     ])
     <div class="section-body">
-        <form action="{{ route('profile.update', ['id' => $users->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('customer.update', ['id' => $users->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-3">
@@ -21,7 +21,7 @@
                             background-size: cover;
                             background-position: center;">
                             <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                            <input type="file" name="image_path" id="image-upload" />
+                            <input type="file" name="src" id="image-upload" />
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,13 @@
 
                             <div class="form-group">
                                 <label>Vai trò</label>
-                                <select class="form-control form-control-sm @error('role') is-invalid @enderror">
-                                    <option>normal</option>
+                                <select class="form-control form-control-sm @error('role') is-invalid @enderror"
+                                    name="role">
+                                    @foreach ($role_customer as $item)
+                                        <option value="{{ $item->role }}"
+                                            {{ $users->role == $item->role ? 'selected' : '' }}>{{ $item->role }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @error('role')
                                     <div class="invalid-feedback">{{ $message }}</div>

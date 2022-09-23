@@ -62,6 +62,11 @@
                 <a href="{{ route('gallerys.index') }}" class="nav-link"><i
                         class="fas fa-image"></i><span>Albums</span></a>
             </li>
+
+            <li class="dropdown {{ Request::is('admin/coupons*') ? 'active' : '' }}">
+                <a href="{{ route('coupons.index') }}" class="nav-link"><i class="fas fa-gift"></i></i><span>Mã giảm
+                        giá</span></a>
+            </li>
         </ul>
     </aside>
 </div>

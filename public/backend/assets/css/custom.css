@@ -170,3 +170,25 @@ img.w-100.d-block.img-albums {
   height: 30px;
 }
 
+.close:focus{
+  outline: none;
+}
+.card-popup-customer{
+  overflow: auto;
+  max-height: 350px;
+}
+.card-popup-customer::-webkit-scrollbar {
+  width: 5px;
+}
+.card-popup-customer::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+/* Handle */
+.card-popup-customer::-webkit-scrollbar-thumb {
+  background: #ddd; 
+}
+
+/* Handle on hover */
+.card-popup-customer::-webkit-scrollbar-thumb:hover {
+  background: #ddd; 
+}

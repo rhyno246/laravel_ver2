@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestPostCategory extends FormRequest
+class RequestCustommerRole extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class RequestPostCategory extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|max:255'
+            'role' => 'bail|required|max:255'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => "Tên không được phép để trống",
-            'name.max' => "Tên không được phép quá 255 ký tự"
+            'role.required' => "Tên không được phép để trống",
+            'role.max' => "Tên được không phép quá 255 ký tự"
         ];
     }
 }

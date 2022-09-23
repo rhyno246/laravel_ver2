@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestComtomerEdit;
 use App\Models\Customer;
+use App\Models\RoleCustomer;
 use App\Traits\ChangeStatusTrait;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
@@ -16,13 +18,15 @@ class AdminCustommerController extends Controller
 {
     use StorageImageTrait, DeleteModelTrait,DeleteSelectedTrait ,ChangeStatusTrait;
     private $customer;
-    public function __construct(Customer $customer)
+    public function __construct(Customer $customer , RoleCustomer $role_customer)
     {
         $this->customer = $customer;
+        $this->role_customer = $role_customer;
     }
     public function index () {
         $data = $this->customer->latest()->get();
-        return view('backend.pages.customer.index', compact('data'));
+        $role_customer = $this->role_customer->latest()->get();
+        return view('backend.pages.customer.index', compact('data', 'role_customer'));
     }
 
     public function store (Request $request){
@@ -50,13 +54,28 @@ class AdminCustommerController extends Controller
 
     public function edit($id){
         $users = $this->customer->find($id);
-        return view('backend.pages.customer.edit' , compact('users'));
+        $role_customer = $this->role_customer->latest()->get();
+        return view('backend.pages.customer.edit' , compact('users' , 'role_customer'));
     }
-    public function update($id){
+    public function update(RequestComtomerEdit $request ,  $id){
         try {
             DB::beginTransaction();
-            
+            $data = [
+                "name"=> $request->name,
+                "password" => Hash::make($request->password),
+                'password_dehash' =>$request->password,
+                "email" => $request->email,
+                'phone' => $request->phone,
+                'role' => $request->role
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'src', 'customers');
+            if (!empty($dataUploadFeatureImage)) {
+                $data['src'] = $dataUploadFeatureImage['file_path'];
+                $data['image_name'] = $dataUploadFeatureImage['file_name'];
+            }
+            $this->customer->find($id)->update($data);
             DB::commit();
+            return redirect()->route('customer.index')->with('message' , 'Bạn đã chỉnh sửa khách thàng công');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());

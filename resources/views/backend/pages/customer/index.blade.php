@@ -21,7 +21,21 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h4>Danh Sách Khách Hàng</h4>
+                <h4 class="d-flex align-items-center">
+                    <span class="mr-3">Danh Sách Khách Hàng</span>
+                    <div class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Tạo và xem nhóm
+                            khách hàng</a>
+                        <div class="dropdown-menu">
+                            <a href="#view" data-toggle="modal" data-target="#view" class="dropdown-item has-icon"><i
+                                    class="fas fa-eye"></i>
+                                Xem</a>
+                            <a href="{{ route('customer-role.create') }}" class="dropdown-item has-icon"><i
+                                    class="far fa-edit"></i>
+                                Tạo mới</a>
+                        </div>
+                    </div>
+                </h4>
                 <div class="text-right">
                     @csrf
                     <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('customer.deleteselect') }}"
@@ -44,7 +58,7 @@
                                 <th>Ảnh đại diện</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
-                                <th>Vai trò</th>
+                                <th>Thuộc nhóm</th>
                                 <th>Mật khẩu</th>
                                 <th>Đăng ký ngày</th>
                                 <th>Status</th>
@@ -101,6 +115,57 @@
         </div>
     </div>
 @endsection
+<div class="modal fade bd-example-modal-lg" id="view" tabindex="-1" role="dialog" aria-labelledby="view"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Danh sách nhóm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-0" style="box-shadow: none">
+                    <div class="card-body card-popup-customer pt-0 pb-1">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nhóm</th>
+                                    <th scope="col">Tạo Ngày</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($role_customer as $item)
+                                    <tr>
+                                        <td>
+                                            {{ $item->role }}
+                                        </td>
+                                        <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('customer-role.edit', ['id' => $item->id]) }}"
+                                                    class="btn btn-primary mr-2"
+                                                    data-url="{{ route('customer-role.edit', ['id' => $item->id]) }}">Sửa</a>
+                                                <a href="{{ route('customer-role.delete', ['id' => $item->id]) }}"
+                                                    data-url="{{ route('customer-role.delete', ['id' => $item->id]) }}"
+                                                    class="btn btn-danger delete-model">Xóa</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section('js')
     <!-- JS Libraies -->
