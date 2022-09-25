@@ -46,12 +46,12 @@
                                 <th>Từ ngày</th>
                                 <th>Đến ngày</th>
                                 <th>Thuộc nhóm KH</th>
-                                <th>Trạng thái</th>
+                                <th>Người tạo</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -63,31 +63,42 @@
                                         </div>
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->name }}
+                                        {{ $item->coupons_key }}
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->slug }}
+                                        @if ($item->coupons_value === 0)
+                                            {{ number_format($item->coupons_price) }} vnđ
+                                        @else
+                                            {{ $item->coupons_price }} %
+                                        @endif
                                     </td>
                                     <td class="align-middle">
-                                        {{ optional($item->getParent)->name }}
+                                        {{ date('d-m-Y', strtotime($item->date_start)) }}
                                     </td>
                                     <td class="align-middle">
-                                        {{ date('d-m-Y', strtotime($item->created_at)) }}
+                                        {{ date('d-m-Y', strtotime($item->date_end)) }}
+                                    </td>
+
+                                    <td class="align-middle">
+                                        {{ $item->customer_group }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ $item->user_name }}
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('category.post.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('coupons.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
 
 
-                                            <a href="{{ route('category.post.detele', ['id' => $item->id]) }}"
+                                            <a href="{{ route('coupons.delete', ['id' => $item->id]) }}"
                                                 class="btn btn-danger delete-model"
-                                                data-url="{{ route('category.post.detele', ['id' => $item->id]) }}">Xóa</a>
+                                                data-url="{{ route('coupons.delete', ['id' => $item->id]) }}">Xóa</a>
 
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

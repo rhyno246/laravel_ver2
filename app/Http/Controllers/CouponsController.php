@@ -2,34 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestCouponsCreate;
+use App\Models\Coupons;
+use App\Models\RoleCustomer;
 use App\Traits\DeleteModelTrait;
+use App\Traits\DeleteSelectedTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CouponsController extends Controller
 {
-    use DeleteModelTrait;
+    use DeleteModelTrait , DeleteSelectedTrait;
     private $role_customer;
-    private $customer;
-    public function __construct()
+    private $coupons;
+    public function __construct(RoleCustomer $role_customer , Coupons $coupons)
     {
-        // $this->role_customer = $role_customer;
-        // $this->customer = $customer;
+        $this->role_customer = $role_customer;
+        $this->coupons = $coupons;
     }
     public function index () {
-        return view('backend.pages.coupons.index');
+        $data = $this->coupons->latest()->get();
+        return view('backend.pages.coupons.index', compact('data'));
     }
     public function create () {
-        return view('backend.pages.coupons.create');
+        $customer_group = $this->role_customer->latest()->get();
+        return view('backend.pages.coupons.create', compact('customer_group'));
     }
 
-    public function store (Request $request){
+    public function store (RequestCouponsCreate $request){
         try {
             DB::beginTransaction();
-            
+            $this->coupons->firstOrCreate([
+                'coupons_key' => $request->coupons_key,
+                'date_start' => $request->date_start,
+                'date_end' => $request->date_end,
+                'coupons_value' => $request->coupons_value,
+                'coupons_cart_value' => $request->coupons_cart_value,
+                'customer_group' => $request->customer_group,
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+                'coupons_price' => $request->coupons_price
+            ]);
             DB::commit();
-            return redirect()->route('customer.index')->with('message' , 'Bạn đã tạo nhóm khách thàng công');
+            return redirect()->route('coupons.index')->with('message' , 'Bạn đã tạo mã giảm giá thàng công');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
@@ -40,12 +56,12 @@ class CouponsController extends Controller
         $data = $this->role_customer->find($id);
         return view('backend.pages.customer-role.edit' , compact('data'));
     }
-    public function update(Request $request ,$id){
+    public function update(RequestCouponsCreate $request ,$id){
         try {
             DB::beginTransaction();
             
             DB::commit();
-            return redirect()->route('customer.index')->with('message' , 'Bạn đã cập nhật nhóm khách thàng công');
+            return redirect()->route('coupons.index')->with('message' , 'Bạn đã cập nhật mã giảm giá thàng công');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
@@ -53,10 +69,12 @@ class CouponsController extends Controller
     }
 
     public function delete ($id){
-        return $this->deleteModelTrait($id, $this->role_customer);
+        return $this->deleteModelTrait($id, $this->coupons);
     } 
     public function deleteSelected ( Request $request ) {
-        
+        if($request->ajax()){
+            return $this->deleteSelectedTrait($request->ids , $this->coupons);
+        }
     }
 
 }

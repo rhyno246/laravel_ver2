@@ -145,12 +145,15 @@
                                         <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('customer-role.edit', ['id' => $item->id]) }}"
-                                                    class="btn btn-primary mr-2"
-                                                    data-url="{{ route('customer-role.edit', ['id' => $item->id]) }}">Sửa</a>
-                                                <a href="{{ route('customer-role.delete', ['id' => $item->id]) }}"
-                                                    data-url="{{ route('customer-role.delete', ['id' => $item->id]) }}"
-                                                    class="btn btn-danger delete-model">Xóa</a>
+                                                @if ($item->role !== 'normal')
+                                                    <a href="{{ route('customer-role.edit', ['id' => $item->id]) }}"
+                                                        class="btn btn-primary mr-2"
+                                                        data-url="{{ route('customer-role.edit', ['id' => $item->id]) }}">Sửa</a>
+                                                    <a href="{{ route('customer-role.delete', ['id' => $item->id]) }}"
+                                                        data-url="{{ route('customer-role.delete', ['id' => $item->id]) }}"
+                                                        class="btn btn-danger delete-model">Xóa</a>
+                                                @endif
+
                                             </div>
                                         </td>
                                     </tr>

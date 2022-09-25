@@ -6,7 +6,6 @@ use App\Http\Requests\RequestCustommerRole;
 use App\Models\Customer;
 use App\Models\RoleCustomer;
 use App\Traits\DeleteModelTrait;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -60,6 +59,10 @@ class AdminCustomerRoleController extends Controller
     }
 
     public function delete ($id){
+        $data = $this->role_customer->find($id);
+        $this->customer->where('role', $data->role)->update([
+            'role' => 'normal'
+        ]);
         return $this->deleteModelTrait($id, $this->role_customer);
     } 
 }
