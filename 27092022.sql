@@ -64,7 +64,7 @@ CREATE TABLE `coupons` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `coupons` (
 
 LOCK TABLES `coupons` WRITE;
 /*!40000 ALTER TABLE `coupons` DISABLE KEYS */;
+INSERT INTO `coupons` VALUES (4,'admin',5,'FREE20','2022-09-25','2022-09-30',1,500000,'vip',20,'2022-09-25 03:07:59','2022-09-25 03:07:59'),(5,'admin',5,'OFF100','2022-09-25','2022-09-25',0,600000,'normal',100000,'2022-09-25 03:08:19','2022-09-25 03:08:19'),(6,'admin',5,'FREE50','2022-09-25','2022-09-30',1,800000,'super_vip',50,'2022-09-25 03:08:52','2022-09-25 03:08:52');
 /*!40000 ALTER TABLE `coupons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +108,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES ('08ab0810-1a56-46d1-a412-3dbd056d446e','test nguyen','/storage/customers/5/b1f8db03513912254d185addce84c7e0.png','img3.png','quangthanhliet@gmail.com',908096448,'$2y$10$RozXEPxp0kN/Mzjo3Wv.GeeIQZwQv4HpnwBJRWRnTmPuu6PkgAzpa',1,'normal','2022-09-22 07:32:35','2022-09-23 19:57:02','quang thanh liet'),('38ad7143-3ab7-45f1-ba19-dc4f338e75cf','janna nguyen','/storage/customers//e233f218a90b7a00b94b7f533a98c0a2.png','img1.png','janna@gmail.com',908096448,'$2y$10$/Oath5usbrRK6l54uo6WNeSeHaz/cdvTt3/26zKaZXWC.KyVAgR5q',1,'super_vip','2022-09-23 09:46:50','2022-09-23 19:58:31','minhman'),('898f6f82-8309-4465-83c8-af710091816f','jaden nguyen','/storage/customers//3849a4745c6dded7ae71f6ea03458100.png','sec4_img3.png','jaden@gmail.com',908096448,'$2y$10$ib2lU6YSXe5qGVQce.fDGeb4K9v2o1u41QG7YA.lvrUrDmMWnofFq',1,'super_vip','2022-09-23 09:47:36','2022-09-23 19:58:27','minhman'),('b3b4e507-a628-43e1-9ab1-6b265decf71c','my nguyen','/storage/customers//65bd2c9b931f057d7307dfaaa8d5c433.png','img2.png','mynguyen@gmail.com',908096448,'$2y$10$2lBwLas.vofEmKA0kpsHYe9TITt6P5C3NuoFneo88Xe5fiZ/VZBsC',1,'vip','2022-09-23 09:48:25','2022-09-23 19:58:22','minhman'),('da19acc6-65dd-4f96-8c82-dc39d68df931','man nguyen','/storage/customers//f3ccdd27d2000e3f9255a7e3e2c48800.jpg','1.jpg','nguyentrongminhman95@gmail.com',908096448,'$2y$10$CgCcI0bpPj0L0gUPWC08wuo9Cq.SO.Vwu8o03PxhHn569h9XRq362',1,'vip','2022-09-22 06:58:02','2022-09-23 19:58:36','minhman');
+INSERT INTO `customers` VALUES ('08ab0810-1a56-46d1-a412-3dbd056d446e','test nguyen','/storage/customers/5/b1f8db03513912254d185addce84c7e0.png','img3.png','quangthanhliet@gmail.com',908096448,'$2y$10$RozXEPxp0kN/Mzjo3Wv.GeeIQZwQv4HpnwBJRWRnTmPuu6PkgAzpa',1,'normal','2022-09-22 07:32:35','2022-09-23 19:57:02','quang thanh liet'),('38ad7143-3ab7-45f1-ba19-dc4f338e75cf','janna nguyen','/storage/customers//e233f218a90b7a00b94b7f533a98c0a2.png','img1.png','janna@gmail.com',908096448,'$2y$10$/Oath5usbrRK6l54uo6WNeSeHaz/cdvTt3/26zKaZXWC.KyVAgR5q',1,'super_vip','2022-09-23 09:46:50','2022-09-23 19:58:31','minhman'),('898f6f82-8309-4465-83c8-af710091816f','jaden nguyen','/storage/customers//3849a4745c6dded7ae71f6ea03458100.png','sec4_img3.png','jaden@gmail.com',908096448,'$2y$10$ib2lU6YSXe5qGVQce.fDGeb4K9v2o1u41QG7YA.lvrUrDmMWnofFq',1,'super_vip','2022-09-23 09:47:36','2022-09-25 03:24:09','minhman'),('b3b4e507-a628-43e1-9ab1-6b265decf71c','my nguyen','/storage/customers//65bd2c9b931f057d7307dfaaa8d5c433.png','img2.png','mynguyen@gmail.com',908096448,'$2y$10$2lBwLas.vofEmKA0kpsHYe9TITt6P5C3NuoFneo88Xe5fiZ/VZBsC',1,'vip','2022-09-23 09:48:25','2022-09-23 19:58:22','minhman'),('da19acc6-65dd-4f96-8c82-dc39d68df931','man nguyen','/storage/customers/5/f357a461752937f229971594e957e867.jpg','5x5.jpg','nguyentrongminhman95@gmail.com',908096448,'$2y$10$1MgS7CPE/4Rl.27LQcko/ucPkTX6LyGfDUICyMZqJZ63XsEGJ00AW',1,'vip','2022-09-22 06:58:02','2022-09-24 21:59:59','minhman');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,8 +215,9 @@ CREATE TABLE `menus` (
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `icon_menu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +226,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES (1,'Trang chủ',0,'trang-chu','2022-08-26 21:26:31','2022-08-26 21:26:31'),(2,'Giới thiệu',0,'gioi-thieu','2022-08-26 21:26:53','2022-08-26 21:26:53'),(3,'laravel is the best',2,'laravel-is-the-best','2022-08-26 21:27:26','2022-08-26 21:27:26'),(4,'Sản phẩm',0,'san-pham','2022-08-26 21:27:38','2022-08-26 23:37:10');
+INSERT INTO `menus` VALUES (9,'Trang Chủ',0,'trang-chu','2022-09-27 07:48:37','2022-09-27 07:48:37','fas fa-pencil-alt'),(10,'Tin tức',0,'tin-tuc','2022-09-27 07:50:55','2022-09-27 07:51:12','fas fa-home');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +242,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +251,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_19_140135_create_categories_table',1),(6,'2022_08_21_064052_create_permissions_table',2),(7,'2022_08_21_134858_create_table_user_role',3),(8,'2022_08_21_135231_create_roles_table',4),(9,'2022_08_21_140009_create_table_permission_role',5),(10,'2022_08_22_142940_create_table_permissions_role',6),(11,'2022_08_22_143029_create_table_users_role',6),(12,'2022_08_26_145237_create_column_password_dehash_table_user',7),(13,'2022_08_27_040416_create_menus_table',8),(14,'2022_08_27_082803_create_post_models_table',9),(15,'2022_08_27_090943_create_post_categories_table',10),(16,'2022_08_28_064245_create_posts_table',11),(17,'2022_08_28_072632_create_posts_table',12),(18,'2022_08_28_081928_create_column_slug_post_table',13),(19,'2022_08_28_120917_create_column_status_table_post',14),(20,'2022_08_29_133310_create_tags_table',15),(21,'2022_08_29_134106_create_post_tags_table',16),(22,'2022_08_29_134255_create_table_post_tag_relationship',16),(23,'2022_08_30_125425_create_post_tags_table',17),(24,'2022_08_30_125605_create_tablle_post_tag_ralationship',17),(25,'2022_08_30_153425_create_post_tag_table_ralationship',18),(26,'2022_09_02_121459_create_product_tags_table',19),(27,'2022_09_02_121607_create_table_product_tag_ralationship',19),(28,'2022_09_02_123829_create_table_product_tag_ralationship',20),(29,'2022_09_02_123919_create_table_product_tag_ralationship',21),(30,'2022_09_02_133812_create_sliders_table',22),(31,'2022_09_02_144514_create_sliders_table',23),(32,'2022_09_02_145824_create_column_users_name_posts_model',24),(33,'2022_09_02_145929_create_column_users_name_slider_model',24),(34,'2022_09_07_133213_create_products_table',25),(35,'2022_09_07_144816_create_products_images_table',26),(36,'2022_09_07_145609_create_colum_products_slug',27),(37,'2022_09_12_122446_create_products_table',28),(38,'2022_09_12_124153_create_column_user_name_for_products_table',29),(39,'2022_09_14_123843_create_column_image_name_table_products_image',30),(40,'2022_09_14_130656_create_products_table',31),(41,'2022_09_16_123630_create_products_images_table',32),(42,'2022_09_17_161337_create_galleries_table',33),(43,'2022_09_18_062121_create_column_price_table_products',34),(44,'2022_09_19_121654_create_gallery_images_table',35),(45,'2022_09_20_143845_create_user_avatars_table',36),(46,'2022_09_21_130641_create_settings_pages_table',37),(47,'2022_09_21_143809_create_column_type_table_setting_page',38),(48,'2022_09_22_130007_create_customers_table',39),(49,'2022_09_22_131348_craete_column_password_dehash',40),(50,'2022_09_22_160101_create_role_customers_table',41),(51,'2022_09_24_032430_create_coupons_table',42),(52,'2022_09_24_040607_create_column_coupons_price_table_coupon',43),(53,'2022_09_24_045910_create_table_coupons_role_customer_relationship',44),(54,'2022_09_24_050127_create_coupons_table',45),(55,'2022_09_24_050239_create_table_coupons_role_customer_relationship',46);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_19_140135_create_categories_table',1),(6,'2022_08_21_064052_create_permissions_table',2),(7,'2022_08_21_134858_create_table_user_role',3),(8,'2022_08_21_135231_create_roles_table',4),(9,'2022_08_21_140009_create_table_permission_role',5),(10,'2022_08_22_142940_create_table_permissions_role',6),(11,'2022_08_22_143029_create_table_users_role',6),(12,'2022_08_26_145237_create_column_password_dehash_table_user',7),(13,'2022_08_27_040416_create_menus_table',8),(14,'2022_08_27_082803_create_post_models_table',9),(15,'2022_08_27_090943_create_post_categories_table',10),(16,'2022_08_28_064245_create_posts_table',11),(17,'2022_08_28_072632_create_posts_table',12),(18,'2022_08_28_081928_create_column_slug_post_table',13),(19,'2022_08_28_120917_create_column_status_table_post',14),(20,'2022_08_29_133310_create_tags_table',15),(21,'2022_08_29_134106_create_post_tags_table',16),(22,'2022_08_29_134255_create_table_post_tag_relationship',16),(23,'2022_08_30_125425_create_post_tags_table',17),(24,'2022_08_30_125605_create_tablle_post_tag_ralationship',17),(25,'2022_08_30_153425_create_post_tag_table_ralationship',18),(26,'2022_09_02_121459_create_product_tags_table',19),(27,'2022_09_02_121607_create_table_product_tag_ralationship',19),(28,'2022_09_02_123829_create_table_product_tag_ralationship',20),(29,'2022_09_02_123919_create_table_product_tag_ralationship',21),(30,'2022_09_02_133812_create_sliders_table',22),(31,'2022_09_02_144514_create_sliders_table',23),(32,'2022_09_02_145824_create_column_users_name_posts_model',24),(33,'2022_09_02_145929_create_column_users_name_slider_model',24),(34,'2022_09_07_133213_create_products_table',25),(35,'2022_09_07_144816_create_products_images_table',26),(36,'2022_09_07_145609_create_colum_products_slug',27),(37,'2022_09_12_122446_create_products_table',28),(38,'2022_09_12_124153_create_column_user_name_for_products_table',29),(39,'2022_09_14_123843_create_column_image_name_table_products_image',30),(40,'2022_09_14_130656_create_products_table',31),(41,'2022_09_16_123630_create_products_images_table',32),(42,'2022_09_17_161337_create_galleries_table',33),(43,'2022_09_18_062121_create_column_price_table_products',34),(44,'2022_09_19_121654_create_gallery_images_table',35),(45,'2022_09_20_143845_create_user_avatars_table',36),(46,'2022_09_21_130641_create_settings_pages_table',37),(47,'2022_09_21_143809_create_column_type_table_setting_page',38),(48,'2022_09_22_130007_create_customers_table',39),(49,'2022_09_22_131348_craete_column_password_dehash',40),(50,'2022_09_22_160101_create_role_customers_table',41),(51,'2022_09_24_032430_create_coupons_table',42),(52,'2022_09_24_040607_create_column_coupons_price_table_coupon',43),(53,'2022_09_24_045910_create_table_coupons_role_customer_relationship',44),(54,'2022_09_24_050127_create_coupons_table',45),(55,'2022_09_24_050239_create_table_coupons_role_customer_relationship',46),(56,'2022_09_25_111944_create_column_product_sale',47),(57,'2022_09_26_152916_create_products_table',48),(58,'2022_09_26_153305_create_column_price_products',49),(59,'2022_09_27_131411_create_column_sale_products',50),(60,'2022_09_27_133719_create_column_new_price_products',51),(61,'2022_09_27_144628_create_column_menu_icon',52);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +498,7 @@ CREATE TABLE `product_tag` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -505,7 +507,6 @@ CREATE TABLE `product_tag` (
 
 LOCK TABLES `product_tag` WRITE;
 /*!40000 ALTER TABLE `product_tag` DISABLE KEYS */;
-INSERT INTO `product_tag` VALUES (17,'81717705-427f-47b0-8309-ea7e060c2335','1','2022-09-22 07:01:35','2022-09-22 07:01:35');
 /*!40000 ALTER TABLE `product_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -559,6 +560,9 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `price` int DEFAULT '0',
+  `choose_sale` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sale` int DEFAULT NULL,
+  `sale_price` int DEFAULT NULL,
   UNIQUE KEY `products_id_unique` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -569,7 +573,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('42f87cf0-db2c-4f52-9cbc-87a7d485fb89','sđsấ','admin',NULL,NULL,5,'/storage/products/5/092c0e76256220fafa0f68682a9fda54.jpg','bg_section_form.jpg',1,1,NULL,'sdsa','2022-09-17 07:33:06','2022-09-17 08:39:34',0),('6da8c059-687f-4980-a994-cb8b0377e808','dsadasasd','admin',NULL,NULL,5,NULL,NULL,0,1,10,'dsadasasd','2022-09-17 23:49:00','2022-09-17 23:50:57',20000),('81717705-427f-47b0-8309-ea7e060c2335','sdaasdads','admin','21','<p>dsaasdds</p>',5,'/storage/products/5/f8ff3453a1c645d4391a947b6b237a0d.jpg','mbtt.jpg',0,1,11,'sdaasdads','2022-09-22 07:01:35','2022-09-22 07:01:35',1212),('edf5ffbf-28b3-4241-8141-00cb2afe5e12','áddsaads','admin',NULL,NULL,5,'/storage/products/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg',0,1,1,'addsaads','2022-09-19 08:06:58','2022-09-19 08:07:15',1);
+INSERT INTO `products` VALUES ('440ccca3-c772-4c7b-a7b5-564528b0fb73','đâsadsdas','admin',NULL,NULL,5,NULL,NULL,0,1,NULL,'dasadsdas','2022-09-27 07:29:46','2022-09-27 07:29:46',500000,NULL,NULL,500000),('4cfba3cf-1d0d-4b57-bae5-ca111f1721ba','san pham 4','admin',NULL,NULL,5,NULL,NULL,0,1,2,'san-pham-4','2022-09-27 06:48:55','2022-09-27 07:10:04',500000,'sale_price',50000,450000),('a347294e-e4f1-4c6c-9591-da653718f623','sdsdasdads','admin',NULL,NULL,5,NULL,NULL,0,1,NULL,'sdsdasdads','2022-09-27 07:29:02','2022-09-27 07:29:02',250000,'sale_persent',20,200000),('ea6a5c5f-b598-4ec5-965e-1ad1197b8995','sản phẩm 2','admin',NULL,NULL,5,NULL,NULL,0,1,2,'san-pham-2','2022-09-27 06:48:39','2022-09-27 07:10:29',250000,'sale_price',20000,230000),('ede0ad49-7f6b-49ab-96c9-622e54c7dfec','sản phẩm 1','admin',NULL,NULL,5,'/storage/products/5/7fe9dccef55449fb7902f2f6cc259a37.jpg','product11.jpg',0,1,20,'san-pham-1','2022-09-27 06:47:47','2022-09-27 07:28:09',500000,'sale_persent',15,425000);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,7 +601,6 @@ CREATE TABLE `products_images` (
 
 LOCK TABLES `products_images` WRITE;
 /*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
-INSERT INTO `products_images` VALUES ('424bbc7e-14d1-49f9-aa05-dc7e6283df92','/storage/products/5/fc5d240ab05d09b974527265e0eb3ed5.png','bg_sp.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('455731ce-44d3-4fd8-9e86-3e2b27dabb91','/storage/products/5/10d27cc483101dc41545efc1680016b2.png','dk_mb.png','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 07:33:06','2022-09-17 07:33:06'),('9c6c8ff2-7650-4ff6-bcfc-77efba905e4f','/storage/products/5/f8ff3453a1c645d4391a947b6b237a0d.jpg','mbtt.jpg','81717705-427f-47b0-8309-ea7e060c2335','2022-09-22 07:01:35','2022-09-22 07:01:35'),('c14e6cc9-efd8-4400-a3a0-96f8f2264493','/storage/products/5/b602e370d365f2ea954368469cbc8d7c.jpg','content_popup2.jpg','42f87cf0-db2c-4f52-9cbc-87a7d485fb89','2022-09-17 08:26:06','2022-09-17 08:26:06'),('c9cc9214-37c5-41a2-b428-d52ff4deec8d','/storage/products/5/396d16c4947a0f32e4f4fbdab0741093.png','content_popup3 - Copy.png','edf5ffbf-28b3-4241-8141-00cb2afe5e12','2022-09-19 08:07:15','2022-09-19 08:07:15'),('cf6d236f-ef05-4737-a0f7-d8d2161a105d','/storage/products/5/eee85d6257f47357acdbb81b3323685a.jpg','content_popup1.jpg','edf5ffbf-28b3-4241-8141-00cb2afe5e12','2022-09-20 07:09:51','2022-09-20 07:09:51');
 /*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -716,32 +719,6 @@ INSERT INTO `sliders` VALUES ('0f21b4c9-0e05-43b2-a3c0-d980a281f668','dasasd','d
 UNLOCK TABLES;
 
 --
--- Table structure for table `table_coupons_role_customer_relationship`
---
-
-DROP TABLE IF EXISTS `table_coupons_role_customer_relationship`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `table_coupons_role_customer_relationship` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `coupons_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_role_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `table_coupons_role_customer_relationship`
---
-
-LOCK TABLES `table_coupons_role_customer_relationship` WRITE;
-/*!40000 ALTER TABLE `table_coupons_role_customer_relationship` DISABLE KEYS */;
-/*!40000 ALTER TABLE `table_coupons_role_customer_relationship` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user_avatars`
 --
 
@@ -797,7 +774,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (4,'guest','guest@gmail.com',NULL,'$2y$10$W3niPQYbAASfsB6qgt./6.3tWmoGXN34Vs7w8cn/HbPuA5UuyTikq',NULL,'2022-08-26 08:27:11','2022-09-20 08:33:10','minhman'),(5,'admin','admin@gmail.com',NULL,'$2y$10$pWN7a03JOCkzzlPK19xkdOun1t7ugdE47.cjE82jcK3inTdbSfM8u','RlxLgSRgg8Yvt5CdfkRLR6kHByXr4R6esgB8ZZGHvfXNGvT1LdWayrWxtKM6','2022-08-26 20:17:50','2022-09-20 10:37:04','minhman'),(7,'test','man@gmail.com',NULL,'$2y$10$5hFGXJDKe4aLo836cmOwYOEOuWimbOLC/dARerUC0Vu3A6Ov.IFxa',NULL,'2022-09-20 07:42:12','2022-09-20 08:35:21','minhman'),(8,'test nguyen','quangthanhliet@gmail.com',NULL,'$2y$10$qi/52OHb7iOFXp2uo4AbhOHPbE5Gqeg6gCLZIdGfm29QJNALJL7Je',NULL,'2022-09-20 08:38:31','2022-09-23 05:06:21','minhman');
+INSERT INTO `users` VALUES (4,'guest','guest@gmail.com',NULL,'$2y$10$W3niPQYbAASfsB6qgt./6.3tWmoGXN34Vs7w8cn/HbPuA5UuyTikq',NULL,'2022-08-26 08:27:11','2022-09-20 08:33:10','minhman'),(5,'admin','admin@gmail.com',NULL,'$2y$10$pWN7a03JOCkzzlPK19xkdOun1t7ugdE47.cjE82jcK3inTdbSfM8u','GwHyTRZGixDw63yNGMBSnf0ZZyKrDyf42jSXMWBEUSwRPmeVnSzpyProfz98','2022-08-26 20:17:50','2022-09-20 10:37:04','minhman'),(7,'test','man@gmail.com',NULL,'$2y$10$5hFGXJDKe4aLo836cmOwYOEOuWimbOLC/dARerUC0Vu3A6Ov.IFxa',NULL,'2022-09-20 07:42:12','2022-09-20 08:35:21','minhman'),(8,'test nguyen','quangthanhliet@gmail.com',NULL,'$2y$10$qi/52OHb7iOFXp2uo4AbhOHPbE5Gqeg6gCLZIdGfm29QJNALJL7Je',NULL,'2022-09-20 08:38:31','2022-09-23 05:06:21','minhman');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -837,4 +814,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-25  9:11:13
+-- Dump completed on 2022-09-27 21:55:55
