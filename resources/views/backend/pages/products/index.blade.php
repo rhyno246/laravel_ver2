@@ -95,11 +95,28 @@
                                         </label>
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->price == null && $item->stock == 0 ? 'Liên hệ' : number_format((float) $item->price, 0) }}
+                                        @if ($item->choose_sale == '')
+                                            <p class="price mb-0">
+                                                {{ number_format((float) $item->price, 0) }} vnđ
+                                            </p>
+                                        @else
+                                            <p class="old-price mb-0">
+                                                {{ number_format((float) $item->price, 0) }} vnđ
+                                            </p>
+                                            <p class="sale-price text-danger mb-0">
+                                                {{ number_format((float) $item->sale_price, 0) }} vnđ
+                                            </p>
+                                        @endif
+
+
                                     </td>
 
                                     <td class="align-middle">
-                                        {{ $item->stock == null && $item->stock == 0 ? 'Hết hàng' : $item->stock }}
+                                        @if ($item->stock == null && $item->stock == 0)
+                                            <span class="badge badge-danger">Hết hàng</span>
+                                        @else
+                                            {{ $item->stock }}
+                                        @endif
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}

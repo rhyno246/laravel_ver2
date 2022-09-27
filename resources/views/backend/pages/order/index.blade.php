@@ -1,7 +1,7 @@
 @extends('backend.layout.admin')
 
 @section('title')
-    <title>Danh Sách Menu</title>
+    <title>Danh Sách Đơn Hàng</title>
 @endsection
 
 @section('css')
@@ -15,17 +15,15 @@
 
 @section('content')
     @include('backend.partials.headercontent', [
-        'name' => 'Danh Sách Menu',
-        'button' => 'Thêm Mới',
-        'link' => 'menu.create',
+        'name' => 'Danh Sách Đơn Hàng',
     ])
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h4>Danh Sách Menu</h4>
+                <h4>Danh Sách Đơn Hàng</h4>
                 <div class="text-right">
                     @csrf
-                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('menu.seletedeleted') }}"
+                    <a class="btn btn-danger d-none deleteSeleted" data-url="{{ route('products.deleteselect') }}"
                         style="color: #fff"></a>
                 </div>
             </div>
@@ -41,16 +39,17 @@
                                         <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Tên menu</th>
-                                <th>Icon menu</th>
-                                <th>Đường dẫn</th>
-                                <th>Danh mục cha</th>
-                                <th>Tạo ngày</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Trạng thái</th>
+                                <th>Tổng tiền</th>
+                                <th>Mã giảm giá</th>
+                                <th>Ngày mua</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            {{-- @foreach ($data as $item)
                                 <tr id="ids{{ $item->id }}">
                                     <td class="align-middle">
                                         <div class="custom-checkbox custom-control">
@@ -65,28 +64,55 @@
                                         {{ $item->name }}
                                     </td>
                                     <td class="align-middle">
-                                        <i class="{{ $item->icon_menu }}"> </i>
+                                        <img src="{{ $item->feature_image_path ? $item->feature_image_path : 'https://dummyimage.com/60/873d87/fff.png' }}"
+                                            alt="{{ $item->feature_image_name }}"
+                                            style="width: 60px; height: 40px; object-fit: cover">
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->slug }}
+                                        {{ optional($item->categoriesInstance)->name }}
                                     </td>
                                     <td class="align-middle">
-                                        {{ optional($item->getParent)->name }}
+                                        <label class="custom-switch">
+                                            <input type="checkbox"
+                                                data-url="{{ route('products.statushome', ['id' => $item->id]) }}"
+                                                name="is-show-home" class="custom-switch-input"
+                                                {{ $item->is_show_home == 1 ? 'checked' : '' }}>
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td class="align-middle">
+                                        <label class="custom-switch">
+                                            <input type="checkbox"
+                                                data-url="{{ route('products.statusproduct', ['id' => $item->id]) }}"
+                                                name="status" class="custom-switch-input"
+                                                {{ $item->status == 1 ? 'checked' : '' }}>
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ $item->price == null && $item->stock == 0 ? 'Liên hệ' : number_format((float) $item->price, 0) }}
+                                    </td>
+
+                                    <td class="align-middle">
+                                        {{ $item->stock == null && $item->stock == 0 ? 'Hết hàng' : $item->stock }}
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
+                                    <td class="align-middle">
+                                        {{ $item->user_name }}
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('menu.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('products.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary mr-2">Sửa</a>
-                                            <a href="{{ route('menu.delete', ['id' => $item->id]) }}"
+                                            <a href="{{ route('products.delete', ['id' => $item->id]) }}"
                                                 class="btn btn-danger delete-model mr-2"
-                                                data-url="{{ route('menu.delete', ['id' => $item->id]) }}">Xóa</a>
+                                                data-url="{{ route('products.delete', ['id' => $item->id]) }}">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -107,6 +133,7 @@
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
     <script src="{{ asset('backend/assets/js/customDatatable.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/changeStatusHome.js') }}"></script>
     @if (Session::has('message-edit'))
         <script>
             iziToast.success({

@@ -56,6 +56,24 @@
                             {!! $htmlOption !!}
                         </select>
                     </div>
+
+
+                    <div class="form-group">
+                        <select class="form-control choose_sale" name="choose_sale">
+                            <option {{ $data->choose_sale == '' ? 'selected' : '' }} value="">Giảm giá theo</option>
+                            <option {{ $data->choose_sale == 'sale_persent' ? 'selected' : '' }} value="sale_persent">Giảm
+                                theo %</option>
+                            <option {{ $data->choose_sale == 'sale_price' ? 'selected' : '' }} value="sale_price">Giảm theo
+                                giá tiền</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control sale {{ $data->choose_sale == '' ? 'd-none' : '' }}"
+                            name="sale" value="{{ $data->choose_sale == '' ? '' : $data->sale }}">
+                    </div>
+
+
                     <div class="form-group">
                         <textarea class="form-control" id="ckeditor" name="content" rows="30">
                             {{ $data->content }}
@@ -123,4 +141,9 @@
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
     <script src="{{ asset('backend/assets/js/uploadMutipleImage.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteThumbnailUpload.js') }}"></script>
+    <script>
+        $('.choose_sale').on('change', function() {
+            $('.sale').addClass('d-block');
+        });
+    </script>
 @endsection

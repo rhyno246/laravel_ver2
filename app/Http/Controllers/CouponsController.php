@@ -33,7 +33,7 @@ class CouponsController extends Controller
     public function store (RequestCouponsCreate $request){
         try {
             DB::beginTransaction();
-            $this->coupons->firstOrCreate([
+            $data = [
                 'coupons_key' => $request->coupons_key,
                 'date_start' => $request->date_start,
                 'date_end' => $request->date_end,
@@ -43,7 +43,8 @@ class CouponsController extends Controller
                 'user_id' => auth()->id(),
                 'user_name' => auth()->user()->name,
                 'coupons_price' => $request->coupons_price
-            ]);
+            ];
+            $this->coupons->firstOrCreate($data);
             DB::commit();
             return redirect()->route('coupons.index')->with('message' , 'Bạn đã tạo mã giảm giá thàng công');
         } catch (\Exception $exception) {

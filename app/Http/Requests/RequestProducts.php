@@ -25,8 +25,8 @@ class RequestProducts extends FormRequest
     {
         return [
             'name' => 'bail|required|max:255',
-            'price' => 'numeric|min:0',
-            'stock' => 'numeric|min:0',
+            'price' => 'min:0',
+            'stock' => 'min:0',
         ];
     }
     public function messages()

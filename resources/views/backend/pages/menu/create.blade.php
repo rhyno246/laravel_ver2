@@ -30,6 +30,10 @@
                             {!! $htmlOption !!}
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Icon menu</label>
+                        <input type="text" class="form-control" name="icon_menu">
+                    </div>
                     <button class="btn btn-primary">Tạo Menu</button>
                 </form>
             </div>

@@ -23,13 +23,14 @@
                         sách sản phẩm</span></a>
             </li>
 
-            <li class="dropdown">
+            <li class="dropdown {{ Request::is('admin/customer*') ? 'active' : '' }}">
                 <a href="{{ route('customer.index') }}" class="nav-link"><i class="far fa-user"></i><span>Danh sách
                         khách hàng</span></a>
             </li>
 
-            <li class="dropdown">
-                <a href="" class="nav-link"><i class="fas fa-cart-arrow-down"></i><span>Danh sách
+            <li class="dropdown  {{ Request::is('admin/order*') ? 'active' : '' }}">
+                <a href="{{ route('order.index') }}" class="nav-link"><i class="fas fa-cart-arrow-down"></i><span>Danh
+                        sách
                         Đơn hàng</span></a>
             </li>
 

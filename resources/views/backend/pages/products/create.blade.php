@@ -58,6 +58,20 @@
                             {!! $htmlOption !!}
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <select class="form-control choose_sale" name="choose_sale">
+                            <option selected="selected" value="">Giảm giá theo</option>
+                            <option value="sale_persent">Giảm theo %</option>
+                            <option value="sale_price">Giảm theo giá tiền</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control sale d-none" name="sale">
+                    </div>
+
+
                     <div class="form-group">
                         <textarea class="form-control" id="ckeditor" name="content" rows="30"></textarea>
                     </div>
@@ -101,4 +115,10 @@
     <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
     <script src="{{ asset('backend/assets/js/uploadMutipleImage.js') }}"></script>
+
+    <script>
+        $('.choose_sale').on('change', function() {
+            $('.sale').addClass('d-block');
+        });
+    </script>
 @endsection

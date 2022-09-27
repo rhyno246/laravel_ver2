@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Components\MenuRecusive;
 use App\Http\Requests\RequestCreateMenu;
-use App\Http\Requests\RequestEditMenu;
 use App\Models\Menu;
 use App\Traits\DeleteModelTrait;
 use App\Traits\DeleteSelectedTrait;
@@ -42,6 +41,7 @@ class AdminMenuController extends Controller
             DB::beginTransaction();
             $this->menu->firstOrCreate([
                 "name" => $request->name,
+                "icon_menu" => $request->icon_menu,
                 "parent_id" => $request->parent_id,
                 "slug" => Str::slug($request->name)
             ]);
@@ -74,6 +74,7 @@ class AdminMenuController extends Controller
             DB::beginTransaction();
             $this->menu->find($id)->update([
                 "name" => $request->name,
+                "icon_menu" => $request->icon_menu,
                 "parent_id" => $request->parent_id,
                 "slug" => Str::slug($request->name)
             ]);

@@ -30,6 +30,10 @@
                             {!! $htmlOption !!}
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Icon menu</label>
+                        <input type="text" class="form-control" name="icon_menu" value="{{ $menu->icon_menu }}">
+                    </div>
                     <button class="btn btn-primary">Cập nhật menu</button>
                 </form>
             </div>

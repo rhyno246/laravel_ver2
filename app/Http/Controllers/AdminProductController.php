@@ -63,12 +63,28 @@ class AdminProductController extends Controller
                 'user_id' => auth()->id(),
                 'user_name' => auth()->user()->name,
                 'slug' => Str::slug($request->name),
+                'choose_sale' => $request->choose_sale,
+                'sale' => $request->sale
             ];
             $dataUploadFeatureImage = $this->storageTraitUpload($request ,'feature_image_path' , 'products');
             if(!empty($dataUploadFeatureImage)){
                 $data['feature_image_name'] = $dataUploadFeatureImage['file_name'];
                 $data['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
+            if($data['choose_sale'] == ""){
+                $data['sale_price'] = $request->price;
+            }
+
+            if($data['choose_sale'] == "sale_persent"){
+                $persent = $request->sale / 100;
+                $data['sale_price'] = $request->price - $persent * $request->price;
+            }
+
+            if($data['choose_sale'] == "sale_price"){
+                $data['sale_price'] = $request->price - $request->sale;
+            }
+
+
             $product = $this->products->create($data);
 
             if($request-> hasFile('image_path')){
@@ -118,13 +134,30 @@ class AdminProductController extends Controller
                 'user_id' => auth()->id(),
                 'user_name' => auth()->user()->name,
                 'slug' => Str::slug($request->name),
+                'choose_sale' => $request->choose_sale,
+                'sale' => $request->sale
             ];
+            
             $dataUploadFeatureImage = $this->storageTraitUpload($request ,'feature_image_path' , 'products');
             if(!empty($dataUploadFeatureImage)){
                 $data['feature_image_name'] = $dataUploadFeatureImage['file_name'];
                 $data['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
+            if($data['choose_sale'] == ""){
+                $data['sale_price'] = $request->price;
+            }
+
+            if($data['choose_sale'] == "sale_persent"){
+                $persent = $request->sale / 100;
+                $data['sale_price'] = $request->price - $persent * $request->price ;
+            }
+
+            if($data['choose_sale'] == "sale_price"){
+                $data['sale_price'] = $request->price - $request->sale;
+            }
+           
             $this->products->find($id)->update($data);
+            
             $product = $this->products->find($id);
 
             if($request-> hasFile('image_path')){

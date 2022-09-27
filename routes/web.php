@@ -5,25 +5,16 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-Route::get('/', function () {
-    return view('frontend.home');
-});
+//backend
 Route::get('/admin',  'App\Http\Controllers\AdminLoginController@login');
-
-
 Route::post('/admin', [
     'as' => 'admin.login',
     'uses' => 'App\Http\Controllers\AdminLoginController@PostLogin',
 ]);
-
 Route::get('/logout', [
     'as' => 'admin.logout',
     'uses' => 'App\Http\Controllers\AdminLoginController@logout'
 ]);
-
-
-
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [
         'as' => 'backend.dashboard',
@@ -786,6 +777,21 @@ Route::prefix('admin')->group(function () {
     });
 
 
+
+    Route::prefix('order')->group(function () {
+        Route::get('/', [
+            'as' => 'order.index',
+            'uses' => 'App\Http\Controllers\AdminOrderController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+});
+
+
+//frontend
+Route::get('/', function () {
+    return view('frontend.home');
 });
 
 
