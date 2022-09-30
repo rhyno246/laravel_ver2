@@ -21,6 +21,11 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
+                <a href="{{ route('home') }}" class="dropdown-item has-icon" target="__bank">
+                    <i class="fas fa-link"></i> Thăm trang chủ
+                </a>
+
+
                 <a href="{{ route('profile.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user-alt"></i> Trang cá nhân
                 </a>

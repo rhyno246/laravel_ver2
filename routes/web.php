@@ -844,10 +844,13 @@ Route::prefix('admin')->group(function () {
 
 
 //frontend
-Route::get('/', function () {
-    return view('frontend.home');
-});
 
+
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'App\Http\Controllers\FrontEnd\HomeController@index',
+    'middleware' => (['CheckIsUser'])
+]);
 
 
 
