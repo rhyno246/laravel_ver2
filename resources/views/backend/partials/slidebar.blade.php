@@ -44,7 +44,6 @@
                             href="{{ route('category.post.index') }}">Danh Mục Bài Viết</a></li>
                 </ul>
             </li>
-
             <li
                 class="dropdown {{ Request::is('admin/post-tags*') || Request::is('admin/product-tags*') ? 'active' : '' }}">
                 <a class="nav-link has-dropdown" href="#"><i class="fa-solid fa-tags"></i> <span>Tags</span></a>
@@ -55,6 +54,13 @@
                             href="{{ route('tags.product.index') }}">Tags Sản Phẩm</a></li>
                 </ul>
             </li>
+
+            <li class="dropdown {{ Request::is('admin/services*') ? 'active' : '' }}">
+                <a href="{{ route('services.index') }}" class="nav-link"><i
+                        class="fas fa-window-maximize"></i><span>Dịch
+                        vụ</span></a>
+            </li>
+
             <li class="dropdown {{ Request::is('admin/slider*') ? 'active' : '' }}">
                 <a href="{{ route('slider.index') }}" class="nav-link"><i
                         class="fas fa-image"></i><span>Slider</span></a>

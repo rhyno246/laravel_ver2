@@ -777,6 +777,60 @@ Route::prefix('admin')->group(function () {
     });
 
 
+    //services
+    Route::prefix('services')->group(function () {
+        Route::get('/', [
+            'as' => 'services.index',
+            'uses' => 'App\Http\Controllers\AdminServicesController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/create', [
+            'as' => 'services.create',
+            'uses' => 'App\Http\Controllers\AdminServicesController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/store', [
+            'as' => 'services.store',
+            'uses' => 'App\Http\Controllers\AdminServicesController@store',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'services.edit',
+            'uses' => 'App\Http\Controllers\AdminServicesController@edit',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'services.update',
+            'uses' => 'App\Http\Controllers\AdminServicesController@update',
+            'middleware' => (['CheckIsUser'])
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'services.delete',
+            'uses' => 'App\Http\Controllers\AdminServicesController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-post', [
+            'as' => 'services.deleteselect',
+            'uses' => 'App\Http\Controllers\AdminServicesController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+
+        Route::get('/status-home/{id}', [
+            'as' => 'services.statushome',
+            'uses' => 'App\Http\Controllers\AdminServicesController@changeStatusHome',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/status-product/{id}', [
+            'as' => 'services.statusproduct',
+            'uses' => 'App\Http\Controllers\AdminServicesController@changeStatusShow',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
+
+
 
     Route::prefix('order')->group(function () {
         Route::get('/', [
