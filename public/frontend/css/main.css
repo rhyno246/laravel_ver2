@@ -2520,4 +2520,6 @@ h2.title {
   color: #FE980F;
 }
 
-
+.recommended_items{
+  position: relative;
+}

@@ -72,7 +72,7 @@
                                             </div>
                                         </td>
                                         <td class="align-middle">{{ $item->config_key }}</td>
-                                        <td class="align-middle" width="30%">
+                                        <td class="align-middle" style="width:70%">
                                             @if ($item->type === 'Image')
                                                 <img src="{{ $item->config_value }}" alt="{{ $item->id }}"
                                                     style="width: 50px; height : 50px; object-fit: cover">

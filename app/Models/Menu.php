@@ -12,4 +12,7 @@ class Menu extends Model
     public function getParent () {
         return $this->belongsTo(Menu::class, 'parent_id');
     }
+    public function getChild () {
+        return $this->hasMany(Menu::class , 'parent_id'); // mối quan hệ 1 nhiều ->frontend
+    }
 }

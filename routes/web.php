@@ -844,16 +844,51 @@ Route::prefix('admin')->group(function () {
 
 
 //frontend
-
-
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'App\Http\Controllers\FrontEnd\HomeController@index',
-    'middleware' => (['CheckIsUser'])
+    'uses' => 'App\Http\Controllers\FrontEnd\HomeController@index'
+]);
+
+Route::get('/trang-chu', [
+    'as' => 'home',
+    'uses' => 'App\Http\Controllers\FrontEnd\HomeController@index'
+]);
+
+Route::get('/san-pham', [
+    'as' => 'product.index',
+    'uses' => 'App\Http\Controllers\FrontEnd\ProductsController@index'
+]);
+
+Route::get('/san-pham/{slug}', [
+    'as' => 'product.detail',
+    'uses' => 'App\Http\Controllers\FrontEnd\ProductsController@detail'
 ]);
 
 
+Route::get('/dich-vu', [
+    'as' => 'service.index',
+    'uses' => 'App\Http\Controllers\FrontEnd\ServiceController@index'
+]);
 
+Route::get('/dich-vu/{slug}', [
+    'as' => 'service.detail',
+    'uses' => 'App\Http\Controllers\FrontEnd\ServiceController@detail'
+]);
+
+Route::get('/tin-tuc', [
+    'as' => 'news.index',
+    'uses' => 'App\Http\Controllers\FrontEnd\NewsController@index'
+]);
+
+Route::get('/tin-tuc/{slug}', [
+    'as' => 'news.detail',
+    'uses' => 'App\Http\Controllers\FrontEnd\NewsController@detail'
+]);
+
+Route::get('/lien-he', [
+    'as' => 'contact.index',
+    'uses' => 'App\Http\Controllers\FrontEnd\ContactController@index'
+]);
 
 
 

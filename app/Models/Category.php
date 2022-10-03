@@ -15,4 +15,8 @@ class Category extends Model
     public function getChild () {
         return $this->hasMany(Category::class , 'parent_id'); // mối quan hệ 1 nhiều ->frontend
     }
+
+    public function getCategoryChild () {
+        return $this->hasMany(Products::class , 'categories_id'); // mối quan hệ 1 nhiều ->frontend
+    }
 }
