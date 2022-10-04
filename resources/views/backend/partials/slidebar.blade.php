@@ -74,6 +74,11 @@
                 <a href="{{ route('coupons.index') }}" class="nav-link"><i class="fas fa-gift"></i></i><span>Mã giảm
                         giá</span></a>
             </li>
+
+            <li class="dropdown {{ Request::is('admin/message*') ? 'active' : '' }}">
+                <a href="{{ route('message.index') }}" class="nav-link"><i
+                        class="fas fa-envelope-square"></i><span>Phản hồi</span></a>
+            </li>
         </ul>
     </aside>
 </div>

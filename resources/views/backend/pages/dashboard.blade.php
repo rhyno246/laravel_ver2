@@ -203,6 +203,7 @@
     <script src="{{ asset('backend/assets/js/deleteModel.js') }}"></script>
     <script src="{{ asset('backend/assets/js/deleteSeleted.js') }}"></script>
     <script src="{{ asset('backend/assets/js/changeStatusHome.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/chart.min.js') }}"></script>
     <script>
         var product_data = @json($product_chart);
         var post_chart = @json($post_chart);
@@ -265,12 +266,8 @@
 
 
         var sales_chart = document.getElementById("post-chart").getContext('2d');
-
         var sales_chart_bg_color = sales_chart.createLinearGradient(0, 0, 0, 80);
-        balance_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
-        balance_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
-
-        var myChart = new Chart(sales_chart, {
+        var myChart2 = new Chart(sales_chart, {
             type: 'line',
             data: {
                 labels: post_chart.map(item => item.date),

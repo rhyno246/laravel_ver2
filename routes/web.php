@@ -830,7 +830,37 @@ Route::prefix('admin')->group(function () {
         ]);
     });
 
+    Route::prefix('message')->group(function () {
+        Route::get('/', [
+            'as' => 'message.index',
+            'uses' => 'App\Http\Controllers\MessageController@index',
+            'middleware' => (['CheckIsUser'])
+        ]);
 
+        Route::get('/view/{email}', [
+            'as' => 'message.view',
+            'uses' => 'App\Http\Controllers\MessageController@view',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'message.delete',
+            'uses' => 'App\Http\Controllers\MessageController@delete',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/seleted-message', [
+            'as' => 'message.deleteselect',
+            'uses' => 'App\Http\Controllers\MessageController@deleteSelected',
+            'middleware' => (['CheckIsUser'])
+        ]);
+
+        Route::post('/create', [
+            'as' => 'message.create',
+            'uses' => 'App\Http\Controllers\MessageController@create',
+            'middleware' => (['CheckIsUser'])
+        ]);
+    });
 
     Route::prefix('order')->group(function () {
         Route::get('/', [
@@ -841,6 +871,9 @@ Route::prefix('admin')->group(function () {
     });
 
 });
+
+
+
 
 
 //frontend
@@ -890,6 +923,24 @@ Route::get('/lien-he', [
     'uses' => 'App\Http\Controllers\FrontEnd\ContactController@index'
 ]);
 
+Route::get('/dang-nhap', [
+    'as' => 'login',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@login'
+]);
+
+Route::post('/dang-nhap', [
+    'as' => 'login',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@loginPost'
+]);
+
+Route::get('/dang-ky', [
+    'as' => 'register',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@register'
+]);
+Route::post('/dang-ky', [
+    'as' => 'register',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@registerPost'
+]);
 
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'web'], function () {

@@ -12,12 +12,13 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="contact-form">
-                    <h2 class="title text-center">Get In Touch</h2>
+                    <h2 class="title text-center">Phản hồi chúng tôi</h2>
                     <div class="status alert alert-success" style="display: none"></div>
-                    <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                    <form id="main-contact-form" class="contact-form row" name="contact_form" method="post"
+                        action="{{ route('message.create') }}">
+                        @csrf
                         <div class="form-group col-md-6">
-                            <input type="text" name="name" class="form-control" required="required"
-                                placeholder="Name">
+                            <input type="text" name="name" class="form-control" required="required" placeholder="Tên">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="email" name="email" class="form-control" required="required"
@@ -25,28 +26,24 @@
                         </div>
                         <div class="form-group col-md-12">
                             <input type="text" name="subject" class="form-control" required="required"
-                                placeholder="Subject">
+                                placeholder="Tiêu đề">
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea name="message" id="message" required="required" class="form-control" rows="8"
-                                placeholder="Your Message Here"></textarea>
+                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Nội dung"></textarea>
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Gửi">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="contact-info">
-                    <h2 class="title text-center">Contact Info</h2>
+                    <h2 class="title text-center">Thông tin liên hệ</h2>
                     <address>
-                        <p>E-Shopper Inc.</p>
-                        <p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-                        <p>Newyork USA</p>
-                        <p>Mobile: +2346 17 38 93</p>
-                        <p>Fax: 1-714-252-0026</p>
-                        <p>Email: info@e-shopper.com</p>
+                        <p>{{ getConfigValueSettingTable('address_config') }}</p>
+                        <p>Mobile: {{ getConfigValueSettingTable('phone_config') }}</p>
+                        <p>Email: {{ getConfigValueSettingTable('email_config') }}</p>
                     </address>
                 </div>
             </div>

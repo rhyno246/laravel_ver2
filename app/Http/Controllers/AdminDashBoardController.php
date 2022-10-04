@@ -29,12 +29,13 @@ class AdminDashBoardController extends Controller
 
         $product_chart = $this->products->select(
             DB::raw("COUNT(*) as count"), DB::raw("DATE(created_at) as date")
-        )->whereYear('created_at', date('Y'))->groupBy('date')->get()->toArray();
-
+        )->whereYear('created_at', date('Y'))->groupBy('date')->get();
+        
         $post_chart = $this->posts->select(
             DB::raw("COUNT(*) as count"), DB::raw("DATE(created_at) as date")
-        )->whereYear('created_at', date('Y'))->groupBy('date')->get()->toArray();
-        
+        )->whereYear('created_at', date('Y'))->groupBy('date')->get();
+
+
         
         return view('backend.pages.dashboard', compact('product' , 'post' , 'product_chart' , 'post_chart' , 'data'));
     }
