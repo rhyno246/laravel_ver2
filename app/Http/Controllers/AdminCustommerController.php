@@ -29,28 +29,7 @@ class AdminCustommerController extends Controller
         return view('backend.pages.customer.index', compact('data', 'role_customer'));
     }
 
-    public function store (Request $request){
-        try {
-            DB::beginTransaction();
-            $data = [
-                "name"=> $request->name,
-                "password" => Hash::make($request->password),
-                'password_dehash' =>$request->password,
-                "email" => $request->email,
-                'phone' => $request->phone
-            ];
-            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'src', 'customers');
-            if (!empty($dataUploadFeatureImage)) {
-                $data['src'] = $dataUploadFeatureImage['file_path'];
-                $data['image_name'] = $dataUploadFeatureImage['file_name'];
-            }
-            $this->customer->create($data);
-            DB::commit();
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
-        }
-    }
+    
 
     public function edit($id){
         $users = $this->customer->find($id);

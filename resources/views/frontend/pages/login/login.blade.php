@@ -2,6 +2,11 @@
 @section('title')
     <title>Đăng nhập</title>
 @endsection
+
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/izitoast/css/iziToast.min.css') }}">
+@endsection
 @section('content')
     <div class="container">
         <div class="row" style="margin-bottom: 30px">
@@ -18,4 +23,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    @if (Session::has('message'))
+        <script>
+            iziToast.success({
+                title: 'OK rồi !',
+                message: '{{ Session::get('message') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
 @endsection

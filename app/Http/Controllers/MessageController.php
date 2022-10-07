@@ -26,19 +26,12 @@ class MessageController extends Controller
     public function create (Request $request) {
         try {
             DB::beginTransaction();
-            $email = $this->message->where('email', $request->email)->first();
-            if($email){
-                $mes = [];
-                $mes[] = $email['message'];
-            }else{
-                $this->message->create([
-                    "name" => $request->name,
-                    "email" => $request->email,
-                    "subject" => $request->subject,
-                    "message" => $request->message
-                ]);
-            }
-            
+            $this->message->firstOrCreate([
+                "email" => $request->email,
+                "name" => $request->name,
+                "subject" => $request->subject,
+                "message" => $request->message
+            ]);
             DB::commit();
             return redirect()->route('home');
         } catch (\Exception $exception) {
@@ -47,7 +40,8 @@ class MessageController extends Controller
         }
     }
     public function view($email){
-        return view('backend.pages.message.view');
+        $data = $this->message->where('email' , $email)->first();
+        return view('backend.pages.message.view', compact('data'));
     }
 
     public function delete ($id){

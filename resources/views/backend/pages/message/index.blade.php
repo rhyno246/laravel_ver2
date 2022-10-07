@@ -41,7 +41,7 @@
                                 </th>
                                 <th>Tên</th>
                                 <th>Email</th>
-                                <th>Nội dung</th>
+                                <th>Xem</th>
                                 <th>Ngày gửi</th>
                                 <th>Hành động</th>
                             </tr>
@@ -65,15 +65,14 @@
                                         {{ $item->email }}
                                     </td>
                                     <td class="align-middle">
-                                        {{ $item->subject }}
+                                        <a href="{{ route('message.view', ['email' => $item->email]) }}"><i
+                                                class="fas fa-eye"></i></a>
                                     </td>
                                     <td class="align-middle">
                                         {{ date('d-m-Y', strtotime($item->created_at)) }}
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('message.view', ['email' => $item->email]) }}"
-                                                class="btn btn-primary mr-2">Xem</a>
                                             <a href="{{ route('message.delete', ['id' => $item->id]) }}"
                                                 class="btn btn-danger delete-model mr-2"
                                                 data-url="{{ route('message.delete', ['id' => $item->id]) }}">Xóa</a>
