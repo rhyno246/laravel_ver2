@@ -19,22 +19,26 @@
             <div class="tab-content">
                 <div id="profile" class="tab-pane fade in active">
                     <div class="login-form" style="margin-bottom: 20px">
-                        <div class="img text-center" style="margin-bottom: 20px;">
-                            <div id="image-preview" class="image-preview w-100"
-                                style="background: url('{{ session()->get('users') ? session()->get('users')->src : asset('backend/assets/img/avatar/avatar-1.png') }}');background-repeat: no-repeat;
-                            background-size: cover;
-                            background-position: center;">
-                                <label for="image-upload" id="image-label">Chọn file ảnh</label>
-                                <input type="file" name="src" id="image-upload" />
-                            </div>
-                        </div>
 
-                        <form action="">
+
+                        <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="img text-center" style="margin-bottom: 20px;">
+                                <div id="image-preview" class="image-preview w-100"
+                                    style="background: url('{{ session()->get('users')->src ? session()->get('users')->src : asset('backend/assets/img/avatar/avatar-1.png') }}');background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;">
+                                    <label for="image-upload" id="image-label">Chọn file ảnh</label>
+                                    <input type="file" name="src" id="image-upload" />
+                                </div>
+                            </div>
                             @csrf
-                            <input type="text" placeholder="" required value="{{ $user->name }}">
-                            <input type="email" placeholder="" required value="{{ $user->email }}">
-                            <input type="password" placeholder="" required value="{{ $user->password_dehash }}">
-                            <input type="number" placeholder="" required value="{{ $user->phone }}">
+                            <input type="text" name="role" value="{{ $user->role }}" readonly>
+                            <input type="text" placeholder="" required value="{{ $user->name }}" name="name">
+                            <input type="email" placeholder="" required value="{{ $user->email }}" name="email">
+                            <input type="password" placeholder="" required value="{{ $user->password_dehash }}"
+                                name="password">
+                            <input type="number" placeholder="" required value="{{ $user->phone }}" name="phone">
                             <button type="submit" class="btn btn-default">Cập nhật</button>
                         </form>
                     </div>

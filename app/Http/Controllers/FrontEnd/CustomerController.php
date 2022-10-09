@@ -95,4 +95,33 @@ class CustomerController extends Controller
         $menu = $this->menu->where('parent_id', 0)->get();
         return view('frontend.pages.users.profile', compact('user', 'menu', 'gallery'));
     }
+
+    public function update (Request $request , $id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = [
+                "name"=> $request->name,
+                "password" => Hash::make($request->password),
+                'password_dehash' =>$request->password,
+                "email" => $request->email,
+                'phone' => $request->phone,
+                'role' => $request->role
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'src', 'customers');
+            if (!empty($dataUploadFeatureImage)) {
+                $data['src'] = $dataUploadFeatureImage['file_path'];
+                $data['image_name'] = $dataUploadFeatureImage['file_name'];
+            }
+            $this->customer->find($id)->update($data);
+            $user = $this->customer->find($id);
+            $request->session()->put('loginId', $user->name);
+            $request->session()->put('users', $user);
+            DB::commit();
+            return redirect()->route('users.index', $id)->with('message' , 'Cập nhật thông tin thành công');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
+        }
+    }
 }

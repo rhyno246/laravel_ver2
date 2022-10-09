@@ -906,8 +906,14 @@ Route::post('/dang-ky', [
 
 Route::prefix('tai-khoan')->group(function () {
     Route::get('/{id}', [
-        'as' => 'profile.index',
+        'as' => 'users.index',
         'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@profile',
+        'middleware' => (['FrontEndCheckLoginCustomer'])
+    ]);
+
+    Route::post('/{id}/update', [
+        'as' => 'users.update',
+        'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@update',
         'middleware' => (['FrontEndCheckLoginCustomer'])
     ]);
 });
