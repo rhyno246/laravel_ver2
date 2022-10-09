@@ -37,9 +37,22 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            @if (session()->get('users'))
+                                <li>
+                                    <a href="#" data-toggle="dropdown"><i class="fa fa-user"></i>
+                                        {{ session()->get('users')->name }}</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('profile', ['id' => session()->get('users')->id]) }}">Trang
+                                                cá nhân</a></li>
+                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>

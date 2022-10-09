@@ -551,7 +551,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\AdminGalleryController@deleteThumbnail',
             'middleware' => (['CheckIsUser'])
         ]);
-
     });
 
 
@@ -699,7 +698,7 @@ Route::prefix('admin')->group(function () {
     });
 
 
-    
+
     //custommer role
     Route::prefix('customer-role')->group(function () {
         Route::get('/', [
@@ -869,7 +868,6 @@ Route::prefix('admin')->group(function () {
             'middleware' => (['CheckIsUser'])
         ]);
     });
-
 });
 
 
@@ -928,6 +926,11 @@ Route::get('/dang-nhap', [
     'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@login'
 ]);
 
+Route::get('/log-out', [
+    'as' => 'logout',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@logout'
+]);
+
 Route::post('/dang-nhap', [
     'as' => 'login',
     'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@loginPost'
@@ -941,6 +944,13 @@ Route::post('/dang-ky', [
     'as' => 'register',
     'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@registerPost'
 ]);
+
+
+Route::get('/tai-khoan/{id}', [
+    'as' => 'profile',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@profile'
+]);
+
 
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'web'], function () {

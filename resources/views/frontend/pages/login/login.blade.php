@@ -14,8 +14,8 @@
                 <h2>Đăng nhập</h2>
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
-                    <input type="text" placeholder="Tên" required />
-                    <input type="email" placeholder="Email" required />
+                    <input type="email" placeholder="Email" required name="email" />
+                    <input type="password" required placeholder="Nhập mật khẩu" name="password">
                     <p style="margin-top: 20px"> <a href="{{ route('register') }}">Tôi Chưa có tài khoản , tôi muốn đăng
                             ký</a> </p>
                     <button type="submit" class="btn btn-default">Login</button>
@@ -32,6 +32,16 @@
             iziToast.success({
                 title: 'OK rồi !',
                 message: '{{ Session::get('message') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
+
+    @if (Session::has('fail'))
+        <script>
+            iziToast.error({
+                title: 'Cảnh báo !',
+                message: '{{ Session::get('fail') }}',
                 position: 'bottomCenter'
             });
         </script>
