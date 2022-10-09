@@ -36,12 +36,14 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" style="display: flex; align-items: center">
 
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @if (session()->get('users'))
                                 <li>
-                                    <a href="#" data-toggle="dropdown"><i class="fa fa-user"></i>
+                                    <a href="#" data-toggle="dropdown">
+                                        <img src="{{ session()->get('users')->src ? session()->get('users')->src : asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                            style="width: 30px; height: 30px; object-fit: cover; margin-right: 5px;  border-radius: 50px">
                                         {{ session()->get('users')->name }}</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('users.index', ['id' => session()->get('users')->id]) }}">Trang

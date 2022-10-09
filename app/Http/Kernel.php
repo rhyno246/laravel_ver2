@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckIsUser;
+use App\Http\Middleware\FrontEndAlreadyLogin;
 use App\Http\Middleware\FrontEndCheckLoginCustomer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -58,6 +59,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'FrontEndCheckLoginCustomer' => FrontEndCheckLoginCustomer::class,
+        'alreadyLogin' => FrontEndAlreadyLogin::class,
         'CheckIsUser' => CheckIsUser::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

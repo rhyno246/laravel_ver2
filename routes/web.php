@@ -878,28 +878,34 @@ Route::get('/lien-he', [
     'uses' => 'App\Http\Controllers\FrontEnd\ContactController@index'
 ]);
 
-Route::get('/dang-nhap', [
-    'as' => 'login',
-    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@login'
-]);
+
 
 Route::get('/log-out', [
     'as' => 'logout',
     'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@logout'
 ]);
 
+Route::get('/dang-nhap', [
+    'as' => 'login',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@login',
+    'middleware' => (['alreadyLogin'])
+]);
+
 Route::post('/dang-nhap', [
     'as' => 'login',
-    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@loginPost'
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@loginPost',
+    'middleware' => (['alreadyLogin'])
 ]);
 
 Route::get('/dang-ky', [
     'as' => 'register',
-    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@register'
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@register',
+    'middleware' => (['alreadyLogin'])
 ]);
 Route::post('/dang-ky', [
     'as' => 'register',
-    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@registerPost'
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@registerPost',
+    'middleware' => (['alreadyLogin'])
 ]);
 
 
