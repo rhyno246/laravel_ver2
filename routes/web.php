@@ -903,10 +903,19 @@ Route::post('/dang-ky', [
 ]);
 
 
-Route::get('/tai-khoan/{id}', [
-    'as' => 'profile',
-    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@profile'
-]);
+
+Route::prefix('tai-khoan')->group(function () {
+    Route::get('/{id}', [
+        'as' => 'profile.index',
+        'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@profile',
+        'middleware' => (['FrontEndCheckLoginCustomer'])
+    ]);
+});
+
+
+
+
+
 
 
 

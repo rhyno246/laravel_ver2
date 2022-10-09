@@ -44,7 +44,8 @@
                                     <a href="#" data-toggle="dropdown"><i class="fa fa-user"></i>
                                         {{ session()->get('users')->name }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('profile', ['id' => session()->get('users')->id]) }}">Trang
+                                        <li><a
+                                                href="{{ route('profile.index', ['id' => session()->get('users')->id]) }}">Trang
                                                 cá nhân</a></li>
                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
