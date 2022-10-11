@@ -909,6 +909,19 @@ Route::post('/dang-ky', [
 ]);
 
 
+Route::get('/quen-mat-khau', [
+    'as' => 'forgot',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@forgot',
+    'middleware' => (['alreadyLogin'])
+]);
+
+Route::post('/quen-mat-khau', [
+    'as' => 'forgot',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@forgotPost',
+    'middleware' => (['alreadyLogin'])
+]);
+
+
 
 Route::prefix('tai-khoan')->group(function () {
     Route::get('/{id}', [

@@ -1,6 +1,6 @@
 @extends('frontend.layout.layout')
 @section('title')
-    <title>Đăng nhập</title>
+    <title>Quên mật khẩu</title>
 @endsection
 
 
@@ -11,15 +11,11 @@
     <div class="container">
         <div class="row" style="margin-bottom: 30px">
             <div class="login-form">
-                <h2>Đăng nhập</h2>
-                <form action="{{ route('login') }}" method="POST">
+                <h2>Quên mật khẩu</h2>
+                <form action="{{ route('forgot') }}" method="POST">
                     @csrf
                     <input type="email" placeholder="Email" required name="email" />
-                    <input type="password" required placeholder="Nhập mật khẩu" name="password">
-                    <p style="margin-top: 20px"> <a href="{{ route('register') }}">Tôi Chưa có tài khoản , tôi muốn đăng
-                            ký</a> </p>
-                    <p style="margin-top: 20px"> <a href="{{ route('forgot') }}">Quên mật khẩu</a> </p>
-                    <button type="submit" class="btn btn-default">Login</button>
+                    <button type="submit" class="btn btn-default">Gửi</button>
                 </form>
             </div>
         </div>

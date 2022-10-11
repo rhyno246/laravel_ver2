@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -123,5 +125,28 @@ class CustomerController extends Controller
             DB::rollBack();
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
         }
+    }
+
+
+    public function forgot () {
+        $gallery = $this->gallery->latest()->get();
+        $menu = $this->menu->where('parent_id', 0)->get();
+        return view('frontend.pages.login.forgot', compact('menu', 'gallery'));
+    }
+
+    public function forgotPost (Request $request){
+        $token = Str::random(64);
+        $email = $request->email;
+        DB::table('password_resets')->insert([
+            'email' => $email,
+            'token' => $token
+        ]);
+        $action_link = route('reset', ['token' => $token, 'email'=>$email]);
+        $body = "Chúng tôi nhận được yêu cầu thay đổi password từ bạn với email là " . $email . ' ' . "Bạn có thể reset lại password bằng cách nhấn vào link phía dưới";
+        Mail::send('template', ['action_link' => $action_link, 'body' => $body], function ($message) use ($request) {
+            $message->from('test@gmail.com', 'ShopOnline');
+            $message->to($request->email, 'ShopOnline')->subject('ShopOnline reply reset password');
+        });
+        return back()->with('success', 'Chúng tôi có email reset lại password mới cho bạn , vui lòng kiểm tra hộp thư mail hoặc trong thư rác');
     }
 }
