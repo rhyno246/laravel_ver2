@@ -13,11 +13,11 @@
         <div class="row">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#profile">Thông tin cá nhân</a></li>
-                <li><a data-toggle="tab" href="#order">Đã mua</a></li>
                 <li><a data-toggle="tab" href="#change_pass">Đổi mật khẩu</a></li>
+                <li><a data-toggle="tab" href="#order">Đã mua</a></li>
                 <li><a data-toggle="tab" href="#floworder">Theo dõi đơn hàng</a></li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content" style="margin-bottom: 30px">
                 <div id="profile" class="tab-pane fade in active">
                     <div class="login-form" style="margin-bottom: 20px">
 
@@ -45,8 +45,16 @@
                     </div>
                 </div>
                 <div id="change_pass" class="tab-pane fade">
-                    <h3>change_pass</h3>
-                    <p>Some content in menu 1.</p>
+                    <h3 class="text-center">Đổi mật khẩu</h3>
+                    <div class="login-form">
+                        <form action="{{ route('change.password', ['id' => $user->id]) }}" method="POST">
+                            @csrf
+                            <input type="password" name="old_password" placeholder="Nhập mật khẩu cũ" required>
+                            <input type="password" name="new_password" placeholder="Nhập mật khẩu mới" required>
+                            <button type="submit" class="btn btn-default">Đổi mật khẩu</button>
+                        </form>
+                    </div>
+
                 </div>
 
                 <div id="order" class="tab-pane fade">
@@ -69,6 +77,15 @@
     <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
+    @if (Session::has('fail'))
+        <script>
+            iziToast.error({
+                title: 'Cảnh báo !',
+                message: '{{ Session::get('fail') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
     @if (Session::has('message'))
         <script>
             iziToast.success({

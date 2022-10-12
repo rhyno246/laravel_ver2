@@ -932,6 +932,11 @@ Route::post('/reset-password', [
 ]);
 
 
+Route::post('/change-password/{id}', [
+    'as' => 'change.password',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@changePassword',
+]);
+
 
 Route::prefix('tai-khoan')->group(function () {
     Route::get('/{id}', [

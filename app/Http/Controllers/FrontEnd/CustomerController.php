@@ -54,6 +54,7 @@ class CustomerController extends Controller
         }
     }
 
+
     public function registerPost(Request $request)
     {
         try {
@@ -79,6 +80,22 @@ class CustomerController extends Controller
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
         }
     }
+
+
+    public function changePassword (Request $request , $id) {
+        $user =  $this->customer->where('id', $id)->first();
+        if($request->old_password == $user->password_dehash){
+            $this->customer->find($id)->update([
+                'password' => Hash::make($request->new_password),
+                'password_dehash' => $request->new_password
+            ]);
+            return redirect()->route('users.index', $id)->with('message', 'Đổi mật khẩu thành công');
+        }else {
+            return redirect()->route('users.index', $id)->with('fail', 'Mật khẩu cũ không chính xác');
+        }
+    } 
+
+
 
     public function logout()
     {
