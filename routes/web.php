@@ -921,6 +921,16 @@ Route::post('/quen-mat-khau', [
     'middleware' => (['alreadyLogin'])
 ]);
 
+Route::get('/reset-password/{token}', [
+    'as' => 'reset',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@reset',
+]);
+
+Route::post('/reset-password', [
+    'as' => 'reset.token',
+    'uses' => 'App\Http\Controllers\FrontEnd\CustomerController@resetPost',
+]);
+
 
 
 Route::prefix('tai-khoan')->group(function () {

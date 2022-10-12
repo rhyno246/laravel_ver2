@@ -1,6 +1,6 @@
 @extends('frontend.layout.layout')
 @section('title')
-    <title>Quên mật khẩu</title>
+    <title>Đăng nhập</title>
 @endsection
 
 
@@ -11,11 +11,17 @@
     <div class="container">
         <div class="row" style="margin-bottom: 30px">
             <div class="login-form">
-                <h2>Quên mật khẩu</h2>
-                <form action="{{ route('forgot') }}" method="POST">
+                <h2>Reset password</h2>
+                <form action="{{ route('reset.token') }}" method="POST">
                     @csrf
-                    <input type="email" placeholder="Email" required name="email" />
-                    <button type="submit" class="btn btn-default">Gửi</button>
+                    <input type="hidden" name="token" value="{{ $token }}">
+
+
+                    <input type="email" placeholder="Email" required name="email" value="{{ $email }}"
+                        readonly />
+                    <input type="password" required placeholder="Nhập mật khẩu mới" name="new_password">
+
+                    <button type="submit" class="btn btn-default">Reset password</button>
                 </form>
             </div>
         </div>
@@ -29,16 +35,6 @@
             iziToast.success({
                 title: 'OK rồi !',
                 message: '{{ Session::get('message') }}',
-                position: 'bottomCenter'
-            });
-        </script>
-    @endif
-
-    @if (Session::has('success'))
-        <script>
-            iziToast.success({
-                title: 'OK rồi !',
-                message: '{{ Session::get('success') }}',
                 position: 'bottomCenter'
             });
         </script>

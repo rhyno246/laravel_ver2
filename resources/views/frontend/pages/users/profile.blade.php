@@ -14,6 +14,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#profile">Thông tin cá nhân</a></li>
                 <li><a data-toggle="tab" href="#order">Đã mua</a></li>
+                <li><a data-toggle="tab" href="#change_pass">Đổi mật khẩu</a></li>
                 <li><a data-toggle="tab" href="#floworder">Theo dõi đơn hàng</a></li>
             </ul>
             <div class="tab-content">
@@ -43,6 +44,11 @@
                         </form>
                     </div>
                 </div>
+                <div id="change_pass" class="tab-pane fade">
+                    <h3>change_pass</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+
                 <div id="order" class="tab-pane fade">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>

@@ -143,10 +143,34 @@ class CustomerController extends Controller
         ]);
         $action_link = route('reset', ['token' => $token, 'email'=>$email]);
         $body = "Chúng tôi nhận được yêu cầu thay đổi password từ bạn với email là " . $email . ' ' . "Bạn có thể reset lại password bằng cách nhấn vào link phía dưới";
-        Mail::send('template', ['action_link' => $action_link, 'body' => $body], function ($message) use ($request) {
+        Mail::send('frontend.pages.login.template', ['action_link' => $action_link, 'body' => $body], function ($message) use ($request) {
             $message->from('test@gmail.com', 'ShopOnline');
             $message->to($request->email, 'ShopOnline')->subject('ShopOnline reply reset password');
         });
         return back()->with('success', 'Chúng tôi có email reset lại password mới cho bạn , vui lòng kiểm tra hộp thư mail hoặc trong thư rác');
+    }
+
+
+    
+
+    public function reset (Request $request , $token = null) {
+        $gallery = $this->gallery->latest()->get();
+        $menu = $this->menu->where('parent_id', 0)->get();
+        return view('frontend.pages.login.reset' , compact('menu', 'gallery'))->with(['token' => $token, 'email' => $request->email]);
+    }
+    public function resetPost (Request $request){
+        $check_token = DB::table('password_resets')->where([
+            'email' => $request->email,
+            'token' => $request->token
+        ])->first();
+        if(!$check_token){
+            return back()->with('fail' , 'Invalid token');
+        }else{
+            $this->customer->where('email',$request->email)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+            DB::table('password_resets')->where('email', $request->email)->delete();
+            return redirect()->route('login')->with('message', 'Bạn đã reset password thành công , bạn có thể sử dụng password vừa reset để đăng nhập lại')->with('verifyEmail' ,$request->email);
+        }
     }
 }
