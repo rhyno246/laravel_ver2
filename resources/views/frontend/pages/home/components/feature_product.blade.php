@@ -12,7 +12,8 @@
                             <h2>{{ number_format($item->sale_price) }} vnđ</h2>
                             <p><a href="{{ route('product.detail', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
                             </p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
+                            <a href="{{ route('cart.add') }}" class="btn btn-default add-to-cart"><i
+                                    class="fa fa-shopping-cart"></i>Add
                                 to
                                 cart</a>
                         </div>

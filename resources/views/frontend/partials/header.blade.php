@@ -38,7 +38,7 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav" style="display: flex; align-items: center">
 
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             @if (session()->get('users'))
                                 <li>
                                     <a href="#" data-toggle="dropdown">
@@ -52,7 +52,7 @@
                                     </ul>
                                 </li>
                             @else
-                                <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
                             @endif
 
                         </ul>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" />
+                        <input type="text" placeholder="Tìm kím sản phẩm" />
                     </div>
                 </div>
             </div>

@@ -33,4 +33,7 @@ class ProductsController extends Controller
         $product = $this->products->where('slug', $slug)->first();
         return view('frontend.pages.products.detail' , compact('category' , 'menu' , 'product' , 'gallery'));
     }
+    public function addToCart () {
+        
+    }
 }

@@ -953,6 +953,17 @@ Route::prefix('tai-khoan')->group(function () {
 });
 
 
+Route::get('/add-to-cart', [
+    'as' => 'cart.add',
+    'uses' => 'App\Http\Controllers\FrontEnd\ProductsController@addToCart',
+]);
+
+Route::get('/gio-hang', [
+    'as' => 'cart',
+    'uses' => 'App\Http\Controllers\FrontEnd\CartController@index',
+]);
+
+
 
 
 
