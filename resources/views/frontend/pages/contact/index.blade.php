@@ -29,7 +29,8 @@
                                 placeholder="Tiêu đề">
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Nội dung"></textarea>
+                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Nội dung"
+                                maxlength="255"></textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <input type="submit" name="submit" class="btn btn-primary pull-right" value="Gửi">

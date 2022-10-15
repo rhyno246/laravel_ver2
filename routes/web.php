@@ -816,6 +816,12 @@ Route::prefix('admin')->group(function () {
             'uses' => 'App\Http\Controllers\MessageController@create',
             'middleware' => (['CheckIsUser'])
         ]);
+
+        Route::post('/send', [
+            'as' => 'message.send',
+            'uses' => 'App\Http\Controllers\MessageController@sendMail',
+            'middleware' => (['CheckIsUser'])
+        ]);
     });
 
     Route::prefix('order')->group(function () {

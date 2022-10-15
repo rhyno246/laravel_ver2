@@ -27,7 +27,8 @@
                             </div>
                             <div class="ticket-info">
                                 <div class="font-weight-600 mb-2">Tên : {{ $data->name }}</div>
-                                <div class="text-primary font-weight-600 mb-2">{{ $data->created_at }}</div>
+                                <div class="text-primary font-weight-600 mb-2">
+                                    {{ date('d-m-Y', strtotime($data->created_at)) }}</div>
                             </div>
                         </div>
                     </div>
@@ -38,9 +39,9 @@
                 <hr>
                 <div class="ticket-content">
                     <div class="ticket-title">
-                        <h4>Trời mail {{ $data->email }}</h4>
+                        <h4>Trả lời mail {{ $data->email }}</h4>
                     </div>
-                    <form action="" method="POST">
+                    <form action="{{ route('message.send') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Gửi tới</label>
