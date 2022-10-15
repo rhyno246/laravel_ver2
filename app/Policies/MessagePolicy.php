@@ -53,7 +53,7 @@ class MessagePolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.message-update'));
+        return $user->checkPermissionAccess(config('permissions.access.message-edit'));
     }
 
     /**

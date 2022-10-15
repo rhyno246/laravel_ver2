@@ -53,7 +53,7 @@ class SettingPagePolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.setting-page-update'));
+        return $user->checkPermissionAccess(config('permissions.access.setting-page-edit'));
     }
 
     /**

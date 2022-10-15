@@ -53,7 +53,7 @@ class ServicesPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.services-update'));
+        return $user->checkPermissionAccess(config('permissions.access.services-edit'));
     }
 
     /**

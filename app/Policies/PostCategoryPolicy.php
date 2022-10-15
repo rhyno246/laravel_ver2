@@ -53,7 +53,7 @@ class PostCategoryPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.category-posts-update'));
+        return $user->checkPermissionAccess(config('permissions.access.category-posts-edit'));
     }
 
     /**

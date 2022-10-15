@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right"><button class="btn btn-primary ">Tạo Albums </button></div>
+                    <div class="text-right"><button class="btn btn-primary ">Cập nhật Albums </button></div>
                 </form>
             </div>
         </div>

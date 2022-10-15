@@ -18,7 +18,6 @@ class CouponsPolicy
      */
     public function viewAny(User $user)
     {
-        
     }
 
     /**
@@ -53,7 +52,7 @@ class CouponsPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.coupons-update'));
+        return $user->checkPermissionAccess(config('permissions.access.coupons-edit'));
     }
 
     /**

@@ -53,7 +53,7 @@ class ProductsTagsPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.tags-products-update'));
+        return $user->checkPermissionAccess(config('permissions.access.tags-products-edit'));
     }
 
     /**

@@ -53,7 +53,7 @@ class CustomerPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.customer-update'));
+        return $user->checkPermissionAccess(config('permissions.access.customer-edit'));
     }
 
     /**

@@ -53,7 +53,7 @@ class PorductsPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.products-update'));
+        return $user->checkPermissionAccess(config('permissions.access.products-edit'));
     }
 
     /**

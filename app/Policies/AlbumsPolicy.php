@@ -53,7 +53,7 @@ class AlbumsPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.albums-update'));
+        return $user->checkPermissionAccess(config('permissions.access.albums-edit'));
     }
 
     /**

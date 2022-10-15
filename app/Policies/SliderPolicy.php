@@ -53,7 +53,7 @@ class SliderPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.slider-update'));
+        return $user->checkPermissionAccess(config('permissions.access.slider-edit'));
     }
 
     /**

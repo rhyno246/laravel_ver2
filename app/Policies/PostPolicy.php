@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.post-update'));
+        return $user->checkPermissionAccess(config('permissions.access.post-edit'));
     }
 
     /**

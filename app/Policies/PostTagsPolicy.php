@@ -53,7 +53,7 @@ class PostTagsPolicy
      */
     public function update(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.tags-posts-update'));
+        return $user->checkPermissionAccess(config('permissions.access.tags-posts-edit'));
     }
 
     /**
