@@ -38,7 +38,12 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav" style="display: flex; align-items: center">
 
-                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                            <li>
+                                <a href="{{ route('cart.index') }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Giỏ hàng
+                                </a>
+                            </li>
                             @if (session()->get('users'))
                                 <li>
                                     <a href="#" data-toggle="dropdown">

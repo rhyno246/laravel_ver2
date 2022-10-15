@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Menu;
 use App\Models\Products;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -33,7 +33,25 @@ class ProductsController extends Controller
         $product = $this->products->where('slug', $slug)->first();
         return view('frontend.pages.products.detail' , compact('category' , 'menu' , 'product' , 'gallery'));
     }
-    public function addToCart () {
-        
+    public function addToCart ($id) {
+        $product  = $this->products->find($id);
+        $cart = session()->get('cart');
+        if(isset($cart[$id])){
+            $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+        }else{
+            $cart[$id] = [
+                'name' => $product->name,
+                'price' => $product->sale_price,
+                'feature_image_path' => $product->feature_image_path,
+                'slug' => Str::slug($product->name),
+                'quantity' => 1,
+
+            ];
+        }
+        session()->put('cart' , $cart);
+        return response()->json([
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
     }
 }

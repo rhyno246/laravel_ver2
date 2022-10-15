@@ -19,7 +19,8 @@
                                     <p><a
                                             href="{{ route('product.detail', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
                                     </p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i
+                                    <a href="#" class="btn btn-default add-to-cart"
+                                        data-url="{{ route('cart.add', ['id' => $item->id]) }}"><i
                                             class="fa fa-shopping-cart"></i>Add
                                         to
                                         cart</a>

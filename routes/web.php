@@ -959,17 +959,28 @@ Route::prefix('tai-khoan')->group(function () {
 });
 
 
-Route::get('/add-to-cart', [
+Route::get('/add-to-cart/{id}', [
     'as' => 'cart.add',
     'uses' => 'App\Http\Controllers\FrontEnd\ProductsController@addToCart',
 ]);
 
-Route::get('/gio-hang', [
-    'as' => 'cart',
-    'uses' => 'App\Http\Controllers\FrontEnd\CartController@index',
-]);
 
 
+Route::prefix('gio-hang')->group(function () {
+    Route::get('/', [
+        'as' => 'cart.index',
+        'uses' => 'App\Http\Controllers\FrontEnd\CartController@index',
+    ]);
+
+    Route::get('/cap-nhat', [
+        'as' => 'cart.update',
+        'uses' => 'App\Http\Controllers\FrontEnd\CartController@update',
+    ]);
+    Route::get('/xoa', [
+        'as' => 'cart.delete',
+        'uses' => 'App\Http\Controllers\FrontEnd\CartController@delete',
+    ]);
+});
 
 
 

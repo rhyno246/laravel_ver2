@@ -18,6 +18,34 @@ class CartController extends Controller
     public function index () {
         $gallery = $this->gallery->latest()->get();
         $menu = $this->menu->where('parent_id' , 0)->get();
-        return view('frontend.pages.cart.index' , compact( 'menu' , 'gallery'));
+        $cart = session()->get('cart');
+        return view('frontend.pages.cart.index' , compact( 'menu' , 'gallery', 'cart'));
+    }
+    public function update (Request $request) {
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
+            $cart_item = view('frontend.pages.cart.components.cart_item' , compact( 'cart'))->render();
+            return response()->json([
+                'cart_item' => $cart_item , 
+                'code' => 200,
+                'message' => 'success'
+            ] , 200);
+        }
+    }
+
+    public function delete (Request $request) {
+        if($request->id){
+            $cart = session()->get('cart');
+            unset($cart[$request->id]);
+            session()->put('cart', $cart);
+            $cart_item = view('frontend.pages.cart.components.cart_item' , compact( 'cart'))->render();
+            return response()->json([
+                'cart_item' => $cart_item , 
+                'code' => 200,
+                'message' => 'success'
+            ] , 200);
+        }
     }
 }

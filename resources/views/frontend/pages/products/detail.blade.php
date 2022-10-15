@@ -26,10 +26,11 @@
 
                             </span>
                             <div class="text-left">
-                                <button type="button" class="btn btn-fefault cart" style="margin-left: 0">
+                                <a href="#" data-url="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="btn btn-fefault cart add-to-cart" style="margin-left: 0">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
-                                </button>
+                                </a>
                             </div>
                             <p><b>Availability:</b> {{ $product->stock == 0 ? 'Out Stock' : 'In Stock' }}</p>
                             <p><b>category :</b> {{ optional($product->categoriesInstance)->name }}</p>
@@ -64,4 +65,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('js')
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/add-to-cart.js') }}"></script>
 @endsection

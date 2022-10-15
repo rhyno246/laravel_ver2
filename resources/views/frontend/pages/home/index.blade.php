@@ -15,3 +15,9 @@
         </div>
     </div>
 @endsection
+
+
+@section('js')
+    <script src="{{ asset('backend/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/add-to-cart.js') }}"></script>
+@endsection
