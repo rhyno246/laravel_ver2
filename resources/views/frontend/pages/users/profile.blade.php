@@ -58,8 +58,30 @@
                 </div>
 
                 <div id="order" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Some content in menu 1.</p>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper" style="margin-top: 20px">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href=""><img src="{{ asset('frontend/images/cart/one.png') }}" /></a>
+                                    <h2>200.000 vnđ</h2>
+                                    <p><a href="">dsfdsdsds</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper" style="margin-top: 20px">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href=""><img src="{{ asset('frontend/images/cart/one.png') }}" /></a>
+                                    <h2>200.000 vnđ</h2>
+                                    <p><a href="">dsfdsdsds</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="floworder" class="tab-pane fade">
                     <h3>Menu 2</h3>
