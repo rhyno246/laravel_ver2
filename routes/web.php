@@ -980,7 +980,14 @@ Route::prefix('gio-hang')->group(function () {
         'as' => 'cart.delete',
         'uses' => 'App\Http\Controllers\FrontEnd\CartController@delete',
     ]);
+
+    Route::get('/thanh-toan', [
+        'as' => 'cart.checkout',
+        'uses' => 'App\Http\Controllers\FrontEnd\CartController@checkout',
+    ]);
 });
+
+
 
 
 

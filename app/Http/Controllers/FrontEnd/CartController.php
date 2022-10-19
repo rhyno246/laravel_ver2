@@ -48,4 +48,10 @@ class CartController extends Controller
             ] , 200);
         }
     }
+    public function checkout () {
+        $gallery = $this->gallery->latest()->get();
+        $menu = $this->menu->where('parent_id' , 0)->get();
+        $cart = session()->get('cart');
+        return view('frontend.pages.cart.checkout' , compact( 'menu' , 'gallery', 'cart'));
+    }
 }

@@ -54,13 +54,28 @@ class CouponsController extends Controller
     }
 
     public function edit($id){
-        $data = $this->role_customer->find($id);
-        return view('backend.pages.customer-role.edit' , compact('data'));
+        $data = $this->coupons->find($id);
+        $customer_group = $this->role_customer->latest()->get();
+        return view('backend.pages.coupons.edit' , compact('data' , 'customer_group'));
     }
-    public function update(RequestCouponsCreate $request ,$id){
+
+
+
+    public function update(Request $request ,$id){
         try {
             DB::beginTransaction();
-            
+            $data = [
+                'coupons_key' => $request->coupons_key,
+                'date_start' => $request->date_start,
+                'date_end' => $request->date_end,
+                'coupons_value' => $request->coupons_value,
+                'coupons_cart_value' => $request->coupons_cart_value,
+                'customer_group' => $request->customer_group,
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+                'coupons_price' => $request->coupons_price
+            ];
+            $this->coupons->find($id)->update($data);
             DB::commit();
             return redirect()->route('coupons.index')->with('message' , 'Bạn đã cập nhật mã giảm giá thàng công');
         } catch (\Exception $exception) {
@@ -68,6 +83,10 @@ class CouponsController extends Controller
             Log::error('Message : ' . $exception->getMessage() . '-----------------Line : ' . $exception->getLine());
         }
     }
+
+
+
+    
 
     public function delete ($id){
         return $this->deleteModelTrait($id, $this->coupons);

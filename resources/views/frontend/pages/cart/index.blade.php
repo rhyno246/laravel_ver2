@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <h2 class="title text-center">Giỏ hàng</h2>
-        @include('frontend.pages.cart.components.cart_item');
+        @include('frontend.pages.cart.components.cart_item')
     </div>
 @endsection
 

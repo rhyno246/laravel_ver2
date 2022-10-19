@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupons;
 use App\Models\Customer;
 use App\Models\Gallery;
 use App\Models\Menu;
@@ -17,12 +18,13 @@ use Illuminate\Support\Str;
 class CustomerController extends Controller
 {
     use StorageImageTrait;
-    private $customer,  $menu, $gallery;
-    public function __construct(Customer $customer, Menu $menu, Gallery $gallery)
+    private $customer,  $menu, $gallery , $coupons;
+    public function __construct(Customer $customer, Menu $menu, Gallery $gallery , Coupons $coupons)
     {
         $this->customer = $customer;
         $this->menu = $menu;
         $this->gallery = $gallery;
+        $this->coupons = $coupons;
     }
     public function login()
     {
@@ -112,7 +114,8 @@ class CustomerController extends Controller
         $user = $this->customer->find($id);
         $gallery = $this->gallery->latest()->get();
         $menu = $this->menu->where('parent_id', 0)->get();
-        return view('frontend.pages.users.profile', compact('user', 'menu', 'gallery'));
+        $user_coupons = $this->coupons->where('customer_group', $user->role)->get();
+        return view('frontend.pages.users.profile', compact('user', 'menu', 'gallery' , 'user_coupons'));
     }
 
     public function update (Request $request , $id)

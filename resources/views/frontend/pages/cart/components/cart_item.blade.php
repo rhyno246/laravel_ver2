@@ -58,14 +58,11 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="form-group text-center">
-                <input type="checkbox" id="css">
-                <label for="css">Tôi có mã giảm giá</label>
-            </div>
             <div class="total_cart cart_total_price text-center" style="padding-bottom: 20px">
                 Tổng cộng : {{ number_format((float) $total, 0) }} vnđ
                 <p class="check_out">
-                    <a href="#" class="btn btn-primary" style="margin-top: 0; display: block">Thanh toán</a>
+                    <a href="{{ route('cart.checkout') }}" class="btn btn-primary"
+                        style="margin-top: 0; display: block">Thanh toán</a>
                 </p>
             </div>
         </div>

@@ -15,11 +15,13 @@
                 <li class="active"><a data-toggle="tab" href="#profile">Thông tin cá nhân</a></li>
                 <li><a data-toggle="tab" href="#change_pass">Đổi mật khẩu</a></li>
                 <li><a data-toggle="tab" href="#order">Đã mua</a></li>
-                <li><a data-toggle="tab" href="#floworder">Theo dõi đơn hàng</a></li>
+                <li><a data-toggle="tab" href="#coupons">Mã giảm giá của bạn</a></li>
             </ul>
             <div class="tab-content" style="margin-bottom: 30px">
                 <div id="profile" class="tab-pane fade in active">
                     <div class="login-form" style="margin-bottom: 20px">
+
+
 
 
                         <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST"
@@ -83,14 +85,27 @@
                         </div>
                     </div>
                 </div>
-                <div id="floworder" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Some content in menu 2.</p>
+
+
+
+                <div id="coupons" class="tab-pane fade">
+                    <div class="coupons" style="margin-top: 50px">
+                        <div class="content">
+                            @foreach ($user_coupons as $item)
+                                <div class="coupon-wrapper tooltips"
+                                    tooltip="{{ $item->date_end >= date('Y-m-d') ? 'Ma này còn hạn' : 'Mã này đã hết hạn' }}"
+                                    tooltip-position="top"
+                                    tooltip-type="{{ $item->date_end >= date('Y-m-d') ? 'success' : 'danger' }}">
+                                    <input class="coupon-input" readonly="true" value="{{ $item->coupons_key }}" />
+                                    <button class="coupon-button clickCoupon">
+                                        Copy
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 @endsection
@@ -99,6 +114,7 @@
     <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/chooseImage.js') }}"></script>
+    <script src="{{ asset('frontend/js/copy-coupons.js') }}"></script>
     @if (Session::has('fail'))
         <script>
             iziToast.error({
