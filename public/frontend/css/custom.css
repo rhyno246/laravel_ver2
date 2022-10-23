@@ -392,3 +392,7 @@
 .tooltips[tooltip-type="danger"][tooltip-position="right"] > span:after{
   border-right: 8px solid #c0392b;
 }
+
+.clickCoupon:disabled{
+  cursor: not-allowed;
+}

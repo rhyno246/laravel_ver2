@@ -92,15 +92,18 @@
                     <div class="coupons" style="margin-top: 50px">
                         <div class="content">
                             @foreach ($user_coupons as $item)
-                                <div class="coupon-wrapper tooltips"
-                                    tooltip="{{ $item->date_end >= date('Y-m-d') ? 'Ma này còn hạn' : 'Mã này đã hết hạn' }}"
-                                    tooltip-position="top"
-                                    tooltip-type="{{ $item->date_end >= date('Y-m-d') ? 'success' : 'danger' }}">
-                                    <input class="coupon-input" readonly="true" value="{{ $item->coupons_key }}" />
-                                    <button class="coupon-button clickCoupon">
-                                        Copy
-                                    </button>
-                                </div>
+                                @if (date('Y-m-d') >= $item->date_start)
+                                    <div class="coupon-wrapper tooltips"
+                                        tooltip="{{ $item->date_end >= date('Y-m-d') ? 'Mã này còn hạn' : 'Mã này đã hết hạn' }}"
+                                        tooltip-position="top"
+                                        tooltip-type="{{ $item->date_end >= date('Y-m-d') ? 'success' : 'danger' }}">
+                                        <input class="coupon-input" readonly="true" value="{{ $item->coupons_key }}" />
+                                        <button class="coupon-button clickCoupon"
+                                            {{ $item->date_end >= date('Y-m-d') ? '' : 'disabled' }}>
+                                            Copy
+                                        </button>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>

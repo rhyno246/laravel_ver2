@@ -5,6 +5,7 @@
 
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 @endsection
 
@@ -63,10 +64,13 @@
                 @endforeach
                 <div class="total-checkout">
                     <div class="payment-options">
-                        <span>
-                            <label><input type="checkbox" style="margin-right: 10px">Tôi có mã giảm giá</label>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Nhập mã giảm giá">
+                        <form action="{{ route('cart.coupons') }}" method="POST" class="type_coupons"
+                            style="display: flex; align-items: center">
+                            @csrf
+                            <input type="text" class="form-control" placeholder="Nhập mã giảm giá" name="type_coupons"
+                                style="margin-top: 0">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 0">Áp dụng</button>
+                        </form>
                     </div>
                     <p>Tổng cộng : <b style="color: #FE980F">{{ number_format((float) $total, 0) }} vnđ</b></p>
                 </div>
@@ -77,5 +81,24 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('backend/assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('frontend/js/api-address.js') }}"></script>
+    @if (Session::has('message'))
+        <script>
+            iziToast.success({
+                title: 'OK rồi !',
+                message: '{{ Session::get('message') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
+    @if (Session::has('fail'))
+        <script>
+            iziToast.error({
+                title: 'Cảnh báo !',
+                message: '{{ Session::get('fail') }}',
+                position: 'bottomCenter'
+            });
+        </script>
+    @endif
 @endsection

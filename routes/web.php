@@ -985,6 +985,11 @@ Route::prefix('gio-hang')->group(function () {
         'as' => 'cart.checkout',
         'uses' => 'App\Http\Controllers\FrontEnd\CartController@checkout',
     ]);
+
+    Route::post('/ma-giam-gia', [
+        'as' => 'cart.coupons',
+        'uses' => 'App\Http\Controllers\FrontEnd\CartController@coupons',
+    ]);
 });
 
 
